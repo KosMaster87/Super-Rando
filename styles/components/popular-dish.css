@@ -1,0 +1,98 @@
+/* Mobile Popular Dish */
+.popular-dish {
+  background: var(--color-card-background);
+  border-radius: 0.9375rem;
+  padding: 1.5rem;
+  box-shadow: 0 0.3125rem 0.9375rem var(--shadow-light);
+}
+
+.popular-dish-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.popular-dish-image img {
+  width: 100%;
+  height: 12.5rem;
+  object-fit: cover;
+  border-radius: 0.625rem;
+}
+
+.popular-title {
+  font-size: 1.3rem;
+  color: var(--color-surface);
+  margin-bottom: 1rem;
+}
+
+.popular-description {
+  color: var(--color-secondary);
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+  font-size: 0.9rem;
+}
+
+.popular-features {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.feature {
+  background: var(--color-secondary);
+  padding: 0.5rem 1rem;
+  border-radius: 1.25rem;
+  font-size: 0.8rem;
+  color: var(--color-primary);
+  text-align: center;
+}
+
+.popular-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+}
+
+.popular-price {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--color-surface);
+}
+
+.popular-order-btn {
+  background: linear-gradient(
+    135deg,
+    var(--color-primary),
+    var(--color-primary-hover)
+  );
+  color: var(--color-secondary);
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  width: 100%;
+}
+
+/* Tablet Styles */
+@media (min-width: 768px) {
+  .popular-dish-content {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 2rem;
+    align-items: center;
+  }
+
+  .popular-dish-image img {
+    height: 15.625rem;
+  }
+
+  .popular-features {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .popular-footer {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}

@@ -1,0 +1,255 @@
+/* Mobile First: Header Styles */
+.header {
+  box-shadow: 0 0.38rem 1.5rem -0.5rem var(--shadow-medium),
+    0 0.19rem 0.13rem 0.06rem var(--shadow-heavy),
+    0.06rem 0.25rem 0.19rem 0.06rem var(--shadow-light),
+    0.06rem 0.31rem 0.19rem 0.06rem var(--shadow-light);
+  background: linear-gradient(
+    135deg,
+    var(--color-header-background),
+    var(--color-accent)
+  );
+}
+
+.header-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.8rem;
+  gap: 1rem;
+  text-align: center;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: center;
+}
+
+.logo-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+}
+
+.logo {
+  width: 2.19rem;
+  height: 2.19rem;
+  margin-right: 0.63rem;
+}
+
+.brand-info {
+  text-align: left;
+}
+
+.brand-name {
+  font-size: 1.4rem;
+  font-weight: bold;
+  margin: 0;
+  color: var(--color-surface);
+  text-shadow: 0.13rem 0.13rem 0.25rem var(--shadow-heavy);
+}
+
+.brand-tagline {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.9);
+  font-style: italic;
+  margin-top: -0.13rem;
+}
+
+/* Mobile Navigation */
+.header-nav {
+  width: 100%;
+}
+
+.nav-list {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 0.19rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.nav-item {
+  flex: initial;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.6rem;
+  text-decoration: none;
+  color: var(--color-surface);
+  font-weight: 500;
+  border-radius: 1.56rem;
+  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(0.63rem);
+  font-size: 0.85rem;
+  min-width: 3.13rem;
+  min-height: 2.75rem;
+}
+
+.nav-link:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.nav-text {
+  display: none; /* Mobile: nur Icons */
+}
+
+.nav-icon {
+  font-size: 1.2rem;
+  filter: drop-shadow(0.06rem 0.06rem 0.13rem var(--shadow-heavy));
+}
+
+.header-right {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.contact-info {
+  display: flex;
+  align-items: center;
+}
+
+.phone-number {
+  color: var(--color-surface);
+  font-weight: 500;
+  font-size: 0.8rem;
+  padding: 0.4rem 0.6rem;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 1.25rem;
+  backdrop-filter: blur(0.63rem);
+  text-shadow: 0.06rem 0.06rem 0.13rem var(--shadow-heavy);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.phone-number:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+/* Tablet Styles */
+@media (min-width: 768px) {
+  .header-container {
+    padding: 1rem;
+    gap: 1.5rem;
+  }
+
+  .logo {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+
+  .brand-name {
+    font-size: 1.6rem;
+  }
+
+  .brand-tagline {
+    font-size: 0.85rem;
+  }
+
+  .nav-link {
+    padding: 0.6rem 0.8rem;
+    font-size: 0.85rem;
+    min-width: 3.75rem;
+  }
+
+  .nav-text {
+    display: block; /* Text erscheint ab Tablet */
+  }
+
+  .nav-icon {
+    font-size: 1.3rem;
+  }
+
+  .phone-number {
+    font-size: 0.9rem;
+    padding: 0.5rem 0.8rem;
+  }
+}
+
+/* Desktop Styles */
+@media (min-width: 1024px) {
+  .header-container {
+    padding: 1rem 1.5rem;
+    gap: 1.5rem;
+  }
+
+  .nav-link {
+    padding: 0.7rem 1rem;
+    font-size: 0.9rem;
+    min-width: 4.38rem;
+  }
+}
+
+/* Large Desktop */
+@media (min-width: 1280px) {
+  .header-container {
+    flex-direction: row;
+    justify-content: space-between;
+    max-width: 87.5rem;
+    margin: 0 auto;
+    padding: 1rem 2rem;
+    gap: 2rem;
+  }
+
+  .header-left {
+    width: auto;
+    justify-content: flex-start;
+  }
+
+  .header-nav {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    width: auto;
+  }
+
+  .nav-list {
+    gap: 0.5rem;
+  }
+
+  .nav-link {
+    padding: 0.8rem 1.2rem;
+    font-size: 1rem;
+  }
+
+  .header-right {
+    width: auto;
+  }
+
+  .logo {
+    width: 3.13rem;
+    height: 3.13rem;
+  }
+
+  .brand-name {
+    font-size: 1.8rem;
+  }
+
+  .brand-tagline {
+    font-size: 0.9rem;
+  }
+
+  .phone-number {
+    font-size: 0.95rem;
+    padding: 0.6rem 1rem;
+  }
+}
+
+/* Extra Large Desktop */
+@media (min-width: 1400px) {
+  .header-container {
+    padding: 1rem 2rem;
+    gap: 2rem;
+  }
+}

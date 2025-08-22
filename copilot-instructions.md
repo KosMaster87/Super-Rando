@@ -35,22 +35,31 @@
 - State-Änderungen lösen immer ein Re-Rendering der betroffenen UI-Komponenten aus.
 - Event Listeners nur einmalig beim Initialisieren registrieren.
 
+## State Management Pattern
+
+- Zentrales State-Objekt in `state.js` mit folgender Struktur:
+  - `currentPage`: Aktuelle Seitenansicht
+  - `cart`: Warenkorb-Items (Array mit {name, price, quantity})
+  - `dishes`: Verfügbare Gerichte (Array mit {name, price, description, image})
+  - `listeners`: Event-Listener für State-Änderungen
+- State-Änderungen nur über spezialisierte Setter-Funktionen in separaten Modulen.
+- Jede State-Änderung triggert ein Re-Rendern der betroffenen Komponenten über `notifyListeners()`.
+- Keine globalen Variablen außerhalb des State-Objekts.
+- Immutable Updates: State nie direkt mutieren, sondern neue Objekte/Arrays erstellen.
+- LocalStorage für Warenkorb-Persistierung nutzen.
+- State-Getter-Funktionen für sichere Datenzugriffe bereitstellen.
+
 ## File Structure
 
 - `/index.html` – Einstiegspunkt, enthält nur minimale Struktur und Script-/Style-Einbindungen.
 - `/src/app.js` – Einstiegspunkt für die SPA-Logik und State-Management.
-- `/src/components/` – Wiederverwendbare UI-Komponenten als JS-Module.
 - `/src/state.js` – Zentrales State-Objekt und State-Management-Funktionen.
-- `/src/utils/` – Hilfsfunktionen.
+- `/src/components/` – Wiederverwendbare UI-Komponenten als JS-Module.
+- `/src/utils/` – Hilfsfunktionen und Konstanten.
+- `/src/services/` – State-Manipulation-Services (cart.js, navigation.js).
 - `/styles/` – Alle CSS-Dateien, nach Komponenten oder Features getrennt.
-
-## State Management Pattern
-
-- Zentrales State-Objekt in `state.js`.
-- State-Änderungen nur über spezialisierte Setter-Funktionen.
-- Jede State-Änderung triggert ein Re-Rendern der betroffenen Komponenten.
-- Keine globalen Variablen außerhalb des State-Objekts.
-- Immutable Updates: State nie direkt mutieren, sondern neue Objekte/Arrays erstellen.
+- `/assets/icons/` – Icon-Dateien (PNG, SVG).
+- `/assets/images/` – Produkt- und Content-Bilder.
 
 ## Error Handling
 
@@ -62,9 +71,14 @@
 
 - Keine Inline-Styles oder Inline-Eventhandler im HTML.
 - Keine Magic Numbers oder Strings – stattdessen Konstanten verwenden.
+- **CSS Custom Properties (Variablen)**: Alle Farben über CSS-Variablen im :root definieren. Keine Hex-Codes direkt im CSS verwenden.
+- **Relative Einheiten**: Immer `rem` für Größen, Abstände und Schriftgrößen verwenden. Keine `px` außer bei Borders (1px), box-shadow und @media. Auf zwei Dezimalstellen runden.
+- Konsistente Farbpalette: Haupt-, Sekundär-, Akzent- und Neutralfarben definieren.
 - Komponenten und Funktionen klar benennen.
 - Keine doppelten IDs oder Klassennamen.
-- Responsive Design mit CSS sicherstellen.
+- **Mobile First Design**: Styles zuerst für mobile Geräte entwickeln, dann mit Media Queries für größere Bildschirme erweitern.
+- Responsive Design mit CSS sicherstellen - Breakpoints: 768px (Tablet), 1024px (Desktop), 1200px (Large Desktop).
+- Touch-freundliche Buttons und Interaktionselemente (min. 2.75rem Höhe).
 - Accessibility (a11y) beachten: Semantisches HTML, ARIA-Attribute wo nötig.
 - Konsistente Code-Formatierung (z.B. Prettier, EditorConfig).
 - Keine externen Frameworks oder Libraries verwenden.

@@ -1,0 +1,44 @@
+/* Mobile Main Content */
+.main-content {
+  min-height: calc(100vh - 12.5rem);
+  padding: 1rem;
+}
+
+.welcome-content {
+  text-align: center;
+}
+
+/* Page Content Placeholder */
+.page-content {
+  text-align: center;
+  padding: 1rem;
+}
+
+.placeholder-content {
+  background: var(--color-card-background);
+  border-radius: 0.9375rem;
+  padding: 2rem;
+  margin-top: 1.5rem;
+  box-shadow: 0 0.3125rem 0.9375rem var(--shadow-light);
+}
+
+.placeholder-content p {
+  font-size: 1rem;
+  color: var(--color-secondary);
+  font-style: italic;
+}
+
+/* Tablet Styles */
+@media (min-width: 768px) {
+  .main-content {
+    padding: 2rem;
+  }
+}
+
+/* Desktop Styles */
+@media (min-width: 1024px) {
+  .main-content {
+    max-width: 75rem;
+    margin: 0 auto;
+  }
+}

@@ -1,0 +1,80 @@
+/* CSS Custom Properties - Farbpalette */
+:root {
+  /* Hauptfarbpalette */
+  --color-primary: #34291e;
+  --color-secondary: #e2dcc5;
+  --color-accent: #b29e70;
+  --color-neutral-light: #9c8e70;
+  --color-neutral-medium: #8c745f;
+
+  /* Semantische Farben */
+  --color-background: #e2dcc5;
+  --color-surface: #ffffff;
+  --color-card-background: #9c8e70;
+  --color-header-background: #b29e70;
+  --color-text-primary: #34291e;
+  --color-text-secondary: #8c745f;
+  --color-text-muted: #34291e;
+
+  /* Status Farben */
+  --color-success: #b29e70;
+  --color-warning: #8c745f;
+  --color-error: #c0392b;
+  --color-info: #9c8e70;
+
+  /* Schatten und Transparenzen */
+  --shadow-light: rgba(52, 41, 30, 0.1);
+  --shadow-medium: rgba(52, 41, 30, 0.15);
+  --shadow-heavy: rgba(52, 41, 30, 0.2);
+
+  /* Hover und Interaktionsfarben */
+  --color-primary-hover: #211a12;
+  --color-secondary-hover: #d4cbb0;
+  --color-accent-hover: #a08d5d;
+}
+
+/* Reset und Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  color: var(--color-text-primary);
+  background-color: var(--color-background);
+  font-size: 1rem;
+}
+
+/* Common Typography */
+.page-title {
+  font-size: 2rem;
+  color: var(--color-primary);
+  margin-bottom: 1rem;
+  font-weight: 300;
+}
+
+.page-subtitle {
+  font-size: 1rem;
+  color: var(--color-text-secondary);
+  margin-bottom: 2rem;
+}
+
+/* Media Queries Base */
+@media (min-width: 768px) {
+  .page-title {
+    font-size: 2.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .page-title {
+    font-size: 3rem;
+  }
+
+  .page-subtitle {
+    font-size: 1.2rem;
+  }
+}
