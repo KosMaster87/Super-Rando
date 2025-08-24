@@ -82,6 +82,20 @@ const renderProductsPagePlaceholder = () => {
       <p class="page-subtitle">Hier finden Sie unser komplettes Sortiment</p>
       <div class="placeholder-content">
         <p>Diese Seite wird gerade entwickelt...</p>
+        <br><br>
+        <p>Hier werden später alle unsere Gerichte angezeigt:</p>
+        <ul style="text-align: left; max-width: 30rem; margin: 2rem auto;">
+          <li>🍕 Pizza Spezialitäten</li>
+          <li>🍝 Pasta Variationen</li>
+          <li>🥗 Frische Salate</li>
+          <li>🍰 Köstliche Desserts</li>
+          <li>🍜 Fusion Bowls</li>
+          <li>🥟 Asiatische Vorspeisen</li>
+        </ul>
+        <p>Scrollen Sie, um den Warenkorb-Sticky-Effekt zu testen!</p>
+        <div style="height: 50rem; background: linear-gradient(to bottom, transparent, rgba(156, 142, 112, 0.1)); margin-top: 2rem; border-radius: 1rem; display: flex; align-items: center; justify-content: center; color: #8c745f;">
+          <p>Langer Content zum Testen des Scrollverhaltens</p>
+        </div>
       </div>
     </section>
   `;

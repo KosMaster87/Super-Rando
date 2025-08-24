@@ -30,6 +30,7 @@ const renderAllComponents = () => {
   renderHeader();
   renderMainContent();
   renderFooter();
+  initializeEventListeners();
 };
 
 /**
