@@ -69,7 +69,7 @@
   list-style: none;
   margin: 0;
   padding: 0;
-  gap: 0.19rem;
+  gap: 1rem;
   flex-wrap: wrap;
   justify-content: center;
 }
@@ -215,7 +215,7 @@
   }
 
   .nav-list {
-    gap: 0.5rem;
+    gap: 1rem;
   }
 
   .nav-link {

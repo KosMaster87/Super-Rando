@@ -33,9 +33,16 @@
 
 .line {
   width: 50%;
-  height: 2px;
-  background: rgba(255, 255, 255, 0.3);
-  border-radius: 2px;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.2) 20%,
+    rgba(255, 255, 255, 0.6) 50%,
+    rgba(255, 255, 255, 0.2) 80%,
+    transparent 100%
+  );
+  opacity: 0.8;
 }
 
 .footer-links {
@@ -97,7 +104,16 @@
 
   .line {
     width: 50%;
-    height: 2px;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.2) 20%,
+      rgba(255, 255, 255, 0.6) 50%,
+      rgba(255, 255, 255, 0.2) 80%,
+      transparent 100%
+    );
+    opacity: 0.8;
   }
 
   .footer-links {
@@ -128,7 +144,16 @@
 
   .line {
     width: 50%;
-    height: 2px;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.2) 20%,
+      rgba(255, 255, 255, 0.6) 50%,
+      rgba(255, 255, 255, 0.2) 80%,
+      transparent 100%
+    );
+    opacity: 0.8;
   }
 
   .footer-links {
@@ -165,8 +190,17 @@
   }
 
   .line {
-    width: 50%;
-    height: 2px;
+    width: 60%;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.2) 20%,
+      rgba(255, 255, 255, 0.6) 50%,
+      rgba(255, 255, 255, 0.2) 80%,
+      transparent 100%
+    );
+    opacity: 0.8;
   }
 
   .footer-links {
