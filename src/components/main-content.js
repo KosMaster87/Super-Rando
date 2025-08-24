@@ -1,5 +1,6 @@
 import { appState } from "../state.js";
 import { renderHomePage } from "./pages/home-page.js";
+import { renderProductsPage } from "./pages/products-page.js";
 import { renderCart } from "./cart.js";
 import { renderCartToggle } from "./cart-toggle.js";
 import { CART_PAGES } from "../utils/constants.js";
@@ -55,7 +56,7 @@ const getCurrentPageHTML = () => {
     case "home":
       return renderHomePage();
     case "products":
-      return renderProductsPagePlaceholder();
+      return renderProductsPage();
     case "contact":
       return renderContactPagePlaceholder();
     case "about":
@@ -69,36 +70,6 @@ const getCurrentPageHTML = () => {
     default:
       return renderHomePage();
   }
-};
-
-/**
- * Rendert Platzhalter für Products-Seite
- * @returns {string} HTML-String für Products-Platzhalter
- */
-const renderProductsPagePlaceholder = () => {
-  return `
-    <section class="page-content">
-      <h1 class="page-title">Unsere Produkte</h1>
-      <p class="page-subtitle">Hier finden Sie unser komplettes Sortiment</p>
-      <div class="placeholder-content">
-        <p>Diese Seite wird gerade entwickelt...</p>
-        <br><br>
-        <p>Hier werden später alle unsere Gerichte angezeigt:</p>
-        <ul style="text-align: left; max-width: 30rem; margin: 2rem auto;">
-          <li>🍕 Pizza Spezialitäten</li>
-          <li>🍝 Pasta Variationen</li>
-          <li>🥗 Frische Salate</li>
-          <li>🍰 Köstliche Desserts</li>
-          <li>🍜 Fusion Bowls</li>
-          <li>🥟 Asiatische Vorspeisen</li>
-        </ul>
-        <p>Scrollen Sie, um den Warenkorb-Sticky-Effekt zu testen!</p>
-        <div style="height: 50rem; background: linear-gradient(to bottom, transparent, rgba(156, 142, 112, 0.1)); margin-top: 2rem; border-radius: 1rem; display: flex; align-items: center; justify-content: center; color: #8c745f;">
-          <p>Langer Content zum Testen des Scrollverhaltens</p>
-        </div>
-      </div>
-    </section>
-  `;
 };
 
 /**
