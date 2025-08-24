@@ -4,6 +4,7 @@ import { renderFooter } from "./components/footer.js";
 import { renderMainContent } from "./components/main-content.js";
 import { initializeNavigation } from "./services/navigation.js";
 import { initializeFooterNavigation } from "./services/footer-navigation.js";
+import { initializeCartEvents } from "./services/cart-events.js";
 
 /**
  * Initialisiert die gesamte Anwendung
@@ -37,6 +38,7 @@ const renderAllComponents = () => {
 const initializeEventListeners = () => {
   initializeNavigation();
   initializeFooterNavigation();
+  initializeCartEvents();
 };
 
 /**

@@ -17,3 +17,6 @@ export const ASSETS = {
 
 /** @type {number} Maximale Anzahl Items im Warenkorb */
 export const MAX_CART_ITEMS = 99;
+
+/** @type {Array} Seiten mit Warenkorb */
+export const CART_PAGES = ["home", "products"];

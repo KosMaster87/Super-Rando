@@ -1,12 +1,49 @@
 import { appState } from "../state.js";
 import { renderHomePage } from "./pages/home-page.js";
+import { renderCart } from "./cart.js";
+import { renderCartToggle } from "./cart-toggle.js";
+import { CART_PAGES } from "../utils/constants.js";
 
 /**
  * Rendert den Main-Content basierend auf der aktuellen Seite
  */
 export const renderMainContent = () => {
   const mainElement = document.getElementById("mainContent");
-  mainElement.innerHTML = getCurrentPageHTML();
+  const hasCart = CART_PAGES.includes(appState.currentPage);
+
+  mainElement.innerHTML = hasCart
+    ? createLayoutWithCart()
+    : createLayoutWithoutCart();
+};
+
+/**
+ * Erstellt Layout mit Warenkorb (Home/Products)
+ * @returns {string} HTML-String für Layout mit Cart
+ */
+const createLayoutWithCart = () => {
+  return `
+    <div class="page-layout-with-cart">
+      <div class="content-area">
+        ${getCurrentPageHTML()}
+      </div>
+      <div class="cart-area">
+        ${renderCart()}
+      </div>
+    </div>
+    ${renderCartToggle()}
+  `;
+};
+
+/**
+ * Erstellt Layout ohne Warenkorb
+ * @returns {string} HTML-String für Layout ohne Cart
+ */
+const createLayoutWithoutCart = () => {
+  return `
+    <div class="page-layout-standard">
+      ${getCurrentPageHTML()}
+    </div>
+  `;
 };
 
 /**

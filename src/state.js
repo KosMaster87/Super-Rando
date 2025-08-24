@@ -2,6 +2,7 @@
 const appState = {
   currentPage: "home",
   cart: [],
+  cartVisible: false,
   dishes: [
     {
       name: "Pizza Margherita",
