@@ -2,8 +2,10 @@ import { appState, loadCartFromStorage, notifyListeners } from "./state.js";
 import { renderHeader } from "./components/header.js";
 import { renderFooter } from "./components/footer.js";
 import { renderMainContent } from "./components/main-content.js";
-import { initializeNavigation } from "./services/navigation.js";
-import { initializeFooterNavigation } from "./services/footer-navigation.js";
+import {
+  initializeNavigation,
+  setupNavigationListeners,
+} from "./services/navigation.js";
 import { initializeCartEvents } from "./services/cart-events.js";
 
 /**
@@ -11,9 +13,9 @@ import { initializeCartEvents } from "./services/cart-events.js";
  */
 const initializeApp = () => {
   loadCartFromStorage();
+  initializeNavigation();
   registerStateListeners();
   renderAllComponents();
-  initializeEventListeners();
 };
 
 /**
@@ -30,15 +32,14 @@ const renderAllComponents = () => {
   renderHeader();
   renderMainContent();
   renderFooter();
-  initializeEventListeners();
+  setupComponentEventListeners();
 };
 
 /**
- * Initialisiert alle Event-Listener
+ * Setzt Event-Listener die bei jedem Re-Render neu gesetzt werden müssen
  */
-const initializeEventListeners = () => {
-  initializeNavigation();
-  initializeFooterNavigation();
+const setupComponentEventListeners = () => {
+  setupNavigationListeners();
   initializeCartEvents();
 };
 

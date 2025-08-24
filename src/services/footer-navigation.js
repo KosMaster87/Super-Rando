@@ -15,7 +15,10 @@ export const initializeFooterNavigation = () => {
 const setupFooterLogoNavigation = () => {
   const footerLogoLink = document.getElementById("footerLogoLink");
   if (footerLogoLink) {
-    footerLogoLink.addEventListener("click", (e) => {
+    // Alte Event-Listener entfernen
+    footerLogoLink.replaceWith(footerLogoLink.cloneNode(true));
+    const newFooterLogoLink = document.getElementById("footerLogoLink");
+    newFooterLogoLink.addEventListener("click", (e) => {
       e.preventDefault();
       navigateToPage(PAGES.HOME);
     });
@@ -35,7 +38,10 @@ const setupFooterLinksNavigation = () => {
   footerLinks.forEach(({ id, page }) => {
     const element = document.getElementById(id);
     if (element) {
-      element.addEventListener("click", (e) => {
+      // Alte Event-Listener entfernen
+      element.replaceWith(element.cloneNode(true));
+      const newElement = document.getElementById(id);
+      newElement.addEventListener("click", (e) => {
         e.preventDefault();
         navigateToPage(page);
       });
