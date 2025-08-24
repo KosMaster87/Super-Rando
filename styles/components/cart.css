@@ -275,7 +275,7 @@
     max-height: calc(100vh - 2rem);
     border-radius: 1rem;
     box-shadow: 0 0.5rem 2rem var(--shadow-light);
-    background: var(--color-card-background);
+    background: var(--secondary-gradient);
   }
 
   .cart-sidebar.cart-open {

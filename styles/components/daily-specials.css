@@ -7,7 +7,7 @@
 }
 
 .special-card {
-  background: var(--color-card-background);
+  background: var(--secondary-gradient);
   border-radius: 0.9375rem;
   padding: 1.5rem;
   box-shadow: 0 0.3125rem 0.9375rem var(--shadow-light);
@@ -84,7 +84,7 @@
 
 /* Mobile Dessert Selection */
 .dessert-selection {
-  background: var(--color-card-background);
+  background: var(--secondary-gradient);
   border-radius: 0.9375rem;
   padding: 1.5rem;
   box-shadow: 0 0.3125rem 0.9375rem var(--shadow-light);

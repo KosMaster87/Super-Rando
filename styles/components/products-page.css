@@ -1,4 +1,4 @@
-/* Products Page Styles */
+/* Mobile First: Products Page Styles */
 .products-wrapper {
   width: 100%;
 }
@@ -6,46 +6,42 @@
 .products-content {
   display: flex;
   flex-direction: column;
-  /* gap: 2rem; */
+  gap: 2rem;
 }
 
-/* Products Header */
+/* Mobile Products Header */
 .products-header {
   text-align: center;
   margin-bottom: 1rem;
 }
 
-/* Product Categories - Schmales Menü */
+/* Mobile Product Categories - Kompaktes Menü */
 .product-categories {
   display: flex;
-  gap: 0.5rem;
+  gap: 0.25rem;
   justify-content: center;
   flex-wrap: wrap;
-  margin-bottom: 3rem;
-  padding: 0.5rem;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 2rem;
-  backdrop-filter: blur(0.63rem);
-  box-shadow: 0 0.25rem 1rem var(--shadow-light);
+  margin-bottom: 2rem;
+  padding: 0;
 }
 
 .category-card {
-  background: var(--color-card-background);
+  background: var(--secondary-gradient);
   border-radius: 1.5rem;
-  padding: 0.75rem 1.25rem;
+  padding: 0.5rem 0.75rem;
   text-align: center;
   box-shadow: 0 0.19rem 0.63rem var(--shadow-light);
   transition: all 0.3s ease;
   cursor: pointer;
   border: 2px solid transparent;
-  min-width: 8rem;
+  min-width: 6rem;
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  min-height: 2.75rem;
 }
 
 .category-card:hover {
-  transform: translateY(-0.13rem);
   box-shadow: 0 0.31rem 0.94rem var(--shadow-medium);
   border-color: var(--color-primary);
   background: var(--color-surface);
@@ -54,7 +50,6 @@
 .category-card.active {
   background: var(--color-primary);
   border-color: var(--color-primary-hover);
-  transform: translateY(-0.13rem);
 }
 
 .category-card.active .category-title {
@@ -62,13 +57,13 @@
 }
 
 .category-icon {
-  font-size: 1.25rem;
+  font-size: 1rem;
   filter: drop-shadow(0.06rem 0.06rem 0.13rem var(--shadow-heavy));
   flex-shrink: 0;
 }
 
 .category-title {
-  font-size: 0.9rem;
+  font-size: 0.75rem;
   color: var(--color-surface);
   margin: 0;
   font-weight: 600;
@@ -79,24 +74,24 @@
   display: none;
 }
 
-/* Dishes Section */
+/* Mobile Dishes Section */
 .dishes-section {
   position: relative;
 }
 
 .dishes-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(18.75rem, 1fr));
-  gap: 2rem;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
   width: 100%;
-  padding: 0 1rem;
+  padding: 0;
 }
 
-/* Dish Cards */
+/* Mobile Dish Cards */
 .dish-card {
-  background: var(--color-card-background);
+  background: var(--secondary-gradient);
   border-radius: 0.94rem;
-  padding: 1.5rem;
+  padding: 1rem;
   box-shadow: 0 0.5rem 1.56rem var(--shadow-medium);
   transition: all 0.3s ease;
   border: 2px solid var(--color-accent);
@@ -111,7 +106,7 @@
 
 .dish-image {
   width: 100%;
-  height: 12.5rem;
+  height: 9.38rem;
   object-fit: cover;
   border-radius: 0.63rem;
   margin-bottom: 1rem;
@@ -126,7 +121,7 @@
 
 .dish-name {
   color: var(--color-surface);
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   margin-bottom: 1rem;
   text-shadow: 0.13rem 0.13rem 0.25rem var(--shadow-heavy);
   font-weight: 600;
@@ -134,7 +129,7 @@
 
 .dish-description {
   color: var(--color-secondary);
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   line-height: 1.6;
   margin-bottom: 1.5rem;
   flex-grow: 1;
@@ -142,17 +137,17 @@
 
 .dish-footer {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
   gap: 1rem;
   margin-top: auto;
 }
 
 .dish-price {
   color: var(--color-surface);
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   font-weight: bold;
   text-shadow: 0.06rem 0.06rem 0.13rem var(--shadow-heavy);
+  text-align: center;
 }
 
 .dish-order-btn {
@@ -170,7 +165,7 @@
   transition: all 0.3s ease;
   text-shadow: 0.06rem 0.06rem 0.13rem var(--shadow-heavy);
   box-shadow: 0 0.25rem 0.94rem var(--shadow-medium);
-  white-space: nowrap;
+  width: 100%;
   min-height: 2.75rem;
 }
 
@@ -183,19 +178,30 @@
   box-shadow: 0 0.5rem 1.56rem var(--shadow-heavy);
 }
 
+.line-products {
+  display: none;
+}
+
 /* Tablet Styles */
 @media (min-width: 768px) {
+  .products-content {
+    gap: 2.5rem;
+  }
+
   .product-categories {
     gap: 0.75rem;
     padding: 0.75rem;
-    justify-content: center;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2rem;
+    backdrop-filter: blur(0.63rem);
+    box-shadow: 0 0.25rem 1rem var(--shadow-light);
     max-width: 50rem;
     margin: 0 auto 3rem auto;
   }
 
   .category-card {
-    padding: 1rem 1.5rem;
-    min-width: 9rem;
+    padding: 0.5rem 0.5rem;
+    min-width: 10rem;
     flex-direction: column;
     gap: 0.25rem;
   }
@@ -223,7 +229,54 @@
 
   .dishes-grid {
     grid-template-columns: repeat(auto-fit, minmax(18.75rem, 1fr));
-    gap: 1.5rem;
+    gap: 2rem;
+  }
+
+  .dish-card {
+    padding: 1.5rem;
+  }
+
+  .dish-image {
+    height: 12.5rem;
+  }
+
+  .dish-name {
+    font-size: 1.3rem;
+  }
+
+  .dish-description {
+    font-size: 0.9rem;
+  }
+
+  .dish-footer {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .dish-price {
+    font-size: 1.3rem;
+    text-align: left;
+  }
+
+  .dish-order-btn {
+    width: auto;
+    white-space: nowrap;
+  }
+
+  .line-products {
+    display: flex;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.2) 20%,
+      rgba(255, 255, 255, 0.6) 50%,
+      rgba(255, 255, 255, 0.2) 80%,
+      transparent 100%
+    );
+    opacity: 0.8;
   }
 }
 
@@ -236,7 +289,7 @@
   }
 
   .category-card {
-    padding: 1.25rem 2rem;
+    padding: 0.5rem 0.5rem;
     min-width: 10rem;
   }
 
@@ -253,56 +306,18 @@
   }
 
   .dishes-grid {
-    padding: 0;
+    padding: 0 1rem;
   }
 }
 
-/* Mobile Styles */
-@media (max-width: 767px) {
-  .product-categories {
-    background: none;
-    backdrop-filter: none;
-    box-shadow: none;
-    padding: 0;
-    gap: 0.25rem;
-  }
-
-  .category-card {
-    padding: 0.5rem 0.75rem;
-    min-width: 6rem;
-    font-size: 0.8rem;
-  }
-
-  .category-icon {
-    font-size: 1rem;
-  }
-
-  .category-title {
-    font-size: 0.75rem;
-  }
-
+/* Large Desktop */
+@media (min-width: 1200px) {
   .dishes-grid {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-    padding: 0;
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 87.5rem;
+    margin: 0 auto;
   }
 
-  .dish-card {
-    padding: 1rem;
-  }
-
-  .dish-footer {
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  .dish-order-btn {
-    width: 100%;
-  }
-}
-
-/* Small Mobile */
-@media (max-width: 480px) {
   .dishes-grid {
     gap: 1rem;
   }

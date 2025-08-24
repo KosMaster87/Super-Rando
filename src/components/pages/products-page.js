@@ -54,7 +54,8 @@ const createProductCategories = () => {
 const createCategoryCard = (emoji, title, description) => {
   return `
     <div class="category-card" data-category="${title.toLowerCase()}">
-      <div class="category-icon">${emoji}</div>
+    <div class="category-icon">${emoji}</div>
+    <div class="line-products"></div>
       <h3 class="category-title">${title}</h3>
       <p class="category-description">${description}</p>
     </div>

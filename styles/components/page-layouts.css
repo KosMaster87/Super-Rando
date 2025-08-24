@@ -26,6 +26,15 @@
   min-height: 50rem;
 }
 
+.content-child {
+  background: rgba(255, 255, 255, 0.26);
+  box-shadow: 0 0.5rem 2rem var(--shadow-medium);
+  border-radius: 1rem;
+  padding: 2rem;
+  backdrop-filter: blur(0.63rem);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
 .cart-area {
   display: none;
 }
@@ -35,10 +44,15 @@
   .page-layout-with-cart {
     flex-direction: row;
     gap: 2rem;
+    padding: 2rem;
   }
 
   .content-area {
     flex: 2;
+  }
+
+  .content-child {
+    padding: 2.5rem;
   }
 
   .cart-area {
@@ -56,6 +70,10 @@
 
   .content-area {
     flex: 2.3;
+  }
+
+  .content-child {
+    padding: 3rem;
   }
 
   .cart-area {

@@ -1,36 +1,69 @@
 /* CSS Custom Properties - Farbpalette */
 :root {
-  /* Hauptfarbpalette */
-  --color-primary: #34291e;
-  --color-secondary: #e2dcc5;
-  --color-accent: #b29e70;
-  --color-neutral-light: #9c8e70;
-  --color-neutral-medium: #8c745f;
+  /* Neue Farbpalette aus altem Projekt */
+  --color-dark-brown: #32291d; /* sehr dunkel (Text / Kontrast) */
+  --color-medium-brown: #514434; /* Sekundärfarbe */
+  --color-warm-brown: #905133; /* Primary / Hauptfarbe */
+  --color-light-brown: #bd854c; /* Akzent */
+  --color-cream: #baab7e; /* Hintergrundfarbe */
+
+  /* Hauptfarbpalette - gemappt auf neue Farben */
+  --color-primary: var(--color-warm-brown);
+  --color-secondary: var(--color-cream);
+  --color-accent: var(--color-light-brown);
+  --color-neutral-light: var(--color-medium-brown);
+  --color-neutral-medium: var(--color-dark-brown);
 
   /* Semantische Farben */
-  --color-background: #e2dcc5;
+  --color-background: var(--color-cream);
   --color-surface: #ffffff;
-  --color-card-background: #9c8e70;
-  --color-header-background: #b29e70;
-  --color-text-primary: #34291e;
-  --color-text-secondary: #8c745f;
-  --color-text-muted: #34291e;
+  --color-card-background: var(--color-medium-brown);
+  --color-header-background: var(--color-light-brown);
+  --color-text-primary: var(--color-dark-brown);
+  --color-text-secondary: var(--color-medium-brown);
+  --color-text-muted: var(--color-dark-brown);
 
   /* Status Farben */
-  --color-success: #b29e70;
-  --color-warning: #8c745f;
+  --color-success: var(--color-light-brown);
+  --color-warning: var(--color-warm-brown);
   --color-error: #c0392b;
-  --color-info: #9c8e70;
+  --color-info: var(--color-medium-brown);
 
-  /* Schatten und Transparenzen */
-  --shadow-light: rgba(52, 41, 30, 0.1);
-  --shadow-medium: rgba(52, 41, 30, 0.15);
-  --shadow-heavy: rgba(52, 41, 30, 0.2);
+  /* Schatten und Transparenzen - angepasst an neue Farben */
+  --shadow-light: rgba(50, 41, 29, 0.1);
+  --shadow-medium: rgba(50, 41, 29, 0.22);
+  --shadow-heavy: rgba(50, 41, 29, 0.35);
 
   /* Hover und Interaktionsfarben */
-  --color-primary-hover: #211a12;
-  --color-secondary-hover: #d4cbb0;
-  --color-accent-hover: #a08d5d;
+  --color-primary-hover: #7a3f2b;
+  --color-secondary-hover: #a69669;
+  --color-accent-hover: #a5723f;
+
+  /* Gradients aus altem Projekt */
+  --primary-gradient: linear-gradient(
+    135deg,
+    var(--color-primary),
+    var(--color-neutral-light)
+  );
+  --secondary-gradient: linear-gradient(
+    135deg,
+    var(--color-accent),
+    var(--color-background)
+  );
+  --background-gradient: linear-gradient(
+    135deg,
+    var(--color-background) 0%,
+    var(--color-accent) 100%
+  );
+
+  /* Legacy Support - für Backward Compatibility */
+  --primary-color: var(--color-primary);
+  --secondary-color: var(--color-neutral-light);
+  --accent-color: var(--color-accent);
+  --background-color: var(--color-background);
+  --text-dark: var(--color-text-primary);
+  --text-light: #ffffff;
+  --shadow-dark: var(--shadow-heavy);
 }
 
 /* Reset und Base Styles */
@@ -44,7 +77,7 @@ body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   line-height: 1.6;
   color: var(--color-text-primary);
-  background-color: var(--color-background);
+  background: var(--background-gradient);
   font-size: 1rem;
 }
 

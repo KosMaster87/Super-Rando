@@ -25,7 +25,9 @@ const createLayoutWithCart = () => {
   return `
     <div class="page-layout-with-cart">
       <div class="content-area">
-        ${getCurrentPageHTML()}
+        <div class="content-child">
+          ${getCurrentPageHTML()}
+        </div>
       </div>
       <div class="cart-area">
         ${renderCart()}
