@@ -26,14 +26,7 @@ export const setupNavigationListeners = () => {
  * Setzt Browser-Navigation (Zurück/Vor-Buttons)
  */
 const setupBrowserNavigation = () => {
-  // Verwende hashchange statt popstate
-  window.addEventListener("hashchange", () => {
-    const page = extractPageFromURL();
-    if (isValidPage(page)) {
-      appState.currentPage = page;
-      notifyListeners();
-    }
-  });
+  window.addEventListener("popstate", handlePopState);
 };
 
 /**
@@ -138,9 +131,8 @@ export const navigateToPage = (page) => {
  * @param {string} page - Seitenname
  */
 const updateBrowserHistory = (page) => {
-  // Hash-basierte URLs verwenden statt pushState
-  const hash = page === PAGES.HOME ? "" : `#${page}`;
-  window.location.hash = hash;
+  const url = page === PAGES.HOME ? "/" : `/${page}`;
+  window.history.pushState({ page }, "", url);
 };
 
 /**
@@ -157,9 +149,8 @@ const updateDocumentTitle = (page) => {
  * @returns {string} Seitenname
  */
 const extractPageFromURL = () => {
-  // Hash-basierte Navigation
-  const hash = window.location.hash.substring(1);
-  return hash || PAGES.HOME;
+  const path = window.location.pathname;
+  return path.substring(1) || PAGES.HOME;
 };
 
 /**

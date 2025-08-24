@@ -1,0 +1,14 @@
+{
+  "name": "super-rando-spa",
+  "version": "1.0.0",
+  "description": "Super~Rando Fusion Küche SPA",
+  "main": "dev-server.js",
+  "type": "module",
+  "scripts": {
+    "dev": "node dev-server.js",
+    "start": "node dev-server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
