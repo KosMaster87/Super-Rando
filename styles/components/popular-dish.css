@@ -1,11 +1,16 @@
 /* Mobile Popular Dish */
 .popular-dish {
   background: var(--secondary-gradient);
-  border-radius: 0.94rem;
-  padding: 1.5rem;
   box-shadow: 0 0.5rem 1.56rem var(--shadow-medium);
+  border-radius: 1rem;
   border: 2px solid var(--color-accent);
+  padding: 1.5rem;
   margin-bottom: 2rem;
+  transition: all 0.3s ease;
+}
+
+.popular-dish:hover {
+  box-shadow: 0 1rem 2.19rem var(--shadow-heavy);
 }
 
 .popular-dish-content {

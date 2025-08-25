@@ -4,35 +4,72 @@ import { addToCart } from "./cart.js";
  * Initialisiert alle Dish-Event-Listener
  */
 export const initializeDishEvents = () => {
-  setupHomePageDishEvents();
+  setupMenuBundleEvents();
+  setupPopularDishEvents();
   setupProductsPageDishEvents();
-  setupDessertSelection();
 };
 
 /**
- * Setzt Event-Listener für Home-Page Gerichte
+ * Setzt Event-Listener für Menü-Bundle
  */
-const setupHomePageDishEvents = () => {
-  // Tagesspecials Buttons
-  const ramenBtn = document.getElementById("orderRamenBowl");
-  const gyozaBtn = document.getElementById("orderGyozaSalad");
+const setupMenuBundleEvents = () => {
+  const menuOrderBtn = document.getElementById("orderMenuBundle");
+  const dessertRadios = document.querySelectorAll('input[name="menuDessert"]');
+
+  // Dessert-Auswahl aktiviert Bestell-Button
+  dessertRadios.forEach((radio) => {
+    radio.onchange = () => {
+      if (menuOrderBtn) {
+        menuOrderBtn.disabled = false;
+      }
+    };
+  });
+
+  // Menü-Bestellung
+  if (menuOrderBtn) {
+    menuOrderBtn.onclick = () => handleMenuBundleOrder();
+  }
+};
+
+/**
+ * Behandelt Menü-Bundle-Bestellung
+ */
+const handleMenuBundleOrder = () => {
+  const selectedDessert = document.querySelector(
+    'input[name="menuDessert"]:checked'
+  );
+
+  if (!selectedDessert) {
+    alert("Bitte wählen Sie einen Nachgang aus.");
+    return;
+  }
+
+  const dessertName =
+    selectedDessert.value === "matcha"
+      ? "Matcha Tiramisu"
+      : "Mochi Eis Variation";
+
+  const menuName = `Fusion Tagesmenü (mit ${dessertName})`;
+  const menuPrice = 18.5;
+
+  addToCart(menuName, menuPrice);
+
+  // Reset selection
+  selectedDessert.checked = false;
+  const orderBtn = document.getElementById("orderMenuBundle");
+  if (orderBtn) {
+    orderBtn.disabled = true;
+  }
+};
+
+/**
+ * Setzt Event-Listener für Popular Dish
+ */
+const setupPopularDishEvents = () => {
   const carbonaraBtn = document.getElementById("orderCarbonara");
-  const dessertBtn = document.getElementById("orderDessert");
-
-  if (ramenBtn) {
-    ramenBtn.onclick = () => addToCart("Ramen Fusion Bowl", 12.5);
-  }
-
-  if (gyozaBtn) {
-    gyozaBtn.onclick = () => addToCart("Gyoza-Salat", 6.5);
-  }
 
   if (carbonaraBtn) {
     carbonaraBtn.onclick = () => addToCart("Spaghetti Carbonara Fusion", 10.0);
-  }
-
-  if (dessertBtn) {
-    dessertBtn.onclick = () => handleDessertOrder();
   }
 };
 
@@ -50,50 +87,4 @@ const setupProductsPageDishEvents = () => {
       button.onclick = () => addToCart(dishName, dishPrice);
     }
   });
-};
-
-/**
- * Setzt Event-Listener für Dessert-Auswahl
- */
-const setupDessertSelection = () => {
-  const dessertRadios = document.querySelectorAll('input[name="dessert"]');
-  const orderBtn = document.getElementById("orderDessert");
-
-  dessertRadios.forEach((radio) => {
-    radio.onchange = () => {
-      if (orderBtn) {
-        orderBtn.disabled = false;
-      }
-    };
-  });
-};
-
-/**
- * Behandelt Dessert-Bestellung
- */
-const handleDessertOrder = () => {
-  const selectedDessert = document.querySelector(
-    'input[name="dessert"]:checked'
-  );
-
-  if (!selectedDessert) {
-    alert("Bitte wählen Sie einen Nachgang aus.");
-    return;
-  }
-
-  const dessertName =
-    selectedDessert.value === "matcha"
-      ? "Matcha Tiramisu"
-      : "Mochi Eis Variation";
-
-  const dessertPrice = selectedDessert.value === "matcha" ? 5.5 : 6.0;
-
-  addToCart(dessertName, dessertPrice);
-
-  // Reset selection
-  selectedDessert.checked = false;
-  const orderBtn = document.getElementById("orderDessert");
-  if (orderBtn) {
-    orderBtn.disabled = true;
-  }
 };
