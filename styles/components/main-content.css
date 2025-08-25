@@ -15,11 +15,12 @@
 }
 
 .placeholder-content {
-  background: var(--color-card-background);
-  border-radius: 0.9375rem;
+  background: var(--secondary-gradient);
+  border-radius: 0.94rem;
   padding: 2rem;
   margin-top: 1.5rem;
-  box-shadow: 0 0.3125rem 0.9375rem var(--shadow-light);
+  box-shadow: 0 0.5rem 1.56rem var(--shadow-medium);
+  border: 2px solid var(--color-accent);
 }
 
 .placeholder-content p {

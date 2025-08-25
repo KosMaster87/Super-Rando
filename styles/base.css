@@ -9,7 +9,7 @@
 
   /* Hauptfarbpalette - gemappt auf neue Farben */
   --color-primary: var(--color-warm-brown);
-  --color-secondary: var(--color-cream);
+  --color-secondary: var(--color-medium-brown);
   --color-accent: var(--color-light-brown);
   --color-neutral-light: var(--color-medium-brown);
   --color-neutral-medium: var(--color-dark-brown);
@@ -20,7 +20,7 @@
   --color-card-background: var(--color-medium-brown);
   --color-header-background: var(--color-light-brown);
   --color-text-primary: var(--color-dark-brown);
-  --color-text-secondary: var(--color-medium-brown);
+  --color-text-secondary: var(--color-dark-brown);
   --color-text-muted: var(--color-dark-brown);
 
   /* Status Farben */
@@ -66,7 +66,6 @@
   --shadow-dark: var(--shadow-heavy);
 }
 
-/* Reset und Base Styles */
 * {
   margin: 0;
   padding: 0;
@@ -81,30 +80,28 @@ body {
   font-size: 1rem;
 }
 
-/* Common Typography */
 .page-title {
-  font-size: 2rem;
+  font-size: clamp(1rem, 2vw + 0.8rem, 2.5rem);
   color: var(--color-primary);
   margin-bottom: 1rem;
-  font-weight: 300;
+  font-weight: 700;
 }
 
 .page-subtitle {
-  font-size: 1rem;
+  font-size: clamp(0.9rem, 1vw + 0.8rem, 1.2rem);
   color: var(--color-text-secondary);
   margin-bottom: 2rem;
 }
 
-/* Media Queries Base */
 @media (min-width: 768px) {
   .page-title {
-    font-size: 2.5rem;
+    font-size: clamp(1.4rem, 1.8vw + 0.8rem, 2.5rem);
   }
 }
 
 @media (min-width: 1024px) {
   .page-title {
-    font-size: 3rem;
+    font-size: 2.5rem;
   }
 
   .page-subtitle {

@@ -23,6 +23,7 @@ export const renderMainContent = () => {
  */
 const createLayoutWithCart = () => {
   return `
+    ${renderCartToggle()}
     <div class="page-layout-with-cart">
       <div class="content-area">
         <div class="content-child">
@@ -33,7 +34,7 @@ const createLayoutWithCart = () => {
         ${renderCart()}
       </div>
     </div>
-    ${renderCartToggle()}
+    
   `;
 };
 

@@ -1,9 +1,11 @@
 /* Mobile Popular Dish */
 .popular-dish {
   background: var(--secondary-gradient);
-  border-radius: 0.9375rem;
+  border-radius: 0.94rem;
   padding: 1.5rem;
-  box-shadow: 0 0.3125rem 0.9375rem var(--shadow-light);
+  box-shadow: 0 0.5rem 1.56rem var(--shadow-medium);
+  border: 2px solid var(--color-accent);
+  margin-bottom: 2rem;
 }
 
 .popular-dish-content {
@@ -14,22 +16,25 @@
 
 .popular-dish-image img {
   width: 100%;
-  height: 12.5rem;
+  height: 9.38rem;
   object-fit: cover;
-  border-radius: 0.625rem;
+  border-radius: 0.63rem;
+  box-shadow: 0 0.25rem 0.94rem var(--shadow-medium);
 }
 
 .popular-title {
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   color: var(--color-surface);
   margin-bottom: 1rem;
+  font-weight: 600;
+  text-shadow: 0.13rem 0.13rem 0.25rem var(--shadow-heavy);
 }
 
 .popular-description {
   color: var(--color-secondary);
   margin-bottom: 1.5rem;
   line-height: 1.6;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
 }
 
 .popular-features {
@@ -46,6 +51,7 @@
   font-size: 0.8rem;
   color: var(--color-primary);
   text-align: center;
+  font-weight: 600;
 }
 
 .popular-footer {
@@ -56,9 +62,10 @@
 }
 
 .popular-price {
-  font-size: 1.5rem;
+  font-size: 1.1rem;
   font-weight: bold;
   color: var(--color-surface);
+  text-shadow: 0.06rem 0.06rem 0.13rem var(--shadow-heavy);
 }
 
 .popular-order-btn {
@@ -68,9 +75,26 @@
     var(--color-primary-hover)
   );
   color: var(--color-secondary);
-  padding: 1rem 2rem;
-  font-size: 1rem;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 1.56rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-shadow: 0.06rem 0.06rem 0.13rem var(--shadow-heavy);
+  box-shadow: 0 0.25rem 0.94rem var(--shadow-medium);
   width: 100%;
+  min-height: 2.75rem;
+}
+
+.popular-order-btn:hover {
+  background: linear-gradient(
+    135deg,
+    var(--color-primary-hover),
+    var(--color-neutral-medium)
+  );
+  transform: translateY(-0.13rem);
+  box-shadow: 0 0.5rem 1.56rem var(--shadow-heavy);
 }
 
 /* Tablet Styles */
@@ -83,7 +107,15 @@
   }
 
   .popular-dish-image img {
-    height: 15.625rem;
+    height: 12.5rem;
+  }
+
+  .popular-title {
+    font-size: 1.3rem;
+  }
+
+  .popular-description {
+    font-size: 0.9rem;
   }
 
   .popular-features {
@@ -94,5 +126,22 @@
   .popular-footer {
     flex-direction: row;
     justify-content: space-between;
+  }
+
+  .popular-price {
+    font-size: 1.3rem;
+  }
+
+  .popular-order-btn {
+    width: auto;
+    white-space: nowrap;
+  }
+}
+
+/* Large Desktop */
+@media (min-width: 1200px) {
+  .popular-dish {
+    max-width: 87.5rem;
+    margin: 0 auto 2rem auto;
   }
 }
