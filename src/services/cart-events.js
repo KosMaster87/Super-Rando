@@ -13,6 +13,7 @@ export const initializeCartEvents = () => {
   setupCartToggleButton();
   setupCartCloseButton();
   setupCartItemControls();
+  setupCartOrderButton();
 };
 
 /**
@@ -21,7 +22,7 @@ export const initializeCartEvents = () => {
 const setupCartToggleButton = () => {
   const toggleBtn = document.getElementById("cartToggleBtn");
   if (toggleBtn) {
-    toggleBtn.addEventListener("click", toggleCartVisibility);
+    toggleBtn.onclick = toggleCartVisibility;
   }
 };
 
@@ -31,7 +32,7 @@ const setupCartToggleButton = () => {
 const setupCartCloseButton = () => {
   const closeBtn = document.getElementById("closeCartBtn");
   if (closeBtn) {
-    closeBtn.addEventListener("click", closeCart);
+    closeBtn.onclick = closeCart;
   }
 };
 
@@ -41,7 +42,17 @@ const setupCartCloseButton = () => {
 const setupCartItemControls = () => {
   const cartSidebar = document.getElementById("cartSidebar");
   if (cartSidebar) {
-    cartSidebar.addEventListener("click", handleCartItemClick);
+    cartSidebar.onclick = handleCartItemClick;
+  }
+};
+
+/**
+ * Setzt Event-Listener für Bestell-Button
+ */
+const setupCartOrderButton = () => {
+  const orderBtn = document.getElementById("orderBtn");
+  if (orderBtn) {
+    orderBtn.onclick = handleOrderSubmit;
   }
 };
 
@@ -67,4 +78,15 @@ const handleCartItemClick = (event) => {
       removeFromCart(itemName);
       break;
   }
+};
+
+/**
+ * Behandelt Bestellungs-Submission
+ */
+const handleOrderSubmit = () => {
+  // Hier könnte später eine echte Bestell-API aufgerufen werden
+  alert("Vielen Dank für Ihre Bestellung! 🍽️");
+
+  // Optional: Warenkorb leeren nach Bestellung
+  // clearCart();
 };

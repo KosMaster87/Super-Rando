@@ -77,6 +77,16 @@ export const closeCart = () => {
 };
 
 /**
+ * Leert den kompletten Warenkorb
+ */
+export const clearCart = () => {
+  appState.cart = [];
+  appState.cartVisible = false;
+  saveCartToStorage();
+  notifyListeners();
+};
+
+/**
  * Sucht ein Item im Warenkorb
  * @param {string} dishName - Name des Gerichts
  * @returns {Object|undefined} Gefundenes Item oder undefined

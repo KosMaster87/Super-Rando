@@ -7,6 +7,7 @@ import {
   setupNavigationListeners,
 } from "./services/navigation.js";
 import { initializeCartEvents } from "./services/cart-events.js";
+import { initializeDishEvents } from "./services/dish-events.js";
 
 /**
  * Initialisiert die gesamte Anwendung
@@ -41,6 +42,7 @@ const renderAllComponents = () => {
 const setupComponentEventListeners = () => {
   setupNavigationListeners();
   initializeCartEvents();
+  initializeDishEvents();
 };
 
 /**

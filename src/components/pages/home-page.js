@@ -127,7 +127,7 @@ const createPopularDish = () => {
           </div>
           <div class="popular-footer">
             <div class="popular-price">10.00 €</div>
-            <button class="special-order-btn popular-order-btn" id="orderCarbonara">
+            <button class="popular-order-btn" id="orderCarbonara">
               Jetzt probieren!
             </button>
           </div>
