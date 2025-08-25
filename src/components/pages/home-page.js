@@ -1,3 +1,5 @@
+import { appState } from "../../state.js";
+
 /**
  * Rendert die Home-Seite
  * @returns {string} HTML-String für Home-Seite
@@ -31,63 +33,82 @@ const createDailySpecials = () => {
  * @returns {string} HTML-String für Menü-Bundle
  */
 const createMenuBundle = () => {
+  const menu = appState.menuBundle;
+
   return `
     <div class="menu-bundle">
-      <div class="special-badge">🍽️ Tagesmenü</div>
-      <h3 class="special-title">Fusion Tagesmenü</h3>
-      <p class="special-description">
-        Unser beliebtes 3-Gang-Menü: Ramen Fusion Bowl, Gyoza-Salat und Ihr Wunsch-Dessert
-      </p>
+      <div class="special-badge">${menu.badge}</div>
+      <h3 class="special-title">${menu.name}</h3>
+      <p class="special-description">${menu.description}</p>
       
       <div class="menu-items">
-        <div class="menu-item">
-          <div class="menu-item-icon">🍜</div>
-          <div class="menu-item-content">
-            <h4 class="menu-item-name">Ramen Fusion Bowl</h4>
-            <p class="menu-item-desc">Hausgemachte Ramen-Nudeln mit gebratenem Hühnchen, Shiitake-Pilzen und Miso-Brühe</p>
-          </div>
-        </div>
-        
-        <div class="menu-item">
-          <div class="menu-item-icon">🥗</div>
-          <div class="menu-item-content">
-            <h4 class="menu-item-name">Gyoza-Salat</h4>
-            <p class="menu-item-desc">Knusprige Gyoza auf gemischtem Salat mit hausgemachtem Sesam-Ingwer-Dressing</p>
-          </div>
-        </div>
-        
-        <div class="menu-item dessert-selection">
-          <div class="menu-item-icon">🍰</div>
-          <div class="menu-item-content">
-            <h4 class="menu-item-name">Wählen Sie Ihren Nachgang</h4>
-            <div class="dessert-options">
-              <div class="dessert-option">
-                <input type="radio" id="matchaTiramisu" name="menuDessert" value="matcha" />
-                <label for="matchaTiramisu" class="dessert-card">
-                  <span class="dessert-name">Matcha Tiramisu</span>
-                  <span class="dessert-desc">Italienisches Tiramisu mit japanischem Matcha-Twist</span>
-                </label>
-              </div>
-              
-              <div class="dessert-option">
-                <input type="radio" id="mochiEis" name="menuDessert" value="mochi" />
-                <label for="mochiEis" class="dessert-card">
-                  <span class="dessert-name">Mochi Eis Variation</span>
-                  <span class="dessert-desc">3 verschiedene Mochi-Eis-Sorten: Vanille, Erdbeere, Grüner Tee</span>
-                </label>
-              </div>
-            </div>
-          </div>
-        </div>
+        ${menu.items.map((item) => createMenuItem(item)).join("")}
+        ${createDessertSelectionItem()}
       </div>
       
       <div class="menu-footer">
-        <div class="menu-price">18.50 €</div>
-        <p class="menu-savings">Sie sparen 3.50 € gegenüber Einzelbestellung!</p>
+        <div class="menu-price">${menu.price.toFixed(2)} €</div>
+        <p class="menu-savings">Sie sparen ${menu.savings.toFixed(
+          2
+        )} € gegenüber Einzelbestellung!</p>
         <button class="special-order-btn menu-order-btn" id="orderMenuBundle" disabled>
-          Tagesmenü bestellen
+          ${menu.name} bestellen
         </button>
       </div>
+    </div>
+  `;
+};
+
+/**
+ * Erstellt ein Menü-Item
+ * @param {Object} item - Menü-Item Objekt
+ * @returns {string} HTML-String für Menü-Item
+ */
+const createMenuItem = (item) => {
+  return `
+    <div class="menu-item">
+      <div class="menu-item-icon">${item.icon}</div>
+      <div class="menu-item-content">
+        <h4 class="menu-item-name">${item.name}</h4>
+        <p class="menu-item-desc">${item.description}</p>
+      </div>
+    </div>
+  `;
+};
+
+/**
+ * Erstellt die Dessert-Auswahl
+ * @returns {string} HTML-String für Dessert-Auswahl
+ */
+const createDessertSelectionItem = () => {
+  const desserts = appState.menuBundle.dessertOptions;
+
+  return `
+    <div class="menu-item dessert-selection">
+      <div class="menu-item-icon">🍰</div>
+      <div class="menu-item-content">
+        <h4 class="menu-item-name">Wählen Sie Ihren Nachgang</h4>
+        <div class="dessert-options">
+          ${desserts.map((dessert) => createDessertOption(dessert)).join("")}
+        </div>
+      </div>
+    </div>
+  `;
+};
+
+/**
+ * Erstellt eine Dessert-Option
+ * @param {Object} dessert - Dessert-Objekt
+ * @returns {string} HTML-String für Dessert-Option
+ */
+const createDessertOption = (dessert) => {
+  return `
+    <div class="dessert-option">
+      <input type="radio" id="${dessert.id}" name="menuDessert" value="${dessert.value}" />
+      <label for="${dessert.id}" class="dessert-card">
+        <span class="dessert-name">${dessert.name}</span>
+        <span class="dessert-desc">${dessert.description}</span>
+      </label>
     </div>
   `;
 };
@@ -97,27 +118,23 @@ const createMenuBundle = () => {
  * @returns {string} HTML-String für beliebtes Gericht
  */
 const createPopularDish = () => {
+  const dish = appState.popularDish;
+
   return `
     <section class="popular-dish">
-      <div class="special-badge">⭐ Unser Beliebtestes</div>
+      <div class="special-badge">${dish.badge}</div>
       <div class="popular-dish-content">
         <div class="popular-dish-image">
-          <img src="./assets/images/Spagetti-01.jpg" alt="Spaghetti Carbonara" />
+          <img src="${dish.image}" alt="${dish.name}" />
         </div>
         <div class="popular-dish-info">
-          <h3 class="popular-title">Spaghetti Carbonara Fusion</h3>
-          <p class="popular-description">
-            Unsere moderne Interpretation des italienischen Klassikers: Handgemachte Spaghetti 
-            mit cremiger Eier-Parmesan-Sauce, knusprigem Pancetta und einem Hauch von Yuzu-Zitrus. 
-            Ein perfektes Beispiel für unsere Fusion-Philosophie.
-          </p>
+          <h3 class="popular-title">${dish.name}</h3>
+          <p class="popular-description">${dish.description}</p>
           <div class="popular-features">
-            <span class="feature">🌟 Meist bestellt</span>
-            <span class="feature">👨‍🍳 Chef's Special</span>
-            <span class="feature">🔥 Frisch zubereitet</span>
+            ${dish.features.map((feature) => createFeature(feature)).join("")}
           </div>
           <div class="popular-footer">
-            <div class="popular-price">10.00 €</div>
+            <div class="popular-price">${dish.price.toFixed(2)} €</div>
             <button class="popular-order-btn" id="orderCarbonara">
               Jetzt probieren!
             </button>
@@ -126,4 +143,13 @@ const createPopularDish = () => {
       </div>
     </section>
   `;
+};
+
+/**
+ * Erstellt ein Feature-Tag
+ * @param {Object} feature - Feature-Objekt
+ * @returns {string} HTML-String für Feature
+ */
+const createFeature = (feature) => {
+  return `<span class="feature">${feature.icon} ${feature.text}</span>`;
 };

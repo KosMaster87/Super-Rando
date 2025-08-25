@@ -1,4 +1,5 @@
 import { addToCart } from "./cart.js";
+import { appState } from "../state.js";
 
 /**
  * Initialisiert alle Dish-Event-Listener
@@ -44,13 +45,12 @@ const handleMenuBundleOrder = () => {
     return;
   }
 
-  const dessertName =
-    selectedDessert.value === "matcha"
-      ? "Matcha Tiramisu"
-      : "Mochi Eis Variation";
+  const dessertOption = appState.menuBundle.dessertOptions.find(
+    (option) => option.value === selectedDessert.value
+  );
 
-  const menuName = `Fusion Tagesmenü (mit ${dessertName})`;
-  const menuPrice = 18.5;
+  const menuName = `${appState.menuBundle.name} (mit ${dessertOption.name})`;
+  const menuPrice = appState.menuBundle.price;
 
   addToCart(menuName, menuPrice);
 
@@ -69,7 +69,8 @@ const setupPopularDishEvents = () => {
   const carbonaraBtn = document.getElementById("orderCarbonara");
 
   if (carbonaraBtn) {
-    carbonaraBtn.onclick = () => addToCart("Spaghetti Carbonara Fusion", 10.0);
+    carbonaraBtn.onclick = () =>
+      addToCart(appState.popularDish.name, appState.popularDish.price);
   }
 };
 

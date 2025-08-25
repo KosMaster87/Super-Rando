@@ -54,6 +54,56 @@ const appState = {
       image: "./assets/images/Tiramisu-01.jpg",
     },
   ],
+  menuBundle: {
+    name: "Fusion Tagesmenü",
+    price: 18.5,
+    savings: 3.5,
+    badge: "🍽️ Tagesmenü",
+    description:
+      "Unser beliebtes 3-Gang-Menü: Ramen Fusion Bowl, Gyoza-Salat und Ihr Wunsch-Dessert",
+    items: [
+      {
+        icon: "🍜",
+        name: "Ramen Fusion Bowl",
+        description:
+          "Hausgemachte Ramen-Nudeln mit gebratenem Hühnchen, Shiitake-Pilzen und Miso-Brühe",
+      },
+      {
+        icon: "🥗",
+        name: "Gyoza-Salat",
+        description:
+          "Knusprige Gyoza auf gemischtem Salat mit hausgemachtem Sesam-Ingwer-Dressing",
+      },
+    ],
+    dessertOptions: [
+      {
+        id: "matchaTiramisu",
+        value: "matcha",
+        name: "Matcha Tiramisu",
+        description: "Italienisches Tiramisu mit japanischem Matcha-Twist",
+      },
+      {
+        id: "mochiEis",
+        value: "mochi",
+        name: "Mochi Eis Variation",
+        description:
+          "3 verschiedene Mochi-Eis-Sorten: Vanille, Erdbeere, Grüner Tee",
+      },
+    ],
+  },
+  popularDish: {
+    name: "Spaghetti Carbonara Fusion",
+    price: 10.0,
+    badge: "⭐ Unser Beliebtestes",
+    description:
+      "Unsere moderne Interpretation des italienischen Klassikers: Handgemachte Spaghetti mit cremiger Eier-Parmesan-Sauce, knusprigem Pancetta und einem Hauch von Yuzu-Zitrus. Ein perfektes Beispiel für unsere Fusion-Philosophie.",
+    image: "./assets/images/Spagetti-01.jpg",
+    features: [
+      { icon: "🌟", text: "Meist bestellt" },
+      { icon: "👨‍🍳", text: "Chef's Special" },
+      { icon: "🔥", text: "Frisch zubereitet" },
+    ],
+  },
   listeners: [],
 };
 
