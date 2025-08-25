@@ -1,4 +1,5 @@
 import { appState } from "../../state.js";
+import { getFilteredDishes } from "../../services/category-filter.js";
 
 /**
  * Rendert die Products-Seite
@@ -36,28 +37,29 @@ const createProductsHeader = () => {
 const createProductCategories = () => {
   return `
     <section class="product-categories">
-      ${createCategoryCard("🍕", "Pizza", "Steinofen-Pizza")}
-      ${createCategoryCard("🍝", "Pasta", "Hausgemachte Nudeln")}
-      ${createCategoryCard("🥗", "Salate", "Frische Salate")}
-      ${createCategoryCard("🍰", "Desserts", "Süße Verführungen")}
+      ${appState.categories
+        .map((category) => createCategoryCard(category))
+        .join("")}
     </section>
   `;
 };
 
 /**
  * Erstellt eine Kategorie-Karte
- * @param {string} emoji - Kategorie-Emoji
- * @param {string} title - Kategorie-Titel
- * @param {string} description - Kategorie-Beschreibung
+ * @param {Object} category - Kategorie-Objekt
  * @returns {string} HTML-String für Kategorie-Karte
  */
-const createCategoryCard = (emoji, title, description) => {
+const createCategoryCard = (category) => {
+  const isActive = appState.selectedCategory === category.id;
+
   return `
-    <div class="category-card" data-category="${title.toLowerCase()}">
-    <div class="category-icon">${emoji}</div>
-    <div class="line-products"></div>
-      <h3 class="category-title">${title}</h3>
-      <p class="category-description">${description}</p>
+    <div class="category-card ${isActive ? "active" : ""}" 
+         data-category="${category.id}" 
+         id="category-${category.id}">
+      <div class="category-icon">${category.icon}</div>
+      <div class="line-products"></div>
+      <h3 class="category-title">${category.name}</h3>
+      <p class="category-description">${category.count} Gerichte</p>
     </div>
   `;
 };
@@ -67,12 +69,55 @@ const createCategoryCard = (emoji, title, description) => {
  * @returns {string} HTML-String für Gerichte-Sektion
  */
 const createDishesSection = () => {
+  const filteredDishes = getFilteredDishes();
+
   return `
     <section class="dishes-section">
+      <div class="dishes-header">
+        <h2 class="dishes-title">
+          ${
+            appState.selectedCategory === "all"
+              ? "Alle Spezialitäten"
+              : getCategoryDisplayName()
+          }
+        </h2>
+        <p class="dishes-subtitle">${
+          filteredDishes.length
+        } Gerichte gefunden</p>
+      </div>
       <div class="dishes-grid">
-        ${appState.dishes.map((dish) => createDishCard(dish)).join("")}
+        ${
+          filteredDishes.length > 0
+            ? filteredDishes.map((dish) => createDishCard(dish)).join("")
+            : createEmptyState()
+        }
       </div>
     </section>
+  `;
+};
+
+/**
+ * Gibt den Anzeigenamen der aktuellen Kategorie zurück
+ * @returns {string} Kategorie-Anzeigename
+ */
+const getCategoryDisplayName = () => {
+  const category = appState.categories.find(
+    (cat) => cat.id === appState.selectedCategory
+  );
+  return category ? category.name : "Alle Spezialitäten";
+};
+
+/**
+ * Erstellt den Empty State für keine Gerichte
+ * @returns {string} HTML-String für Empty State
+ */
+const createEmptyState = () => {
+  return `
+    <div class="dishes-empty">
+      <div class="empty-icon">🍽️</div>
+      <h3 class="empty-title">Keine Gerichte gefunden</h3>
+      <p class="empty-description">In dieser Kategorie sind momentan keine Gerichte verfügbar.</p>
+    </div>
   `;
 };
 

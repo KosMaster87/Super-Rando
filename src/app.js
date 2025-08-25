@@ -8,12 +8,14 @@ import {
 } from "./services/navigation.js";
 import { initializeCartEvents } from "./services/cart-events.js";
 import { initializeDishEvents } from "./services/dish-events.js";
+import { initializeCategorySystem } from "./services/category-filter.js";
 
 /**
  * Initialisiert die gesamte Anwendung
  */
 const initializeApp = () => {
   loadCartFromStorage();
+  initializeCategorySystem();
   initializeNavigation();
   registerStateListeners();
   renderAllComponents();

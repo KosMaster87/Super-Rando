@@ -1,5 +1,6 @@
 import { addToCart } from "./cart.js";
 import { appState } from "../state.js";
+import { initializeCategoryEvents } from "./category-events.js";
 
 /**
  * Initialisiert alle Dish-Event-Listener
@@ -8,6 +9,7 @@ export const initializeDishEvents = () => {
   setupMenuBundleEvents();
   setupPopularDishEvents();
   setupProductsPageDishEvents();
+  initializeCategoryEvents();
 };
 
 /**

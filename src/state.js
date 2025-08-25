@@ -3,6 +3,7 @@ const appState = {
   currentPage: "home",
   cart: [],
   cartVisible: false,
+  selectedCategory: "all", // Für Produktfilterung
   dishes: [
     {
       name: "Pizza Margherita",
@@ -10,6 +11,7 @@ const appState = {
       description:
         "Classic pizza with tomato sauce, mozzarella cheese, and fresh basil.",
       image: "./assets/images/Pizza-01.jpg",
+      tags: ["pizza", "vegetarian", "italian"],
     },
     {
       name: "Pizza Salami",
@@ -17,6 +19,7 @@ const appState = {
       description:
         "Delicious pizza topped with spicy salami, mozzarella cheese, and tomato sauce.",
       image: "./assets/images/Pizza-02.jpg",
+      tags: ["pizza", "meat", "italian"],
     },
     {
       name: "Pizza Funghi",
@@ -24,6 +27,7 @@ const appState = {
       description:
         "Savory pizza with mushrooms, mozzarella cheese, and a hint of garlic.",
       image: "./assets/images/Pizza-03.jpg",
+      tags: ["pizza", "vegetarian", "italian"],
     },
     {
       name: "Spaghetti Carbonara",
@@ -31,6 +35,7 @@ const appState = {
       description:
         "Traditional Roman pasta dish with eggs, cheese, pancetta, and pepper.",
       image: "./assets/images/Spagetti-01.jpg",
+      tags: ["pasta", "meat", "italian"],
     },
     {
       name: "Spaghetti Bolognese",
@@ -38,6 +43,7 @@ const appState = {
       description:
         "Hearty spaghetti with a rich meat sauce made from ground beef and tomatoes.",
       image: "./assets/images/Spagetti-02.jpg",
+      tags: ["pasta", "meat", "italian"],
     },
     {
       name: "Caesar Salad",
@@ -45,6 +51,7 @@ const appState = {
       description:
         "Crisp romaine lettuce with Caesar dressing, croutons, and parmesan cheese.",
       image: "./assets/images/Salat-01.jpg",
+      tags: ["salate", "vegetarian", "fresh"],
     },
     {
       name: "Tiramisu",
@@ -52,6 +59,7 @@ const appState = {
       description:
         "A classic Italian dessert made with coffee-soaked ladyfingers and mascarpone cheese.",
       image: "./assets/images/Tiramisu-01.jpg",
+      tags: ["desserts", "sweet", "italian"],
     },
   ],
   menuBundle: {
@@ -61,6 +69,7 @@ const appState = {
     badge: "🍽️ Tagesmenü",
     description:
       "Unser beliebtes 3-Gang-Menü: Ramen Fusion Bowl, Gyoza-Salat und Ihr Wunsch-Dessert",
+    tags: ["menu", "fusion", "special"], // Tags hinzugefügt
     items: [
       {
         icon: "🍜",
@@ -98,12 +107,20 @@ const appState = {
     description:
       "Unsere moderne Interpretation des italienischen Klassikers: Handgemachte Spaghetti mit cremiger Eier-Parmesan-Sauce, knusprigem Pancetta und einem Hauch von Yuzu-Zitrus. Ein perfektes Beispiel für unsere Fusion-Philosophie.",
     image: "./assets/images/Spagetti-01.jpg",
+    tags: ["popular", "fusion", "pasta", "meat"], // Tags hinzugefügt
     features: [
       { icon: "🌟", text: "Meist bestellt" },
       { icon: "👨‍🍳", text: "Chef's Special" },
       { icon: "🔥", text: "Frisch zubereitet" },
     ],
   },
+  categories: [
+    { id: "all", name: "Alle", icon: "🍽️", count: 0 },
+    { id: "pizza", name: "Pizza", icon: "🍕", count: 0 },
+    { id: "pasta", name: "Pasta", icon: "🍝", count: 0 },
+    { id: "salate", name: "Salate", icon: "🥗", count: 0 },
+    { id: "desserts", name: "Desserts", icon: "🍰", count: 0 },
+  ],
   listeners: [],
 };
 
