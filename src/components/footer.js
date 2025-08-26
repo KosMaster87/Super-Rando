@@ -51,10 +51,26 @@ const createFooterDivider = () => {
 const createFooterLinks = () => {
   return `
     <div class="footer-links">
-      <a href="#" id="footerImpressum" class="footer-link">Impressum</a>
-      <a href="#" id="footerDatenschutz" class="footer-link">Datenschutz</a>
-      <a href="#" id="footerKontakt" class="footer-link">Kontaktformular</a>
+      ${createFooterNavItem("navAbout", "Über uns")}
+      ${createFooterNavItem("navContact", "Kontakt")}
+      ${createFooterNavItem("footerImpressum", "Impressum")}
+      ${createFooterNavItem("footerDatenschutz", "Datenschutz")}
     </div>
+  `;
+};
+
+/**
+ * Erstellt ein Footer-Navigations-Item
+ * @param {string} id - Element-ID
+ * @param {string} icon - Icon für Navigation
+ * @param {string} text - Text für Navigation
+ * @returns {string} HTML-String für Footer-Nav-Item
+ */
+const createFooterNavItem = (id, text) => {
+  return `
+    <a href="#" class="footer-link" id="${id}">
+      <span class="footer-text">${text}</span>
+    </a>
   `;
 };
 

@@ -1,4 +1,4 @@
-import { appState, loadCartFromStorage, notifyListeners } from "./state.js";
+import { appState, loadAllStoredData, notifyListeners } from "./state.js";
 import { renderHeader } from "./components/header.js";
 import { renderFooter } from "./components/footer.js";
 import { renderMainContent } from "./components/main-content.js";
@@ -9,12 +9,15 @@ import {
 import { initializeCartEvents } from "./services/cart-events.js";
 import { initializeDishEvents } from "./services/dish-events.js";
 import { initializeCategorySystem } from "./services/category-filter.js";
+import { initializeUserPreferences } from "./services/user-preferences.js";
+import { initializeSettingsEvents } from "./services/settings-events.js";
 
 /**
  * Initialisiert die gesamte Anwendung
  */
 const initializeApp = () => {
-  loadCartFromStorage();
+  loadAllStoredData(); // ← Lädt Cart + Preferences
+  initializeUserPreferences(); // ← Wendet gespeicherte Settings an
   initializeCategorySystem();
   initializeNavigation();
   registerStateListeners();
@@ -45,6 +48,7 @@ const setupComponentEventListeners = () => {
   setupNavigationListeners();
   initializeCartEvents();
   initializeDishEvents();
+  initializeSettingsEvents();
 };
 
 /**

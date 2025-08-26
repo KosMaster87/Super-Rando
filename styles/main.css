@@ -1,6 +1,7 @@
 /* Import all component styles */
 @import url("./base.css");
 @import url("./components/header.css");
+@import url("./components/navigation.css");
 @import url("./components/footer.css");
 @import url("./components/main-content.css");
 @import url("./components/page-layouts.css");

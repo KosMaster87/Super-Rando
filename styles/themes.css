@@ -1,0 +1,22 @@
+/* Dark Theme */
+.theme-dark {
+  --color-background: #1a1a1a;
+  --color-surface: #2d2d2d;
+  --color-text-primary: #ffffff;
+}
+
+/* Light Theme */
+.theme-light {
+  --color-background: #f9f9f9;
+  --color-surface: #ffffff;
+  --color-text-primary: #333333;
+}
+
+/* Compact Layout */
+.layout-compact .header-container {
+  padding: 0.5rem;
+}
+
+.layout-compact .main-content {
+  padding: 0.5rem;
+}

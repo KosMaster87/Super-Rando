@@ -11,6 +11,11 @@ export const showNotification = (
   type = "success",
   duration = 3000
 ) => {
+  // Prüfen ob User Benachrichtigungen aktiviert hat
+  if (!appState.userPreferences.showNotifications) {
+    return; // Keine Benachrichtigung anzeigen
+  }
+
   const notification = {
     id: Date.now() + Math.random(),
     message,

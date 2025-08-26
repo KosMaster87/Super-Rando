@@ -5,6 +5,16 @@ const appState = {
   cartVisible: false,
   selectedCategory: "all",
   notifications: [],
+
+  // UI-Preferences für erweiterte Features
+  userPreferences: {
+    theme: "default", // "default", "dark", "light"
+    layout: "standard", // "standard", "compact", "wide"
+    language: "de", // "de", "en"
+    showNotifications: true,
+    cartAutoClose: false,
+  },
+
   dishes: [
     {
       name: "Pizza Margherita",
@@ -126,6 +136,22 @@ const appState = {
 };
 
 /**
+ * Benachrichtigt alle Listener über State-Änderungen
+ * Der "listener" Parameter stellt hier den aufruf der jeweiligen Listener-Funktion dar.
+ */
+const notifyListeners = () => {
+  appState.listeners.forEach((listener) => {
+    try {
+      listener();
+    } catch (error) {
+      console.error("Fehler beim Benachrichtigen der Listener:", error);
+    }
+  });
+};
+
+// ---------------------------------
+
+/**
  * Lädt den Warenkorb aus dem LocalStorage
  */
 const loadCartFromStorage = () => {
@@ -150,17 +176,59 @@ const saveCartToStorage = () => {
   }
 };
 
+// ---------------------------------
+
 /**
- * Benachrichtigt alle Listener über State-Änderungen
+ * Lädt alle User-Preferences aus dem LocalStorage
  */
-const notifyListeners = () => {
-  appState.listeners.forEach((listener) => {
-    try {
-      listener();
-    } catch (error) {
-      console.error("Fehler beim Benachrichtigen der Listener:", error);
+const loadUserPreferences = () => {
+  try {
+    const savedPrefs = localStorage.getItem("superRandoPreferences");
+    if (savedPrefs) {
+      const preferences = JSON.parse(savedPrefs);
+      appState.userPreferences = {
+        ...appState.userPreferences,
+        ...preferences,
+      };
     }
-  });
+  } catch (error) {
+    console.error("Fehler beim Laden der User-Preferences:", error);
+  }
 };
 
-export { appState, loadCartFromStorage, saveCartToStorage, notifyListeners };
+/**
+ * Speichert alle User-Preferences im LocalStorage
+ */
+const saveUserPreferences = () => {
+  try {
+    localStorage.setItem(
+      "superRandoPreferences",
+      JSON.stringify(appState.userPreferences)
+    );
+  } catch (error) {
+    console.error("Fehler beim Speichern der User-Preferences:", error);
+  }
+};
+
+// ---------------------------------
+
+/**
+ * Lädt alle gespeicherten Daten beim App-Start
+ */
+const loadAllStoredData = () => {
+  loadCartFromStorage();
+  loadUserPreferences();
+
+  // Sofort einmal speichern um LocalStorage zu initialisieren
+  saveUserPreferences();
+};
+
+export {
+  appState,
+  loadCartFromStorage,
+  saveCartToStorage,
+  loadUserPreferences,
+  saveUserPreferences,
+  loadAllStoredData,
+  notifyListeners,
+};

@@ -1,0 +1,244 @@
+/* Mobile First: Navigation Styles */
+
+.nav-list {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav-item {
+  flex: initial;
+}
+
+/* Gemeinsame Stile für alle Navigationselemente */
+.nav-link,
+.phone-number,
+.dropdown-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.6rem;
+  text-decoration: none;
+  color: var(--color-surface);
+  font-weight: 500;
+  border-radius: 1.56rem;
+  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(0.63rem);
+  font-size: 0.85rem;
+  min-width: 3.13rem;
+  min-height: 2.75rem;
+  text-shadow: 0.06rem 0.06rem 0.13rem var(--shadow-heavy);
+  border: none;
+  cursor: pointer;
+  line-height: 1;
+  box-sizing: border-box;
+}
+
+.nav-link:hover,
+.phone-number:hover,
+.dropdown-toggle:hover,
+.dropdown-toggle.dropdown-active {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.nav-text {
+  display: none; /* Mobile: nur Icons */
+}
+
+.nav-icon {
+  filter: drop-shadow(0.06rem 0.06rem 0.13rem var(--shadow-heavy));
+}
+
+/* Settings Dropdown */
+.nav-dropdown {
+  position: relative;
+}
+
+.dropdown-arrow {
+  font-size: 0.7rem;
+  transition: transform 0.3s ease;
+  margin-left: 0.25rem;
+}
+
+.dropdown-toggle.dropdown-active .dropdown-arrow {
+  transform: rotate(180deg);
+}
+
+/* Für mobile: Dropdown-Toggle anpassen wenn nötig */
+@media (max-width: 767px) {
+  .nav-dropdown .dropdown-toggle {
+    min-width: 3.13rem;
+    justify-content: center;
+  }
+}
+
+/* Dropdown Menu */
+.dropdown-menu {
+  position: absolute;
+  top: 7rem;
+  right: 0;
+  background: var(--secondary-gradient);
+  border: 2px solid var(--color-accent);
+  border-radius: 1rem;
+  box-shadow: 0 0.5rem 1.5rem var(--shadow-medium);
+  padding: 1rem;
+  min-width: 15rem;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-0.5rem);
+  transition: all 0.3s ease;
+  backdrop-filter: blur(0.63rem);
+}
+
+.dropdown-menu.dropdown-open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.dropdown-section {
+  margin-bottom: 1rem;
+}
+
+.dropdown-section:last-child {
+  margin-bottom: 0;
+}
+
+.dropdown-title {
+  color: var(--color-surface);
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  text-shadow: 0.06rem 0.06rem 0.13rem var(--shadow-heavy);
+}
+
+.setting-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.setting-option,
+.setting-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid transparent;
+  border-radius: 0.5rem;
+  color: var(--color-surface);
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+  text-align: left;
+  min-height: 2.75rem;
+}
+
+.setting-option:hover,
+.setting-toggle:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: var(--color-accent);
+}
+
+.setting-option.setting-active {
+  background: var(--color-accent);
+  border-color: var(--color-primary);
+  color: var(--color-dark-brown);
+}
+
+.setting-toggle.toggle-active {
+  background: rgba(var(--color-success), 0.2);
+  border-color: var(--color-success);
+}
+
+.setting-icon {
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.setting-text {
+  flex: 1;
+  font-weight: 500;
+}
+
+.toggle-indicator {
+  font-size: 1.2rem;
+  color: var(--color-accent);
+  transition: color 0.3s ease;
+}
+
+.setting-toggle.toggle-active .toggle-indicator {
+  color: var(--color-success);
+}
+
+/* Tablet Styles */
+@media (min-width: 768px) {
+  .nav-link,
+  .phone-number,
+  .dropdown-toggle {
+    padding: 0.6rem 0.8rem;
+    font-size: 0.85rem;
+    min-width: 3.75rem;
+  }
+
+  .nav-text {
+    display: block; /* Text erscheint ab Tablet */
+  }
+
+  .dropdown-menu {
+    min-width: 18rem;
+    padding: 1.25rem;
+  }
+
+  .setting-group {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .setting-option {
+    flex: 1;
+    min-width: 7rem;
+  }
+}
+
+/* Desktop Styles */
+@media (min-width: 1024px) {
+  .nav-link,
+  .phone-number,
+  .dropdown-toggle {
+    padding: 0.7rem 1rem;
+    font-size: 0.85rem;
+    min-width: 4.38rem;
+  }
+
+  .dropdown-menu {
+    min-width: 20rem;
+    padding: 1.5rem;
+  }
+}
+
+/* Large Desktop */
+@media (min-width: 1280px) {
+  .nav-list {
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .nav-link,
+  .phone-number,
+  .dropdown-toggle {
+    padding: 0.8rem 1.2rem;
+    font-size: 1rem;
+  }
+}
