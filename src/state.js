@@ -3,7 +3,8 @@ const appState = {
   currentPage: "home",
   cart: [],
   cartVisible: false,
-  selectedCategory: "all", // Für Produktfilterung
+  selectedCategory: "all",
+  notifications: [],
   dishes: [
     {
       name: "Pizza Margherita",
@@ -69,7 +70,7 @@ const appState = {
     badge: "🍽️ Tagesmenü",
     description:
       "Unser beliebtes 3-Gang-Menü: Ramen Fusion Bowl, Gyoza-Salat und Ihr Wunsch-Dessert",
-    tags: ["menu", "fusion", "special"], // Tags hinzugefügt
+    tags: ["menu", "fusion", "special"],
     items: [
       {
         icon: "🍜",
@@ -107,7 +108,7 @@ const appState = {
     description:
       "Unsere moderne Interpretation des italienischen Klassikers: Handgemachte Spaghetti mit cremiger Eier-Parmesan-Sauce, knusprigem Pancetta und einem Hauch von Yuzu-Zitrus. Ein perfektes Beispiel für unsere Fusion-Philosophie.",
     image: "./assets/images/Spagetti-01.jpg",
-    tags: ["popular", "fusion", "pasta", "meat"], // Tags hinzugefügt
+    tags: ["popular", "fusion", "pasta", "meat"],
     features: [
       { icon: "🌟", text: "Meist bestellt" },
       { icon: "👨‍🍳", text: "Chef's Special" },

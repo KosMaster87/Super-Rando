@@ -1,5 +1,6 @@
 import { appState, saveCartToStorage, notifyListeners } from "../state.js";
 import { MAX_CART_ITEMS } from "../utils/constants.js";
+import { showAddToCartNotification } from "./notification.js";
 
 /**
  * Fügt ein Gericht zum Warenkorb hinzu
@@ -11,8 +12,10 @@ export const addToCart = (dishName, price) => {
 
   if (existingItem) {
     increaseQuantity(existingItem);
+    showAddToCartNotification(dishName, 1);
   } else {
     addNewCartItem(dishName, price);
+    showAddToCartNotification(dishName, 1);
   }
 
   saveCartToStorage();

@@ -5,10 +5,20 @@
   "main": "dev-server.js",
   "type": "module",
   "scripts": {
-    "dev": "node dev-server.js",
-    "start": "node dev-server.js"
+    "dev": "concurrently -n SERVER,RELOAD \"nodemon dev-server.js\" \"npm run livereload\"",
+    "livereload": "livereload . --wait 500 --debug --extraExts js,css,html",
+    "start": "node dev-server.js",
+    "watch": "nodemon dev-server.js --watch src --watch styles"
   },
   "dependencies": {
     "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "@types/livereload": "^0.9.5",
+    "@types/connect-livereload": "^0.6.3",
+    "concurrently": "^9.1.2",
+    "connect-livereload": "^0.6.1",
+    "livereload": "^0.9.3",
+    "nodemon": "^3.1.10"
   }
 }

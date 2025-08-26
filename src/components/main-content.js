@@ -3,6 +3,7 @@ import { renderHomePage } from "./pages/home-page.js";
 import { renderProductsPage } from "./pages/products-page.js";
 import { renderCart } from "./cart.js";
 import { renderCartToggle } from "./cart-toggle.js";
+import { renderNotifications } from "./notification-popup.js";
 import { CART_PAGES } from "../utils/constants.js";
 
 /**
@@ -24,6 +25,7 @@ export const renderMainContent = () => {
 const createLayoutWithCart = () => {
   return `
     ${renderCartToggle()}
+    ${renderNotifications()}
     <div class="page-layout-with-cart">
       <div class="content-area">
         <div class="content-child">
@@ -34,7 +36,6 @@ const createLayoutWithCart = () => {
         ${renderCart()}
       </div>
     </div>
-    
   `;
 };
 
@@ -44,6 +45,7 @@ const createLayoutWithCart = () => {
  */
 const createLayoutWithoutCart = () => {
   return `
+    ${renderNotifications()}
     <div class="page-layout-standard">
       ${getCurrentPageHTML()}
     </div>

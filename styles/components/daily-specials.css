@@ -1,51 +1,82 @@
-/* Mobile Daily Specials */
+/* Mobile First: Daily Specials ab 300px */
 .daily-specials {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 2rem;
-  margin-bottom: 3rem;
-  border-radius: 1rem;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
 }
 
-/* Menu Bundle */
+/* Menu Bundle - Extra Small Mobile (300px+) */
 .menu-bundle {
   background: var(--secondary-gradient);
-  border-radius: 1rem;
-  padding: 2rem;
+  border-radius: 0.75rem;
+  padding: 1rem;
   box-shadow: 0 0.5rem 1.56rem var(--shadow-medium);
   transition: all 0.3s ease;
   border: 2px solid var(--color-accent);
   display: flex;
   flex-direction: column;
   position: relative;
+  min-width: 0;
 }
 
 .menu-bundle:hover {
   box-shadow: 0 0.94rem 2.19rem var(--shadow-heavy);
 }
 
+.special-badge {
+  font-size: clamp(0.7rem, 2vw + 0.5rem, 0.9rem);
+  padding: 0.25rem 0.75rem;
+  background: linear-gradient(
+    135deg,
+    var(--color-primary),
+    var(--color-primary-hover)
+  );
+  color: var(--color-secondary);
+  border-radius: 1rem;
+  width: fit-content;
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+}
+
+.special-title {
+  font-size: clamp(1rem, 3vw + 0.5rem, 1.5rem);
+  color: var(--color-surface);
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+  text-shadow: 0.06rem 0.06rem 0.13rem var(--shadow-heavy);
+}
+
+.special-description {
+  font-size: clamp(0.75rem, 2vw + 0.5rem, 0.9rem);
+  color: var(--color-secondary);
+  line-height: 1.4;
+  margin-bottom: 1rem;
+}
+
 .menu-items {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
-  margin: 1.5rem 0;
+  gap: 1rem;
+  margin: 1rem 0;
 }
 
 .menu-item {
   display: flex;
-  gap: 1rem;
+  flex-direction: column;
+  gap: 0.75rem;
   align-items: flex-start;
-  padding: 1rem;
+  padding: 0.75rem;
   background: rgba(255, 255, 255, 0.1);
-  border-radius: 0.75rem;
+  border-radius: 0.5rem;
   backdrop-filter: blur(0.31rem);
 }
 
 .menu-item-icon {
-  font-size: 2rem;
+  font-size: clamp(1.25rem, 4vw + 0.5rem, 2rem);
   flex-shrink: 0;
-  width: 3rem;
-  height: 3rem;
+  width: clamp(2rem, 6vw + 1rem, 3rem);
+  height: clamp(2rem, 6vw + 1rem, 3rem);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -56,38 +87,40 @@
 
 .menu-item-content {
   flex: 1;
+  min-width: 0;
 }
 
 .menu-item-name {
   color: var(--color-surface);
-  font-size: 1.1rem;
+  font-size: clamp(0.85rem, 2.5vw + 0.5rem, 1.1rem);
   font-weight: 600;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.25rem;
   text-shadow: 0.06rem 0.06rem 0.13rem var(--shadow-heavy);
 }
 
 .menu-item-desc {
   color: var(--color-secondary);
-  font-size: 0.85rem;
-  line-height: 1.4;
+  font-size: clamp(0.7rem, 2vw + 0.4rem, 0.85rem);
+  line-height: 1.3;
 }
 
 /* Dessert Selection in Menu */
 .menu-item.dessert-selection {
   flex-direction: column;
   align-items: stretch;
+  gap: 0.5rem;
 }
 
 .menu-item.dessert-selection .menu-item-content {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 0.75rem;
 }
 
 .dessert-options {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 0.5rem;
 }
 
 .dessert-option input[type="radio"] {
@@ -99,13 +132,13 @@
   background: var(--color-secondary);
   border: 2px solid var(--color-primary);
   border-radius: 0.5rem;
-  padding: 0.75rem;
+  padding: 0.5rem;
   cursor: pointer;
   transition: all 0.3s ease;
-  min-height: 2.75rem;
+  min-height: 2.5rem;
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
+  gap: 0.13rem;
 }
 
 .dessert-card:hover {
@@ -121,37 +154,37 @@
 
 .dessert-name {
   color: var(--color-text-primary);
-  font-size: 0.9rem;
+  font-size: clamp(0.75rem, 2vw + 0.4rem, 0.9rem);
   font-weight: 600;
 }
 
 .dessert-desc {
   color: var(--color-text-muted);
-  font-size: 0.75rem;
-  line-height: 1.3;
+  font-size: clamp(0.65rem, 1.5vw + 0.4rem, 0.75rem);
+  line-height: 1.2;
 }
 
 /* Menu Footer */
 .menu-footer {
   text-align: center;
   margin-top: auto;
-  padding-top: 1.5rem;
+  padding-top: 1rem;
   border-top: 2px solid rgba(255, 255, 255, 0.2);
 }
 
 .menu-price {
-  font-size: 1.5rem;
+  font-size: clamp(1.2rem, 4vw + 0.5rem, 1.75rem);
   font-weight: bold;
   color: var(--color-surface);
   text-shadow: 0.06rem 0.06rem 0.13rem var(--shadow-heavy);
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.25rem;
 }
 
 .menu-savings {
   color: var(--color-secondary);
-  font-size: 0.85rem;
+  font-size: clamp(0.7rem, 1.8vw + 0.4rem, 0.85rem);
   font-style: italic;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
 }
 
 .menu-order-btn {
@@ -162,7 +195,7 @@
   );
   color: var(--color-secondary);
   border: none;
-  padding: 1rem 2rem;
+  padding: clamp(0.75rem, 2vw + 0.5rem, 1rem) clamp(1rem, 3vw + 0.5rem, 2rem);
   border-radius: 1.56rem;
   font-weight: 600;
   cursor: pointer;
@@ -171,7 +204,7 @@
   box-shadow: 0 0.25rem 0.94rem var(--shadow-medium);
   width: 100%;
   min-height: 2.75rem;
-  font-size: 1rem;
+  font-size: clamp(0.85rem, 2vw + 0.5rem, 1rem);
 }
 
 .menu-order-btn:hover:not(:disabled) {
@@ -190,10 +223,43 @@
   opacity: 0.6;
 }
 
-/* Tablet Styles */
-@media (min-width: 768px) {
+/* Small Mobile (400px+) */
+@media (min-width: 400px) {
+  .daily-specials {
+    gap: 2rem;
+  }
+
   .menu-bundle {
-    padding: 2.5rem;
+    padding: 1.25rem;
+    border-radius: 1rem;
+  }
+
+  .menu-items {
+    gap: 1.25rem;
+  }
+
+  .menu-item {
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  .dessert-options {
+    gap: 0.75rem;
+  }
+
+  .menu-footer {
+    padding-top: 1.25rem;
+  }
+}
+
+/* Large Mobile (480px+) */
+@media (min-width: 480px) {
+  .menu-bundle {
+    padding: 1.5rem;
+  }
+
+  .menu-items {
+    gap: 1.5rem;
   }
 
   .dessert-options {
@@ -201,19 +267,51 @@
     gap: 1rem;
   }
 
+  .dessert-card {
+    padding: 0.75rem;
+    min-height: 2.75rem;
+  }
+}
+
+/* Tablet (768px+) */
+@media (min-width: 768px) {
+  .daily-specials {
+    margin-bottom: 3rem;
+  }
+
+  .menu-bundle {
+    padding: 2rem;
+    max-width: 45rem;
+    margin: 0 auto;
+  }
+
   .menu-item {
     padding: 1.25rem;
   }
 
-  .menu-price {
-    font-size: 1.75rem;
+  .menu-footer {
+    padding-top: 1.5rem;
   }
 }
 
-/* Desktop Styles */
+/* Desktop (1024px+) */
 @media (min-width: 1024px) {
   .menu-bundle {
     max-width: 50rem;
-    margin: 0 auto;
+    padding: 2.5rem;
+  }
+}
+
+/* Large Desktop (1200px+) */
+@media (min-width: 1200px) {
+  .menu-bundle {
+    max-width: 55rem;
+  }
+}
+
+/* Extra Large Desktop (1400px+) */
+@media (min-width: 1400px) {
+  .menu-bundle {
+    max-width: 60rem;
   }
 }
