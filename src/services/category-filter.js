@@ -1,4 +1,4 @@
-import { appState, notifyListeners } from "../state.js";
+import { appState, notifyListeners, saveSessionToStorage } from "../state.js";
 
 /**
  * Filtert Gerichte nach ausgewählter Kategorie
@@ -22,6 +22,7 @@ export const getFilteredDishes = (categoryId = appState.selectedCategory) => {
 export const setSelectedCategory = (categoryId) => {
   if (appState.selectedCategory !== categoryId) {
     appState.selectedCategory = categoryId;
+    saveSessionToStorage(); // ← Session speichern bei Kategorie-Wechsel!
     notifyListeners();
   }
 };

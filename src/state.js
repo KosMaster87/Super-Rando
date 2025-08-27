@@ -213,11 +213,76 @@ const saveUserPreferences = () => {
 // ---------------------------------
 
 /**
+ * Prüft ob Seite gültig ist (für Session-Wiederherstellung)
+ * @param {string} page - Seitenname
+ * @returns {boolean} Ist gültig
+ */
+const isValidPage = (page) => {
+  const validPages = [
+    "home",
+    "products",
+    "contact",
+    "about",
+    "impressum",
+    "datenschutz",
+    "kontaktformular",
+  ];
+  return validPages.includes(page);
+};
+
+/**
+ * Lädt die Session-Daten aus dem LocalStorage
+ */
+const loadSessionFromStorage = () => {
+  try {
+    const savedSession = localStorage.getItem("superRandoSession");
+    if (savedSession) {
+      const session = JSON.parse(savedSession);
+
+      // Wiederherstellen der letzten Seite
+      if (session.lastPage && isValidPage(session.lastPage)) {
+        appState.currentPage = session.lastPage;
+      }
+
+      // Wiederherstellen der Kategorie-Auswahl
+      if (session.selectedCategory) {
+        appState.selectedCategory = session.selectedCategory;
+      }
+
+      console.log("Session wiederhergestellt:", {
+        page: appState.currentPage,
+        category: appState.selectedCategory,
+      });
+    }
+  } catch (error) {
+    console.error("Fehler beim Laden der Session:", error);
+  }
+};
+
+/**
+ * Speichert die Session-Daten im LocalStorage
+ */
+const saveSessionToStorage = () => {
+  try {
+    const sessionData = {
+      lastPage: appState.currentPage,
+      selectedCategory: appState.selectedCategory,
+      timestamp: Date.now(),
+    };
+    localStorage.setItem("superRandoSession", JSON.stringify(sessionData));
+    console.log("Session gespeichert:", sessionData); // Debug-Log
+  } catch (error) {
+    console.error("Fehler beim Speichern der Session:", error);
+  }
+};
+
+/**
  * Lädt alle gespeicherten Daten beim App-Start
  */
 const loadAllStoredData = () => {
   loadCartFromStorage();
   loadUserPreferences();
+  loadSessionFromStorage(); // ← Session-Wiederherstellung
 
   // Sofort einmal speichern um LocalStorage zu initialisieren
   saveUserPreferences();
@@ -229,6 +294,7 @@ export {
   saveCartToStorage,
   loadUserPreferences,
   saveUserPreferences,
+  saveSessionToStorage,
   loadAllStoredData,
   notifyListeners,
 };

@@ -30,8 +30,6 @@ app.listen(PORT, () => {
   console.log(`🚀 SPA läuft auf http://localhost:${PORT}`);
   console.log(`📝 Öffne Chrome und navigiere zu den URLs:`);
   console.log(`   - http://localhost:${PORT}/`);
-  console.log(`   - http://localhost:${PORT}/products`);
-  console.log(`   - http://localhost:${PORT}/contact`);
   console.log(`✨ F5/Reload funktioniert auf allen Seiten!`);
 
   if (process.env.NODE_ENV !== "production") {

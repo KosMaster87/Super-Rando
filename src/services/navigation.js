@@ -1,4 +1,4 @@
-import { appState, notifyListeners } from "../state.js";
+import { appState, notifyListeners, saveSessionToStorage } from "../state.js";
 import { PAGES } from "../utils/constants.js";
 
 let isNavigationInitialized = false;
@@ -123,6 +123,7 @@ export const navigateToPage = (page) => {
   appState.currentPage = page;
   updateBrowserHistory(page);
   updateDocumentTitle(page);
+  saveSessionToStorage(); // ← Session speichern bei Navigation
   notifyListeners();
 };
 

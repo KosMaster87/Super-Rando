@@ -49,6 +49,7 @@ src/app/firebase.config.ts
 
 # Costum
 /.directory
+dev-server.js
 
 # PHP
 .htaccess
