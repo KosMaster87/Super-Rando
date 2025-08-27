@@ -72,6 +72,14 @@ export const toggleCartVisibility = () => {
 };
 
 /**
+ * Öffnet den Warenkorb
+ */
+export const openCart = () => {
+  appState.cartVisible = true;
+  notifyListeners();
+};
+
+/**
  * Schließt den Warenkorb
  */
 export const closeCart = () => {

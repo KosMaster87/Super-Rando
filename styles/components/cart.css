@@ -1,8 +1,8 @@
-/* Mobile Cart Toggle Button */
+/* Cart Toggle Button - für alle Bildschirmgrößen aktiv */
 .cart-toggle-btn {
-  position: fixed;
-  bottom: 1.5rem;
-  right: 1.5rem;
+  position: sticky;
+  top: 1rem;
+  right: 1rem;
   width: 3.5rem;
   height: 3.5rem;
   border-radius: 50%;
@@ -16,11 +16,13 @@
   cursor: pointer;
   box-shadow: 0 0.25rem 1rem var(--shadow-medium);
   transition: all 0.3s ease;
-  z-index: 1000;
+  z-index: 100;
   display: flex;
   align-items: center;
   justify-content: center;
-  position: relative;
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+  margin-left: auto;
 }
 
 .cart-toggle-btn:hover {
@@ -262,8 +264,9 @@
 
 /* Tablet Styles */
 @media (min-width: 768px) {
+  /* Cart-Toggle-Button bleibt sichtbar */
   .cart-toggle-btn {
-    display: none;
+    display: flex; /* Nicht mehr display: none */
   }
 
   .cart-sidebar {
@@ -276,10 +279,20 @@
     border-radius: 1rem;
     box-shadow: 0 0.5rem 2rem var(--shadow-light);
     background: var(--secondary-gradient);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+
+  /* Warenkorb verstecken wenn geschlossen */
+  .cart-sidebar:not(.cart-open) {
+    opacity: 0;
+    transform: scale(0.95);
+    pointer-events: none;
   }
 
   .cart-sidebar.cart-open {
-    right: 0;
+    opacity: 1;
+    transform: scale(1);
+    pointer-events: all;
   }
 
   .cart-container {

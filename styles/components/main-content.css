@@ -4,6 +4,13 @@
   padding: 0.5rem;
 }
 
+/* Main Content Container für Cart-Toggle Positionierung */
+.main-content-container {
+  position: relative;
+  width: 100%;
+  min-height: inherit;
+}
+
 .welcome-content {
   text-align: center;
 }

@@ -23,6 +23,7 @@
   flex: 1;
   min-width: 0;
   min-height: 50rem;
+  transition: flex 0.3s ease; /* Smooth transition für Breitenänderung */
 }
 
 .content-child {
@@ -36,6 +37,7 @@
 
 .cart-area {
   display: none;
+  transition: all 0.3s ease;
 }
 
 /* Tablet Styles */
@@ -59,6 +61,17 @@
     flex: 1;
     max-width: 35%;
   }
+
+  /* Wenn Warenkorb geschlossen ist - Content-Area volle Breite */
+  .page-layout-with-cart:has(.cart-sidebar:not(.cart-open)) .content-area {
+    flex: 1; /* Volle Breite */
+  }
+
+  .page-layout-with-cart:has(.cart-sidebar:not(.cart-open)) .cart-area {
+    flex: 0;
+    max-width: 0;
+    overflow: hidden;
+  }
 }
 
 /* Desktop Styles */
@@ -78,5 +91,15 @@
   .cart-area {
     flex: 1;
     max-width: 30%;
+  }
+
+  /* Desktop: Wenn Warenkorb geschlossen ist */
+  .page-layout-with-cart:has(.cart-sidebar:not(.cart-open)) .content-area {
+    flex: 1; /* Volle Breite */
+  }
+
+  .page-layout-with-cart:has(.cart-sidebar:not(.cart-open)) .cart-area {
+    flex: 0;
+    max-width: 0;
   }
 }

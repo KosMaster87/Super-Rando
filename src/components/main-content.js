@@ -24,16 +24,18 @@ export const renderMainContent = () => {
  */
 const createLayoutWithCart = () => {
   return `
-    ${renderCartToggle()}
-    ${renderNotifications()}
-    <div class="page-layout-with-cart">
-      <div class="content-area">
-        <div class="content-child">
-          ${getCurrentPageHTML()}
+    <div class="main-content-container">
+      ${renderCartToggle()}
+      ${renderNotifications()}
+      <div class="page-layout-with-cart">
+        <div class="content-area">
+          <div class="content-child">
+            ${getCurrentPageHTML()}
+          </div>
         </div>
-      </div>
-      <div class="cart-area">
-        ${renderCart()}
+        <div class="cart-area">
+          ${renderCart()}
+        </div>
       </div>
     </div>
   `;
