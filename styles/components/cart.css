@@ -1,8 +1,5 @@
 /* Cart Toggle Button - für alle Bildschirmgrößen aktiv */
 .cart-toggle-btn {
-  position: sticky;
-  top: 1rem;
-  right: 1rem;
   width: 3.5rem;
   height: 3.5rem;
   border-radius: 50%;
@@ -20,9 +17,26 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 0.5rem;
-  margin-bottom: 1rem;
-  margin-left: auto;
+}
+
+/* Mobile: Cart-Toggle als fixed positioned button */
+@media (max-width: 767px) {
+  .cart-toggle-btn {
+    position: fixed;
+    bottom: 2rem;
+    right: 1rem;
+    z-index: 101;
+  }
+}
+
+/* Tablet/Desktop: Cart-Toggle in cart-area sticky positioniert */
+@media (min-width: 768px) {
+  .cart-toggle-btn {
+    position: sticky;
+    top: 1rem;
+    margin: 0 0 1rem 0;
+    align-self: flex-end;
+  }
 }
 
 .cart-toggle-btn:hover {
@@ -269,6 +283,14 @@
     display: flex; /* Nicht mehr display: none */
   }
 
+  /* Cart-Toggle-Button mit Items ausblenden wenn Warenkorb geöffnet ist */
+  body.cart-is-open .cart-toggle-btn.has-items {
+    opacity: 0;
+    transform: scale(0.8);
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+
   .cart-sidebar {
     position: sticky;
     top: 1rem;
@@ -328,5 +350,13 @@
 @media (min-width: 1024px) {
   .cart-sidebar {
     width: 100%;
+  }
+
+  /* Cart-Toggle-Button mit Items ausblenden wenn Warenkorb geöffnet ist */
+  body.cart-is-open .cart-toggle-btn.has-items {
+    opacity: 0;
+    transform: scale(0.8);
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
   }
 }

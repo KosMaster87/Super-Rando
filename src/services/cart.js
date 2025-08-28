@@ -68,6 +68,7 @@ export const removeFromCart = (itemName) => {
  */
 export const toggleCartVisibility = () => {
   appState.cartVisible = !appState.cartVisible;
+  updateCartBodyClass();
   notifyListeners();
 };
 
@@ -76,6 +77,7 @@ export const toggleCartVisibility = () => {
  */
 export const openCart = () => {
   appState.cartVisible = true;
+  updateCartBodyClass();
   notifyListeners();
 };
 
@@ -84,6 +86,7 @@ export const openCart = () => {
  */
 export const closeCart = () => {
   appState.cartVisible = false;
+  updateCartBodyClass();
   notifyListeners();
 };
 
@@ -93,8 +96,28 @@ export const closeCart = () => {
 export const clearCart = () => {
   appState.cart = [];
   appState.cartVisible = false;
+  updateCartBodyClass();
   saveCartToStorage();
   notifyListeners();
+};
+
+/**
+ * Aktualisiert die Body-Klasse basierend auf Warenkorb-Status
+ */
+const updateCartBodyClass = () => {
+  const body = document.body;
+  if (appState.cartVisible) {
+    body.classList.add("cart-is-open");
+  } else {
+    body.classList.remove("cart-is-open");
+  }
+};
+
+/**
+ * Initialisiert den Cart-Status und setzt die Body-Klasse
+ */
+export const initializeCartStatus = () => {
+  updateCartBodyClass();
 };
 
 /**

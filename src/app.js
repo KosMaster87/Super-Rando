@@ -11,6 +11,7 @@ import { initializeDishEvents } from "./services/dish-events.js";
 import { initializeCategorySystem } from "./services/category-filter.js";
 import { initializeUserPreferences } from "./services/user-preferences.js";
 import { initializeSettingsEvents } from "./services/settings-events.js";
+import { initializeCartStatus } from "./services/cart.js";
 
 /**
  * Initialisiert die gesamte Anwendung
@@ -20,6 +21,7 @@ const initializeApp = () => {
   initializeUserPreferences(); // ← Wendet gespeicherte Settings an
   initializeCategorySystem();
   initializeNavigation();
+  initializeCartStatus(); // ← Setzt initiale Body-Klasse für Cart-Status
   registerStateListeners();
   renderAllComponents();
 };
