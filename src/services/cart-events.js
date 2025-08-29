@@ -85,7 +85,9 @@ const handleCartItemClick = (event) => {
  */
 const handleOrderSubmit = () => {
   // Hier könnte später eine echte Bestell-API aufgerufen werden
-  alert("Vielen Dank für Ihre Bestellung! 🍽️");
+  import("./notification.js").then(({ showOrderNotification }) => {
+    showOrderNotification("Vielen Dank für Ihre Bestellung! 🍽️");
+  });
 
   // Optional: Warenkorb leeren nach Bestellung
   // clearCart();

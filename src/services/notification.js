@@ -6,13 +6,22 @@ import { appState, notifyListeners } from "../state.js";
  * @param {string} type - Benachrichtigungstyp (success, error, info)
  * @param {number} duration - Anzeigedauer in Millisekunden
  */
+
+/**
+ * Erstellt eine neue Benachrichtigung
+ * @param {string} message - Benachrichtigungstext
+ * @param {string} type - Benachrichtigungstyp (success, error, info)
+ * @param {number} duration - Anzeigedauer in Millisekunden
+ * @param {boolean} force - Erzwingt Anzeige, auch wenn Notifications deaktiviert
+ */
 export const showNotification = (
   message,
   type = "success",
-  duration = 3000
+  duration = 3000,
+  force = false
 ) => {
-  // Prüfen ob User Benachrichtigungen aktiviert hat
-  if (!appState.userPreferences.showNotifications) {
+  // Prüfen ob User Benachrichtigungen aktiviert hat, außer force=true
+  if (!force && !appState.userPreferences.showNotifications) {
     return; // Keine Benachrichtigung anzeigen
   }
 
@@ -64,6 +73,10 @@ export const showAddToCartNotification = (dishName, quantity = 1) => {
  * Zeigt eine Info-Benachrichtigung für Bestellungen
  * @param {string} message - Bestellungs-Nachricht
  */
+/**
+ * Zeigt eine Info-Benachrichtigung für Bestellungen (immer sichtbar)
+ * @param {string} message - Bestellungs-Nachricht
+ */
 export const showOrderNotification = (message) => {
-  showNotification(message, "info", 4000);
+  showNotification(message, "info", 4000, true);
 };

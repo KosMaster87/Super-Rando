@@ -28,7 +28,7 @@ const createCartHeader = () => {
   return `
     <div class="cart-header">
       <h3 class="cart-title">Warenkorb (${itemCount})</h3>
-      <button class="cart-close-btn" id="closeCartBtn">✕</button>
+      <button class="cart-close-btn" id="closeCartBtn" title="Warenkorb schließen"><span class="cart-close-icon">❌</span></button>
     </div>
   `;
 };
