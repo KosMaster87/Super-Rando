@@ -37,7 +37,6 @@ const createMenuBundle = () => {
 
   return `
     <div class="menu-bundle">
-      <div class="special-badge">${menu.badge}</div>
       <h3 class="special-title">${menu.name}</h3>
       <p class="special-description">${menu.description}</p>
       
@@ -67,7 +66,9 @@ const createMenuBundle = () => {
 const createMenuItem = (item) => {
   return `
     <div class="menu-item">
-      <div class="menu-item-icon">${item.icon}</div>
+      <div class="menu-item-image">
+        <img class="dish-image" src="${item.image}" alt="${item.name}" />
+      </div>
       <div class="menu-item-content">
         <h4 class="menu-item-name">${item.name}</h4>
         <p class="menu-item-desc">${item.description}</p>
@@ -85,7 +86,6 @@ const createDessertSelectionItem = () => {
 
   return `
     <div class="menu-item dessert-selection">
-      <div class="menu-item-icon">🍰</div>
       <div class="menu-item-content">
         <h4 class="menu-item-name">Wählen Sie Ihren Nachgang</h4>
         <div class="dessert-options">
@@ -106,6 +106,9 @@ const createDessertOption = (dessert) => {
     <div class="dessert-option">
       <input type="radio" id="${dessert.id}" name="menuDessert" value="${dessert.value}" />
       <label for="${dessert.id}" class="dessert-card">
+        <div class="menu-item-image">
+          <img class="dish-image" src="${dessert.image}" alt="${dessert.name}" />
+        </div>
         <span class="dessert-name">${dessert.name}</span>
         <span class="dessert-desc">${dessert.description}</span>
       </label>

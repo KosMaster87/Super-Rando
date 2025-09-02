@@ -25,22 +25,18 @@
 }
 
 .special-badge {
-  font-size: clamp(0.7rem, 2vw + 0.5rem, 0.9rem);
-  padding: 0.25rem 0.75rem;
-  background: linear-gradient(
-    135deg,
-    var(--color-primary),
-    var(--color-primary-hover)
-  );
-  color: var(--color-secondary);
+  font-size: clamp(0.7rem, 2vw + 0.5rem, 1.2rem);
+  padding: 0.8rem 1.5rem;
+  background: var(--color-primary);
+  color: var(--color-surface);
   border-radius: 1rem;
   width: fit-content;
-  margin-bottom: 0.75rem;
   font-weight: 600;
+  align-self: center;
 }
 
 .special-title {
-  font-size: clamp(1rem, 3vw + 0.5rem, 1.5rem);
+  font-size: clamp(1rem, 3vw + 0.8rem, 2rem);
   color: var(--color-surface);
   margin-bottom: 0.75rem;
   font-weight: 600;
@@ -65,7 +61,7 @@
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
-  align-items: flex-start;
+  align-items: center;
   padding: 0.75rem;
   background: rgba(255, 255, 255, 0.1);
   border-radius: 0.5rem;
@@ -107,7 +103,7 @@
 /* Dessert Selection in Menu */
 .menu-item.dessert-selection {
   flex-direction: column;
-  align-items: stretch;
+  align-items: center;
   gap: 0.5rem;
 }
 
@@ -123,6 +119,10 @@
   gap: 0.5rem;
 }
 
+.dessert-option {
+  flex: 1;
+}
+
 .dessert-option input[type="radio"] {
   display: none;
 }
@@ -136,6 +136,7 @@
   cursor: pointer;
   transition: all 0.3s ease;
   min-height: 2.5rem;
+  height: -webkit-fill-available;
   display: flex;
   flex-direction: column;
   gap: 0.13rem;
@@ -143,23 +144,23 @@
 
 .dessert-card:hover {
   border-color: var(--color-accent);
-  background: var(--color-surface);
+  background: var(--color-primary-hover);
 }
 
 .dessert-option input[type="radio"]:checked + .dessert-card {
   border-color: var(--color-accent);
-  background: var(--color-surface);
+  background: var(--color-primary);
   box-shadow: 0 0.25rem 0.75rem var(--shadow-medium);
 }
 
 .dessert-name {
-  color: var(--color-text-primary);
+  color: var(--text-light);
   font-size: clamp(0.75rem, 2vw + 0.4rem, 0.9rem);
   font-weight: 600;
 }
 
 .dessert-desc {
-  color: var(--color-text-muted);
+  color: var(--text-light);
   font-size: clamp(0.65rem, 1.5vw + 0.4rem, 0.75rem);
   line-height: 1.2;
 }
@@ -193,7 +194,7 @@
     var(--color-primary),
     var(--color-primary-hover)
   );
-  color: var(--color-secondary);
+  color: var(--text-light);
   border: none;
   padding: clamp(0.75rem, 2vw + 0.5rem, 1rem) clamp(1rem, 3vw + 0.5rem, 2rem);
   border-radius: 1.56rem;
@@ -202,7 +203,6 @@
   transition: all 0.3s ease;
   text-shadow: 0.06rem 0.06rem 0.13rem var(--shadow-heavy);
   box-shadow: 0 0.25rem 0.94rem var(--shadow-medium);
-  width: 100%;
   min-height: 2.75rem;
   font-size: clamp(0.85rem, 2vw + 0.5rem, 1rem);
 }
@@ -213,7 +213,6 @@
     var(--color-primary-hover),
     var(--color-neutral-medium)
   );
-  transform: translateY(-0.13rem);
   box-shadow: 0 0.5rem 1.56rem var(--shadow-heavy);
 }
 
@@ -283,6 +282,10 @@
     padding: 2rem;
     max-width: 45rem;
     margin: 0 auto;
+  }
+
+  .special-title {
+    font-size: clamp(1.5rem, 2vw + 1rem, 2.25rem);
   }
 
   .menu-item {

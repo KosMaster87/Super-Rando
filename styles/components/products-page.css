@@ -57,7 +57,7 @@
 }
 
 .category-card.active .category-title {
-  color: var(--color-secondary);
+  color: var(--text-light);
 }
 
 .category-icon {
@@ -109,7 +109,7 @@
 
 .dish-image {
   width: 100%;
-  height: 9.38rem;
+  height: 10rem;
   object-fit: cover;
   border-radius: 0.63rem;
   margin-bottom: 1rem;
@@ -141,6 +141,8 @@
 .dish-footer {
   display: flex;
   flex-direction: column;
+  align-items: center;
+
   gap: 1rem;
   margin-top: auto;
 }
@@ -159,7 +161,7 @@
     var(--color-primary),
     var(--color-primary-hover)
   );
-  color: var(--color-cream);
+  color: var(--text-light);
   border: none;
   padding: 0.8rem 1.5rem;
   border-radius: 1.56rem;
@@ -168,7 +170,7 @@
   transition: all 0.3s ease;
   text-shadow: 0.06rem 0.06rem 0.13rem var(--shadow-heavy);
   box-shadow: 0 0.25rem 0.94rem var(--shadow-medium);
-  width: 100%;
+  max-width: max-content;
   min-height: 2.75rem;
 }
 
@@ -240,7 +242,7 @@
   }
 
   .dish-image {
-    height: 12.5rem;
+    height: 12rem;
   }
 
   .dish-name {
@@ -326,7 +328,7 @@
   }
 
   .dish-image {
-    height: 9.38rem;
+    height: 16rem;
   }
 
   .dish-name {

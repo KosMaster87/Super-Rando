@@ -83,13 +83,13 @@ const appState = {
     tags: ["menu", "fusion", "special"],
     items: [
       {
-        icon: "🍜",
+        image: "./assets/images/Ramen-01.jpg",
         name: "Ramen Fusion Bowl",
         description:
           "Hausgemachte Ramen-Nudeln mit gebratenem Hühnchen, Shiitake-Pilzen und Miso-Brühe",
       },
       {
-        icon: "🥗",
+        image: "./assets/images/Gyoza-Salat-01.jpg",
         name: "Gyoza-Salat",
         description:
           "Knusprige Gyoza auf gemischtem Salat mit hausgemachtem Sesam-Ingwer-Dressing",
@@ -99,12 +99,14 @@ const appState = {
       {
         id: "matchaTiramisu",
         value: "matcha",
+        image: "./assets/images/Matcha Tiramisu-01.jpg",
         name: "Matcha Tiramisu",
         description: "Italienisches Tiramisu mit japanischem Matcha-Twist",
       },
       {
         id: "mochiEis",
         value: "mochi",
+        image: "./assets/images/Mochi-Eis-01.png",
         name: "Mochi Eis Variation",
         description:
           "3 verschiedene Mochi-Eis-Sorten: Vanille, Erdbeere, Grüner Tee",

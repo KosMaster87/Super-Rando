@@ -6,6 +6,9 @@
   border: 2px solid var(--color-accent);
   padding: 1.5rem;
   transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
 
 .popular-dish:hover {
@@ -27,7 +30,7 @@
 }
 
 .popular-title {
-  font-size: 1.2rem;
+  font-size: clamp(1rem, 3vw + 0.8rem, 2.2rem);
   color: var(--color-surface);
   margin-bottom: 1rem;
   font-weight: 600;
@@ -43,19 +46,22 @@
 
 .popular-features {
   display: flex;
+  align-items: center;
   flex-direction: column;
   gap: 0.5rem;
   margin-bottom: 1.5rem;
 }
 
 .feature {
-  background: var(--color-secondary);
+  background: var(--color-warm-brown);
+  color: var(--text-light);
   padding: 0.5rem 1rem;
   border-radius: 1.25rem;
   font-size: 0.8rem;
-  color: var(--color-primary);
   text-align: center;
   font-weight: 600;
+  width: max-content;
+  min-width: 12rem;
 }
 
 .popular-footer {
@@ -78,7 +84,7 @@
     var(--color-primary),
     var(--color-primary-hover)
   );
-  color: var(--color-secondary);
+  color: var(--text-light);
   border: none;
   padding: 0.8rem 1.5rem;
   border-radius: 1.56rem;
@@ -97,7 +103,6 @@
     var(--color-primary-hover),
     var(--color-neutral-medium)
   );
-  transform: translateY(-0.13rem);
   box-shadow: 0 0.5rem 1.56rem var(--shadow-heavy);
 }
 
@@ -115,7 +120,7 @@
   }
 
   .popular-title {
-    font-size: 1.3rem;
+    font-size: clamp(1.5rem, 2vw + 1rem, 2.25rem);
   }
 
   .popular-description {
