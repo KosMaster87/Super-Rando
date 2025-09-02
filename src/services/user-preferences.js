@@ -2,7 +2,7 @@ import { appState, saveUserPreferences, notifyListeners } from "../state.js";
 
 /**
  * Setzt das Theme
- * @param {string} theme - Theme-Name ("default", "dark", "light")
+ * @param {string} theme - Theme-Name ("dark", "light")
  */
 export const setTheme = (theme) => {
   console.log("Theme wird gesetzt:", theme); // Debug-Log

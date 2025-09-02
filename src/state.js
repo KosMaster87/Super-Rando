@@ -8,8 +8,8 @@ const appState = {
 
   // UI-Preferences für erweiterte Features
   userPreferences: {
-    theme: "default", // "default", "dark", "light"
-    language: "de", // "de", "en"
+    theme: "default",
+    language: "de",
     showNotifications: true,
     cartAutoClose: false,
   },

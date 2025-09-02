@@ -101,6 +101,8 @@ const createPhoneNavItem = () => {
 
 /**
  * Erstellt das Settings-Dropdown
+ * TODO ${createThemeSettings()}
+ * TODO ${createLanguageSettings()}
  * @returns {string} HTML-String für Settings-Dropdown
  */
 const createSettingsDropdown = () => {
@@ -112,7 +114,7 @@ const createSettingsDropdown = () => {
         <span class="dropdown-arrow">▼</span>
       </button>
       <div class="dropdown-menu" id="settingsMenu">
-        ${createThemeSettings()}
+
         ${createNotificationSettings()}
       </div>
     </li>
