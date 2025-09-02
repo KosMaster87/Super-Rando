@@ -113,7 +113,6 @@ const createSettingsDropdown = () => {
       </button>
       <div class="dropdown-menu" id="settingsMenu">
         ${createThemeSettings()}
-        ${createLayoutSettings()}
         ${createNotificationSettings()}
       </div>
     </li>
@@ -129,43 +128,14 @@ const createThemeSettings = () => {
     <div class="dropdown-section">
       <h4 class="dropdown-title">Theme</h4>
       <div class="setting-group">
-        <button class="setting-option" data-setting="theme" data-value="default">
-          <span class="setting-icon">🎨</span>
-          <span class="setting-text">Standard</span>
-        </button>
-        <button class="setting-option" data-setting="theme" data-value="dark">
-          <span class="setting-icon">🌙</span>
-          <span class="setting-text">Dunkel</span>
-        </button>
         <button class="setting-option" data-setting="theme" data-value="light">
           <span class="setting-icon">☀️</span>
           <span class="setting-text">Hell</span>
         </button>
-      </div>
-    </div>
-  `;
-};
 
-/**
- * Erstellt die Layout-Einstellungen
- * @returns {string} HTML-String für Layout-Settings
- */
-const createLayoutSettings = () => {
-  return `
-    <div class="dropdown-section">
-      <h4 class="dropdown-title">Layout</h4>
-      <div class="setting-group">
-        <button class="setting-option" data-setting="layout" data-value="standard">
-          <span class="setting-icon">📱</span>
-          <span class="setting-text">Standard</span>
-        </button>
-        <button class="setting-option" data-setting="layout" data-value="compact">
-          <span class="setting-icon">📏</span>
-          <span class="setting-text">Kompakt</span>
-        </button>
-        <button class="setting-option" data-setting="layout" data-value="wide">
-          <span class="setting-icon">📺</span>
-          <span class="setting-text">Breit</span>
+        <button class="setting-option" data-setting="theme" data-value="dark">
+          <span class="setting-icon">🌙</span>
+          <span class="setting-text">Dunkel</span>
         </button>
       </div>
     </div>

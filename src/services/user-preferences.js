@@ -18,22 +18,6 @@ export const setTheme = (theme) => {
 };
 
 /**
- * Setzt das Layout
- * @param {string} layout - Layout-Name ("standard", "compact", "wide")
- */
-export const setLayout = (layout) => {
-  if (appState.userPreferences.layout !== layout) {
-    appState.userPreferences = {
-      ...appState.userPreferences,
-      layout: layout,
-    };
-    applyLayout(layout);
-    saveUserPreferences();
-    notifyListeners();
-  }
-};
-
-/**
  * Togglet Benachrichtigungen an/aus
  */
 export const toggleNotifications = () => {
@@ -55,21 +39,9 @@ const applyTheme = (theme) => {
 };
 
 /**
- * Wendet das Layout auf die HTML-Seite an
- * @param {string} layout - Layout-Name
- */
-const applyLayout = (layout) => {
-  document.body.className = document.body.className.replace(/layout-\w+/g, "");
-  document.body.classList.add(`layout-${layout}`);
-};
-
-/**
  * Initialisiert User-Preferences beim App-Start
  */
 export const initializeUserPreferences = () => {
   applyTheme(appState.userPreferences.theme);
-  applyLayout(appState.userPreferences.layout);
-
-  // Sofort einmal speichern um LocalStorage sichtbar zu machen
   saveUserPreferences();
 };

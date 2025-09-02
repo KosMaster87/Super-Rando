@@ -1,9 +1,5 @@
 import { appState } from "../state.js";
-import {
-  setTheme,
-  setLayout,
-  toggleNotifications,
-} from "./user-preferences.js";
+import { setTheme, toggleNotifications } from "./user-preferences.js";
 
 /**
  * Initialisiert alle Settings-Event-Listener
@@ -63,27 +59,6 @@ const setupNotificationToggle = () => {
       updateNotificationToggle();
     };
   }
-};
-
-/**
- * Behandelt Setting-Änderungen
- * @param {HTMLElement} option - Geklickte Setting-Option
- */
-const handleSettingChange = (option) => {
-  const setting = option.dataset.setting;
-  const value = option.dataset.value;
-
-  switch (setting) {
-    case "theme":
-      setTheme(value);
-      break;
-    case "layout":
-      setLayout(value);
-      break;
-  }
-
-  updateActiveSettings();
-  closeDropdown();
 };
 
 /**
