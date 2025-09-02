@@ -5,14 +5,13 @@
     var(--color-primary),
     var(--color-primary-hover)
   );
-  padding: 1rem 0.5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  margin-top: auto;
   box-shadow: 0 -0.25rem 1.25rem var(--shadow-medium);
   min-height: 5rem;
+  padding: 3rem 0.5rem;
 }
 
 .footer-container {

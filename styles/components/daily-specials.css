@@ -136,7 +136,6 @@
   cursor: pointer;
   transition: all 0.3s ease;
   min-height: 2.5rem;
-  height: -webkit-fill-available;
   display: flex;
   flex-direction: column;
   gap: 0.13rem;
