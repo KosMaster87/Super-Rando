@@ -81,14 +81,14 @@ const createFooterNavItem = (id, text) => {
 const createSocialMedia = () => {
   return `
     <div class="social-media">
-      <a href="https://www.facebook.com/" target="_blank" class="social-link">
-        <img class="footer-icon" src="${ASSETS.ICONS}facebook_white.png" alt="Facebook" />
+      <a href="https://www.youtube.com/@kav87/" target="_blank" class="social-link">
+        <img class="footer-icon" src="${ASSETS.ICONS}youtube-32px.png" alt="YouTube" />
       </a>
-      <a href="https://www.instagram.com/" target="_blank" class="social-link">
-        <img class="footer-icon" src="${ASSETS.ICONS}instagram_white.png" alt="Instagram" />
+      <a href="https://github.com/KosMaster87/" target="_blank" class="social-link">
+        <img class="footer-icon" src="${ASSETS.ICONS}github-32px.png" alt="GitHub" />
       </a>
-      <a href="https://twitter.com/" target="_blank" class="social-link">
-        <img class="footer-icon" src="${ASSETS.ICONS}twitter_white.png" alt="Twitter" />
+      <a href="https://www.linkedin.com/in/konstantin-aksenov-802b88190/" target="_blank" class="social-link">
+        <img class="footer-icon" src="${ASSETS.ICONS}linkedin-32px.png" alt="LinkedIn" />
       </a>
     </div>
   `;
