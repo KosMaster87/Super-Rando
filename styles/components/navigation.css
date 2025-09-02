@@ -81,19 +81,20 @@
 
 /* Dropdown Menu */
 .dropdown-menu {
-  position: absolute;
-  top: 7rem;
-  right: 0;
+  position: fixed;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   background: var(--secondary-gradient);
   border: 2px solid var(--color-accent);
   border-radius: 1rem;
   box-shadow: 0 0.5rem 1.5rem var(--shadow-medium);
   padding: 1rem;
   min-width: 15rem;
+  max-width: 90vw;
   z-index: 1000;
   opacity: 0;
   visibility: hidden;
-  transform: translateY(-0.5rem);
   transition: all 0.3s ease;
   backdrop-filter: blur(0.63rem);
 }
@@ -101,7 +102,25 @@
 .dropdown-menu.dropdown-open {
   opacity: 1;
   visibility: visible;
-  transform: translateY(0);
+}
+
+/* Optional: Add backdrop overlay */
+.dropdown-menu::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: 1rem;
+}
+
+.dropdown-menu.dropdown-open::before {
+  opacity: 1;
 }
 
 .dropdown-section {
@@ -196,6 +215,7 @@
   }
 
   .dropdown-menu {
+    top: 27%;
     min-width: 18rem;
     padding: 1.25rem;
   }
@@ -223,6 +243,7 @@
   }
 
   .dropdown-menu {
+    top: 27%;
     min-width: 20rem;
     padding: 1.5rem;
   }
@@ -240,5 +261,9 @@
   .dropdown-toggle {
     padding: 0.8rem 1.2rem;
     font-size: 1rem;
+  }
+
+  .dropdown-menu {
+    top: 24%;
   }
 }

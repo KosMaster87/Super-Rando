@@ -1,14 +1,10 @@
 /* Mobile First: Header Styles */
 .header {
+  background: var(--primary-gradient);
   box-shadow: 0 0.38rem 1.5rem -0.5rem var(--shadow-medium),
     0 0.19rem 0.13rem 0.06rem var(--shadow-heavy),
     0.06rem 0.25rem 0.19rem 0.06rem var(--shadow-light),
     0.06rem 0.31rem 0.19rem 0.06rem var(--shadow-light);
-  background: linear-gradient(
-    135deg,
-    var(--color-header-background),
-    var(--color-accent)
-  );
 }
 
 .header-container {
@@ -88,7 +84,7 @@
 /* Desktop Styles */
 @media (min-width: 1024px) {
   .header-container {
-    padding: 1rem 1.5rem;
+    padding: 1.5rem 1.5rem;
     gap: 1.5rem;
   }
 }
@@ -101,7 +97,7 @@
     align-items: flex-end;
     max-width: 87.5rem;
     margin: 0 auto;
-    padding: 1rem 2rem;
+    padding: 2rem;
     gap: 2rem;
   }
 
@@ -136,7 +132,7 @@
 @media (min-width: 1400px) {
   .header-container {
     align-items: flex-end;
-    padding: 1rem 2rem;
+    padding: 2rem 2rem;
     gap: 2rem;
   }
 
