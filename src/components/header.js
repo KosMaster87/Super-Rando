@@ -1,4 +1,5 @@
 import { ASSETS } from "../utils/constants.js";
+import { appState } from "../state.js";
 
 /**
  * Rendert die Header-Komponente
@@ -60,7 +61,7 @@ const createNavigation = () => {
     <ul class="nav-list">
       ${createNavItem("navHome", "🏠", "Home")}
       ${createNavItem("navProducts", "🍽️", "Produkte")}
-      ${createSettingsDropdown()}
+      ${createNotificationToggle()}
       ${createPhoneNavItem()}
     </ul>
   `;
@@ -85,6 +86,24 @@ const createNavItem = (id, icon, text) => {
 };
 
 /**
+ * Erstellt den Benachrichtigungs-Toggle-Button
+ * @returns {string} HTML-String für Notification-Toggle
+ */
+const createNotificationToggle = () => {
+  const isActive = appState.userPreferences.showNotifications;
+  const icon = isActive ? "🔔" : "🔕";
+
+  return `
+    <li class="nav-item">
+      <button class="nav-link notification-toggle" id="notificationToggle" data-active="${isActive}">
+        <span class="nav-icon notification-icon">${icon}</span>
+        <span class="nav-text">Benachrichtigungen</span>
+      </button>
+    </li>
+  `;
+};
+
+/**
  * Erstellt das Telefon-Navigations-Item
  * @returns {string} HTML-String für Telefon-Nav-Item
  */
@@ -96,69 +115,5 @@ const createPhoneNavItem = () => {
         <span class="nav-text">+49 123 456 789</span>
       </a>
     </li>
-  `;
-};
-
-/**
- * Erstellt das Settings-Dropdown
- * TODO ${createThemeSettings()}
- * TODO ${createLanguageSettings()}
- * @returns {string} HTML-String für Settings-Dropdown
- */
-const createSettingsDropdown = () => {
-  return `
-    <li class="nav-item nav-dropdown">
-      <button class="nav-link dropdown-toggle" id="settingsDropdown">
-        <span class="nav-icon">⚙️</span>
-        <span class="nav-text">Einstellungen</span>
-        <span class="dropdown-arrow">▼</span>
-      </button>
-      <div class="dropdown-menu" id="settingsMenu">
-
-        ${createNotificationSettings()}
-      </div>
-    </li>
-  `;
-};
-
-/**
- * Erstellt die Theme-Einstellungen
- * @returns {string} HTML-String für Theme-Settings
- */
-const createThemeSettings = () => {
-  return `
-    <div class="dropdown-section">
-      <h4 class="dropdown-title">Theme</h4>
-      <div class="setting-group">
-        <button class="setting-option" data-setting="theme" data-value="light">
-          <span class="setting-icon">☀️</span>
-          <span class="setting-text">Hell</span>
-        </button>
-
-        <button class="setting-option" data-setting="theme" data-value="dark">
-          <span class="setting-icon">🌙</span>
-          <span class="setting-text">Dunkel</span>
-        </button>
-      </div>
-    </div>
-  `;
-};
-
-/**
- * Erstellt die Benachrichtigungs-Einstellungen
- * @returns {string} HTML-String für Notification-Settings
- */
-const createNotificationSettings = () => {
-  return `
-    <div class="dropdown-section">
-      <h4 class="dropdown-title">Benachrichtigungen</h4>
-      <div class="setting-group">
-        <button class="setting-toggle" id="notificationToggle">
-          <span class="setting-icon">🔔</span>
-          <span class="setting-text">Popup-Benachrichtigungen</span>
-          <span class="toggle-indicator">●</span>
-        </button>
-      </div>
-    </div>
   `;
 };

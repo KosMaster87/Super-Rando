@@ -8,8 +8,8 @@ const appState = {
 
   // UI-Preferences für erweiterte Features
   userPreferences: {
-    theme: "default",
-    language: "de",
+    theme: "default", // TODO
+    language: "de", // TODO
     showNotifications: true,
     cartAutoClose: false,
   },

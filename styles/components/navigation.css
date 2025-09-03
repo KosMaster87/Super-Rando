@@ -17,8 +17,7 @@
 
 /* Gemeinsame Stile für alle Navigationselemente */
 .nav-link,
-.phone-number,
-.dropdown-toggle {
+.phone-number {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -42,9 +41,7 @@
 }
 
 .nav-link:hover,
-.phone-number:hover,
-.dropdown-toggle:hover,
-.dropdown-toggle.dropdown-active {
+.phone-number:hover {
   background: rgba(255, 255, 255, 0.2);
 }
 
@@ -54,51 +51,56 @@
 
 .nav-icon {
   filter: drop-shadow(0.06rem 0.06rem 0.13rem var(--shadow-heavy));
+  font-size: 1rem;
+  line-height: 1;
 }
 
-/* Settings Dropdown */
-.nav-dropdown {
-  position: relative;
+.notification-toggle[data-active="false"] {
+  background: rgba(255, 255, 255, 0.05);
+  opacity: 0.7;
 }
 
-.dropdown-arrow {
-  font-size: 0.7rem;
-  transition: transform 0.3s ease;
-  margin-left: 0.25rem;
+.notification-toggle[data-active="true"] .nav-icon {
+  filter: drop-shadow(0 0 0.25rem var(--color-accent));
 }
 
-.dropdown-toggle.dropdown-active .dropdown-arrow {
-  transform: rotate(180deg);
-}
+/* Tablet Styles */
+@media (min-width: 768px) {
+  .nav-link,
+  .phone-number {
+    padding: 0.6rem 0.8rem;
+    font-size: 0.85rem;
+    min-width: 3.75rem;
+  }
 
-/* Für mobile: Dropdown-Toggle anpassen wenn nötig */
-@media (max-width: 767px) {
-  .nav-dropdown .dropdown-toggle {
-    min-width: 3.13rem;
-    justify-content: center;
+  .nav-text {
+    display: block; /* Text erscheint ab Tablet */
   }
 }
 
-/* Dropdown Menu */
-.dropdown-menu {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: var(--secondary-gradient);
-  border: 2px solid var(--color-accent);
-  border-radius: 1rem;
-  box-shadow: 0 0.5rem 1.5rem var(--shadow-medium);
-  padding: 1rem;
-  min-width: 15rem;
-  max-width: 90vw;
-  z-index: 1000;
-  opacity: 0;
-  visibility: hidden;
-  transition: all 0.3s ease;
-  backdrop-filter: blur(0.63rem);
+/* Desktop Styles */
+@media (min-width: 1024px) {
+  .nav-link,
+  .phone-number {
+    padding: 0.7rem 1rem;
+    font-size: 0.85rem;
+    min-width: 4.38rem;
+  }
 }
 
+/* Large Desktop */
+@media (min-width: 1280px) {
+  .nav-list {
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .nav-link,
+  .phone-number {
+    padding: 0.8rem 1.2rem;
+    font-size: 1rem;
+  }
+}
 .dropdown-menu.dropdown-open {
   opacity: 1;
   visibility: visible;
