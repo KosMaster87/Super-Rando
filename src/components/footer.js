@@ -51,10 +51,9 @@ const createFooterDivider = () => {
 const createFooterLinks = () => {
   return `
     <div class="footer-links">
-      ${createFooterNavItem("navAbout", "Über uns")}
-      ${createFooterNavItem("navContact", "Kontakt")}
-      ${createFooterNavItem("footerImpressum", "Impressum")}
-      ${createFooterNavItem("footerDatenschutz", "Datenschutz")}
+      ${createFooterNavItem("footerContact", "Contact")}
+      ${createFooterNavItem("footerImpressum", "Imprint")}
+      ${createFooterNavItem("footerDataProtection", "Data protection")}
     </div>
   `;
 };

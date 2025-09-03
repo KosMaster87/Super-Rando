@@ -19,7 +19,6 @@ export const initializeNavigation = () => {
  */
 export const setupNavigationListeners = () => {
   setupHeaderNavigation();
-  setupFooterNavigation();
 };
 
 /**
@@ -56,46 +55,17 @@ const loadInitialPage = () => {
  * Setzt Header-Navigation
  */
 const setupHeaderNavigation = () => {
-  // Logo Navigation
   const logoLink = document.getElementById("logoLink");
   if (logoLink) {
     logoLink.onclick = (e) => handleNavigationClick(e, PAGES.HOME);
   }
 
-  // Header Navigation Links
   const navLinks = [
     { id: "navHome", page: PAGES.HOME },
     { id: "navProducts", page: PAGES.PRODUCTS },
-    { id: "navContact", page: PAGES.CONTACT },
-    { id: "navAbout", page: PAGES.ABOUT },
   ];
 
   navLinks.forEach(({ id, page }) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.onclick = (e) => handleNavigationClick(e, page);
-    }
-  });
-};
-
-/**
- * Setzt Footer-Navigation
- */
-const setupFooterNavigation = () => {
-  // Footer Logo
-  const footerLogoLink = document.getElementById("footerLogoLink");
-  if (footerLogoLink) {
-    footerLogoLink.onclick = (e) => handleNavigationClick(e, PAGES.HOME);
-  }
-
-  // Footer Links
-  const footerLinks = [
-    { id: "footerImpressum", page: PAGES.IMPRESSUM },
-    { id: "footerDatenschutz", page: PAGES.DATENSCHUTZ },
-    { id: "footerKontakt", page: PAGES.KONTAKTFORMULAR },
-  ];
-
-  footerLinks.forEach(({ id, page }) => {
     const element = document.getElementById(id);
     if (element) {
       element.onclick = (e) => handleNavigationClick(e, page);
@@ -108,7 +78,7 @@ const setupFooterNavigation = () => {
  * @param {Event} event - Click Event
  * @param {string} page - Zielseite
  */
-const handleNavigationClick = (event, page) => {
+export const handleNavigationClick = (event, page) => {
   event.preventDefault();
   navigateToPage(page);
 };
@@ -170,13 +140,11 @@ const isValidPage = (page) => {
  */
 const getPageTitle = (page) => {
   const titles = {
-    [PAGES.HOME]: "Fusion Küche",
-    [PAGES.PRODUCTS]: "Unsere Produkte",
-    [PAGES.CONTACT]: "Kontakt",
-    [PAGES.ABOUT]: "Über uns",
-    [PAGES.IMPRESSUM]: "Impressum",
-    [PAGES.DATENSCHUTZ]: "Datenschutz",
-    [PAGES.KONTAKTFORMULAR]: "Kontaktformular",
+    [PAGES.HOME]: "Fusion cuisine",
+    [PAGES.PRODUCTS]: "Our Products",
+    [PAGES.CONTACT]: "Contact",
+    [PAGES.IMPRINT]: "Imprint",
+    [PAGES.DATAPROTECTION]: "Data Protection",
   };
-  return titles[page] || "Fusion Küche";
+  return titles[page] || "Fusion cuisine";
 };

@@ -66,14 +66,10 @@ const getCurrentPageHTML = () => {
       return renderProductsPage();
     case "contact":
       return renderContactPagePlaceholder();
-    case "about":
-      return renderAboutPagePlaceholder();
-    case "impressum":
+    case "imprint":
       return renderImpressumPagePlaceholder();
-    case "datenschutz":
+    case "dataProtection":
       return renderDatenschutzPagePlaceholder();
-    case "kontaktformular":
-      return renderKontaktformularPagePlaceholder();
     default:
       return renderHomePage();
   }

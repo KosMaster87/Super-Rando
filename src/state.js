@@ -223,10 +223,8 @@ const isValidPage = (page) => {
     "home",
     "products",
     "contact",
-    "about",
-    "impressum",
-    "datenschutz",
-    "kontaktformular",
+    "imprint",
+    "dataProtection",
   ];
   return validPages.includes(page);
 };
@@ -240,12 +238,10 @@ const loadSessionFromStorage = () => {
     if (savedSession) {
       const session = JSON.parse(savedSession);
 
-      // Wiederherstellen der letzten Seite
       if (session.lastPage && isValidPage(session.lastPage)) {
         appState.currentPage = session.lastPage;
       }
 
-      // Wiederherstellen der Kategorie-Auswahl
       if (session.selectedCategory) {
         appState.selectedCategory = session.selectedCategory;
       }
@@ -255,7 +251,6 @@ const loadSessionFromStorage = () => {
         category: appState.selectedCategory,
       });
 
-      // Benachrichtige Listener über die State-Änderungen
       notifyListeners();
     }
   } catch (error) {
@@ -286,9 +281,7 @@ const saveSessionToStorage = () => {
 const loadAllStoredData = () => {
   loadCartFromStorage();
   loadUserPreferences();
-  loadSessionFromStorage(); // ← Session-Wiederherstellung
-
-  // Sofort einmal speichern um LocalStorage zu initialisieren
+  loadSessionFromStorage();
   saveUserPreferences();
 };
 

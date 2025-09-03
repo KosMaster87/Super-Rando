@@ -1,12 +1,19 @@
-import { navigateToPage } from "./navigation.js";
+import { handleNavigationClick } from "./navigation.js";
 import { PAGES } from "../utils/constants.js";
 
 /**
- * Initialisiert die Footer-Navigation
+ * Setzt Event-Listener für Footer-Navigation (bei jedem Re-Render)
  */
-export const initializeFooterNavigation = () => {
+export const setupFooterNavigationListeners = () => {
   setupFooterLogoNavigation();
   setupFooterLinksNavigation();
+};
+
+/**
+ * Initialisiert die Footer-Navigation (nur einmal)
+ */
+export const initializeFooterNavigation = () => {
+  // Kann leer bleiben oder für einmalige Initialisierungen verwendet werden
 };
 
 /**
@@ -15,13 +22,7 @@ export const initializeFooterNavigation = () => {
 const setupFooterLogoNavigation = () => {
   const footerLogoLink = document.getElementById("footerLogoLink");
   if (footerLogoLink) {
-    // Alte Event-Listener entfernen
-    footerLogoLink.replaceWith(footerLogoLink.cloneNode(true));
-    const newFooterLogoLink = document.getElementById("footerLogoLink");
-    newFooterLogoLink.addEventListener("click", (e) => {
-      e.preventDefault();
-      navigateToPage(PAGES.HOME);
-    });
+    footerLogoLink.onclick = (e) => handleNavigationClick(e, PAGES.HOME);
   }
 };
 
@@ -30,21 +31,15 @@ const setupFooterLogoNavigation = () => {
  */
 const setupFooterLinksNavigation = () => {
   const footerLinks = [
-    { id: "footerImpressum", page: PAGES.IMPRESSUM },
-    { id: "footerDatenschutz", page: PAGES.DATENSCHUTZ },
-    { id: "footerKontakt", page: PAGES.KONTAKTFORMULAR },
+    { id: "footerContact", page: PAGES.CONTACT },
+    { id: "footerImpressum", page: PAGES.IMPRINT },
+    { id: "footerDataProtection", page: PAGES.DATAPROTECTION },
   ];
 
   footerLinks.forEach(({ id, page }) => {
     const element = document.getElementById(id);
     if (element) {
-      // Alte Event-Listener entfernen
-      element.replaceWith(element.cloneNode(true));
-      const newElement = document.getElementById(id);
-      newElement.addEventListener("click", (e) => {
-        e.preventDefault();
-        navigateToPage(page);
-      });
+      element.onclick = (e) => handleNavigationClick(e, page);
     }
   });
 };

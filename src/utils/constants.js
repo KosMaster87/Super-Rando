@@ -3,10 +3,8 @@ export const PAGES = {
   HOME: "home",
   PRODUCTS: "products",
   CONTACT: "contact",
-  ABOUT: "about",
-  IMPRESSUM: "impressum",
-  DATENSCHUTZ: "datenschutz",
-  KONTAKTFORMULAR: "kontaktformular",
+  IMPRINT: "imprint",
+  DATAPROTECTION: "dataProtection",
 };
 
 /** @type {Object} Asset-Pfade */
