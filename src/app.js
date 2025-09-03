@@ -1,4 +1,4 @@
-import { appState, loadAllStoredData, notifyListeners } from "./state.js";
+import { appState, loadAllStoredData } from "./state.js";
 import { renderHeader } from "./components/header.js";
 import { renderFooter } from "./components/footer.js";
 import { renderMainContent } from "./components/main-content.js";
@@ -24,8 +24,8 @@ const initializeApp = () => {
   loadAllStoredData();
   initializeUserPreferences();
   initializeCategorySystem();
-  initializeNavigation();
   initializeCartStatus();
+  initializeNavigation();
   initializeFooterNavigation();
   registerStateListeners();
   renderAllComponents();

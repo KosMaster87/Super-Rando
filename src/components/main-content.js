@@ -1,6 +1,9 @@
 import { appState } from "../state.js";
 import { renderHomePage } from "./pages/home-page.js";
 import { renderProductsPage } from "./pages/products-page.js";
+import { renderContactPage } from "./pages/contact-page.js";
+import { renderImprintPage } from "./pages/imprint-page.js";
+import { renderDataProtectionPage } from "./pages/data-protection-page.js";
 import { renderCart } from "./cart.js";
 import { renderCartToggle } from "./cart-toggle.js";
 import { renderNotifications } from "./notification-popup.js";
@@ -65,89 +68,12 @@ const getCurrentPageHTML = () => {
     case "products":
       return renderProductsPage();
     case "contact":
-      return renderContactPagePlaceholder();
+      return renderContactPage();
     case "imprint":
-      return renderImpressumPagePlaceholder();
+      return renderImprintPage();
     case "dataProtection":
-      return renderDatenschutzPagePlaceholder();
+      return renderDataProtectionPage();
     default:
       return renderHomePage();
   }
-};
-
-/**
- * Rendert Platzhalter für Contact-Seite
- * @returns {string} HTML-String für Contact-Platzhalter
- */
-const renderContactPagePlaceholder = () => {
-  return `
-    <section class="page-content">
-      <h1 class="page-title">Kontakt</h1>
-      <p class="page-subtitle">Nehmen Sie Kontakt mit uns auf</p>
-      <div class="placeholder-content">
-        <p>Diese Seite wird gerade entwickelt...</p>
-      </div>
-    </section>
-  `;
-};
-
-/**
- * Rendert Platzhalter für About-Seite
- * @returns {string} HTML-String für About-Platzhalter
- */
-const renderAboutPagePlaceholder = () => {
-  return `
-    <section class="page-content">
-      <h1 class="page-title">Über uns</h1>
-      <p class="page-subtitle">Erfahren Sie mehr über Super~Rando</p>
-      <div class="placeholder-content">
-        <p>Diese Seite wird gerade entwickelt...</p>
-      </div>
-    </section>
-  `;
-};
-
-/**
- * Rendert Platzhalter für Impressum-Seite
- * @returns {string} HTML-String für Impressum-Platzhalter
- */
-const renderImpressumPagePlaceholder = () => {
-  return `
-    <section class="page-content">
-      <h1 class="page-title">Impressum</h1>
-      <div class="placeholder-content">
-        <p>Diese Seite wird gerade entwickelt...</p>
-      </div>
-    </section>
-  `;
-};
-
-/**
- * Rendert Platzhalter für Datenschutz-Seite
- * @returns {string} HTML-String für Datenschutz-Platzhalter
- */
-const renderDatenschutzPagePlaceholder = () => {
-  return `
-    <section class="page-content">
-      <h1 class="page-title">Datenschutz</h1>
-      <div class="placeholder-content">
-        <p>Diese Seite wird gerade entwickelt...</p>
-      </div>
-    </section>
-  `;
-};
-
-/**
- * Rendert Platzhalter für Kontaktformular-Seite
- * @returns {string} HTML-String für Kontaktformular-Platzhalter
- */
-const renderKontaktformularPagePlaceholder = () => {
-  return `
-    <section class="page-content">
-      <h1 class="page-title">Kontaktformular</h1>
-      <div class="placeholder-content">
-        <p>Diese Seite wird gerade entwickelt...</p>
-      </div>
-    </section>
-  `;
 };
