@@ -72,6 +72,20 @@
   box-sizing: border-box;
 }
 
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-neutral-medium);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(133, 92, 63, 0.397);
+  border-radius: 10px;
+  border: 1px solid #ffffff;
+}
+
 body {
   font-family: "Comic Neue", cursive;
   line-height: 1.6;

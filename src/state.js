@@ -254,6 +254,9 @@ const loadSessionFromStorage = () => {
         page: appState.currentPage,
         category: appState.selectedCategory,
       });
+
+      // Benachrichtige Listener über die State-Änderungen
+      notifyListeners();
     }
   } catch (error) {
     console.error("Fehler beim Laden der Session:", error);
