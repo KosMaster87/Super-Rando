@@ -4,6 +4,7 @@ import {
   increaseCartItem,
   decreaseCartItem,
   removeFromCart,
+  clearCart,
 } from "./cart.js";
 
 /**
@@ -89,6 +90,5 @@ const handleOrderSubmit = () => {
     showOrderNotification("Vielen Dank für Ihre Bestellung! 🍽️");
   });
 
-  // Optional: Warenkorb leeren nach Bestellung
-  // clearCart();
+  clearCart();
 };
