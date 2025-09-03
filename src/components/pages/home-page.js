@@ -74,6 +74,10 @@ const createMenuItem = (item) => {
         <p class="menu-item-desc">${item.description}</p>
       </div>
     </div>
+    <div class="menu-item-plus">
+      <span>➕</span>
+    </div>
+
   `;
 };
 

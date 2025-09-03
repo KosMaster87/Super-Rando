@@ -12,6 +12,14 @@
   box-shadow: 0 -0.25rem 1.25rem var(--shadow-medium);
   min-height: 5rem;
   padding: 3rem 0.5rem;
+  width: 95%;
+  max-width: 85rem;
+  border-radius: 1rem;
+  margin-bottom: 0.5rem;
+  box-shadow: 0 0.38rem 1.5rem -0.5rem var(--shadow-medium),
+    0 0.19rem 0.13rem 0.06rem var(--shadow-heavy),
+    0.06rem 0.25rem 0.19rem 0.06rem var(--shadow-light),
+    0.06rem 0.31rem 0.19rem 0.06rem var(--shadow-light);
 }
 
 .footer-container {

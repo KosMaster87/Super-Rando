@@ -11,12 +11,3 @@
   --color-surface: #ffffff;
   --color-text-primary: #333333;
 }
-
-/* Compact Layout */
-.layout-compact .header-container {
-  padding: 0.5rem;
-}
-
-.layout-compact .main-content {
-  padding: 0.5rem;
-}

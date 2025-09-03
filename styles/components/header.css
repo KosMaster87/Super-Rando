@@ -1,10 +1,14 @@
 /* Mobile First: Header Styles */
 .header {
   background: var(--primary-gradient);
+  margin-top: 0.5rem;
   box-shadow: 0 0.38rem 1.5rem -0.5rem var(--shadow-medium),
     0 0.19rem 0.13rem 0.06rem var(--shadow-heavy),
     0.06rem 0.25rem 0.19rem 0.06rem var(--shadow-light),
     0.06rem 0.31rem 0.19rem 0.06rem var(--shadow-light);
+  width: 95%;
+  max-width: 85rem;
+  border-radius: 1rem;
 }
 
 .header-container {
