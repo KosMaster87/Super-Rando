@@ -1,4 +1,8 @@
 // contact-page.js
+import {
+  showSuccessNotification,
+  showErrorNotification,
+} from "../../services/notification.js";
 
 /**
  * Rendert die Kontakt-Seite
@@ -23,10 +27,43 @@ export const renderContactPage = () => {
 };
 
 /**
+ * Generiert ein einfaches mathematisches Captcha
+ * @returns {Object} Captcha-Daten mit Frage und Antwort
+ */
+const generateCaptcha = () => {
+  const num1 = Math.floor(Math.random() * 10) + 1;
+  const num2 = Math.floor(Math.random() * 10) + 1;
+  const operations = ["+", "-", "*"];
+  const operation = operations[Math.floor(Math.random() * operations.length)];
+
+  let answer;
+  let question;
+
+  switch (operation) {
+    case "+":
+      answer = num1 + num2;
+      question = `${num1} + ${num2}`;
+      break;
+    case "-":
+      answer = Math.max(num1, num2) - Math.min(num1, num2);
+      question = `${Math.max(num1, num2)} - ${Math.min(num1, num2)}`;
+      break;
+    case "*":
+      answer = num1 * num2;
+      question = `${num1} × ${num2}`;
+      break;
+  }
+
+  return { question, answer };
+};
+
+/**
  * Rendert das Kontaktformular
  * @returns {string} HTML-String für Kontaktformular
  */
 const renderContactForm = () => {
+  const captcha = generateCaptcha();
+
   return `
     <div class="contact-form-section">
       <h2>Nachricht senden</h2>
@@ -86,10 +123,38 @@ const renderContactForm = () => {
           ></textarea>
         </div>
 
+        <div class="form-group captcha-group">
+          <label for="captchaAnswer">Sicherheitsfrage: Was ist ${captcha.question}? *</label>
+          <input 
+            type="number" 
+            id="captchaAnswer" 
+            name="captcha" 
+            required
+            placeholder="Ihre Antwort"
+            data-correct-answer="${captcha.answer}"
+          >
+          <button type="button" class="captcha-refresh-btn" id="refreshCaptcha">🔄 Neue Frage</button>
+        </div>
+
         <button type="submit" class="contact-submit-btn">Nachricht senden</button>
       </form>
     </div>
   `;
+};
+
+/**
+ * Erneuert das Captcha
+ */
+const refreshCaptcha = () => {
+  const captcha = generateCaptcha();
+  const label = document.querySelector(".captcha-group label");
+  const input = document.getElementById("captchaAnswer");
+
+  if (label && input) {
+    label.textContent = `Sicherheitsfrage: Was ist ${captcha.question}? *`;
+    input.setAttribute("data-correct-answer", captcha.answer);
+    input.value = "";
+  }
 };
 
 /**
@@ -134,9 +199,40 @@ const renderContactInfo = () => {
  */
 const setupContactFormHandler = () => {
   const form = document.getElementById("contactForm");
+  const refreshBtn = document.getElementById("refreshCaptcha");
+
   if (!form) return;
 
   form.addEventListener("submit", handleContactFormSubmit);
+
+  if (refreshBtn) {
+    refreshBtn.addEventListener("click", refreshCaptcha);
+  }
+};
+
+/**
+ * Parst Response als JSON mit Fallback auf Text
+ * @param {Response} response - Fetch Response
+ * @returns {Object} Geparste Daten oder Fehler-Info
+ */
+const parseResponse = async (response) => {
+  const contentType = response.headers.get("content-type");
+
+  // Versuche JSON zu parsen wenn Content-Type stimmt
+  if (contentType && contentType.includes("application/json")) {
+    try {
+      return await response.json();
+    } catch (jsonError) {
+      console.error("JSON parse error:", jsonError);
+      const text = await response.text();
+      throw new Error(`Invalid JSON response: ${text}`);
+    }
+  }
+
+  // Fallback auf Text
+  const text = await response.text();
+  console.error("Non-JSON response:", text);
+  throw new Error(`Server returned invalid response format: ${text}`);
 };
 
 /**
@@ -156,6 +252,19 @@ const handleContactFormSubmit = async (event) => {
       throw new Error("Spam erkannt");
     }
 
+    // Captcha-Prüfung
+    const captchaInput = document.getElementById("captchaAnswer");
+    const userAnswer = parseInt(captchaInput.value);
+    const correctAnswer = parseInt(
+      captchaInput.getAttribute("data-correct-answer")
+    );
+
+    if (isNaN(userAnswer) || userAnswer !== correctAnswer) {
+      showErrorNotification("Die Antwort auf die Sicherheitsfrage ist falsch.");
+      refreshCaptcha();
+      return;
+    }
+
     // Disable button and show loading state
     submitBtn.disabled = true;
     submitBtn.textContent = "Wird gesendet...";
@@ -166,7 +275,10 @@ const handleContactFormSubmit = async (event) => {
       email: formData.get("email"),
       subject: formData.get("subject"),
       message: formData.get("message"),
+      captcha: userAnswer,
     };
+
+    console.log("Sending data:", data);
 
     const response = await fetch("/api/contact.php", {
       method: "POST",
@@ -176,114 +288,33 @@ const handleContactFormSubmit = async (event) => {
       body: JSON.stringify(data),
     });
 
+    console.log("Response status:", response.status);
+
+    // Parse Response (funktioniert für sowohl Erfolg als auch Fehler)
+    const result = await parseResponse(response);
+
+    // Behandle HTTP-Status-Codes
     if (!response.ok) {
-      const errorText = await response.text();
-      throw new Error(`Server Error (${response.status}): ${errorText}`);
+      throw new Error(result.message || `Server Error (${response.status})`);
     }
 
-    const result = await response.json();
-
+    // Erfolgreiche Response
     if (result.success) {
-      showNotificationModal(
-        "success",
-        "Nachricht gesendet!",
-        "Vielen Dank für Ihre Nachricht! Wir melden uns bald bei Ihnen. Sie erhalten eine Bestätigungsmail."
+      showSuccessNotification(
+        "Vielen Dank für Ihre Nachricht! Sie erhalten eine Bestätigungsmail und wir melden uns bald bei Ihnen."
       );
       event.target.reset();
+      refreshCaptcha();
     } else {
       throw new Error(result.message || "Unbekannter Fehler");
     }
   } catch (error) {
-    console.error("Fehler beim Senden:", error);
-    showNotificationModal(
-      "error",
-      "Fehler beim Senden",
-      `Ihre Nachricht konnte nicht gesendet werden: ${error.message}`
-    );
+    console.error("Error sending:", error);
+    showErrorNotification(`Error sending message: ${error.message}`);
+    refreshCaptcha();
   } finally {
+    // Re-enable button
     submitBtn.disabled = false;
     submitBtn.textContent = originalText;
-  }
-};
-
-/**
- * Zeigt Notification Modal an
- * @param {string} type - success, error, warning
- * @param {string} title - Modal-Titel
- * @param {string} message - Modal-Nachricht
- */
-const showNotificationModal = (type, title, message) => {
-  createNotificationModal(type, title, message);
-};
-
-/**
- * Erstellt und zeigt Notification Modal
- * @param {string} type - Modal-Typ
- * @param {string} title - Modal-Titel
- * @param {string} message - Modal-Nachricht
- */
-const createNotificationModal = (type, title, message) => {
-  const modal = document.createElement("div");
-  modal.className = `notification-modal notification-${type}`;
-  modal.id = "notificationModal";
-
-  modal.innerHTML = `
-    <div class="notification-overlay" id="notificationOverlay">
-      <div class="notification-content">
-        <div class="notification-header">
-          <span class="notification-icon">${getNotificationIcon(type)}</span>
-          <h3 class="notification-title">${title}</h3>
-          <button class="notification-close" id="notificationClose">&times;</button>
-        </div>
-        <div class="notification-body">
-          <p>${message}</p>
-        </div>
-        <div class="notification-footer">
-          <button class="notification-btn notification-btn-primary" id="notificationOk">OK</button>
-        </div>
-      </div>
-    </div>
-  `;
-
-  document.body.appendChild(modal);
-
-  // Event listeners
-  const closeModal = () => {
-    modal.remove();
-  };
-
-  document
-    .getElementById("notificationClose")
-    .addEventListener("click", closeModal);
-  document
-    .getElementById("notificationOk")
-    .addEventListener("click", closeModal);
-  document
-    .getElementById("notificationOverlay")
-    .addEventListener("click", (e) => {
-      if (e.target === e.currentTarget) closeModal();
-    });
-
-  // Auto-focus OK button
-  setTimeout(() => {
-    document.getElementById("notificationOk").focus();
-  }, 100);
-};
-
-/**
- * Gibt Icon für Notification-Typ zurück
- * @param {string} type - Notification-Typ
- * @returns {string} Icon-HTML
- */
-const getNotificationIcon = (type) => {
-  switch (type) {
-    case "success":
-      return "✅";
-    case "error":
-      return "❌";
-    case "warning":
-      return "⚠️";
-    default:
-      return "ℹ️";
   }
 };

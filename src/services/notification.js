@@ -68,15 +68,34 @@ export const showAddToCartNotification = (dishName, quantity = 1) => {
 
   showNotification(message, "success", 3000);
 };
-
-/**
- * Zeigt eine Info-Benachrichtigung für Bestellungen
- * @param {string} message - Bestellungs-Nachricht
- */
 /**
  * Zeigt eine Info-Benachrichtigung für Bestellungen (immer sichtbar)
  * @param {string} message - Bestellungs-Nachricht
  */
 export const showOrderNotification = (message) => {
   showNotification(message, "info", 4000, true);
+};
+
+/**
+ * Zeigt eine Erfolgs-Notification an
+ * @param {string} message - Erfolgsmeldung
+ */
+export const showSuccessNotification = (message) => {
+  showNotification(message, "success", 5000);
+};
+
+/**
+ * Zeigt eine Fehler-Notification an
+ * @param {string} message - Fehlermeldung
+ */
+export const showErrorNotification = (message) => {
+  showNotification(message, "error", 7000);
+};
+
+/**
+ * Zeigt eine Info-Notification an
+ * @param {string} message - Info-Meldung
+ */
+export const showInfoNotification = (message) => {
+  showNotification(message, "info", 4000);
 };

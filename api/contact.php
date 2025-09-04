@@ -1,38 +1,8 @@
-<!-- contact.php -->
-
 <?php
 
 // Error reporting for development (remove in production)
 // error_reporting(E_ALL);
 // ini_set('display_errors', 1);
-
-// Automatische Dateierstellung mit korrekten Berechtigungen
-// function ensureWritable($filename) {
-//     if (!file_exists($filename)) {
-//         // Versuche Datei zu erstellen
-//         if (file_put_contents($filename, '') === false) {
-//             // Falls nicht möglich, versuche Verzeichnisberechtigungen
-//             $dir = dirname($filename);
-//             if (!is_writable($dir)) {
-//                 die(json_encode([
-//                     'success' => false,
-//                     'message' => 'Server configuration error: Directory not writable'
-//                 ]));
-//             }
-//         }
-//     }
-    
-//     // Berechtigungen setzen
-//     if (file_exists($filename) && !is_writable($filename)) {
-//         chmod($filename, 0644);
-//     }
-    
-//     return is_writable($filename);
-// }
-
-// // Prüfe und erstelle Dateien wenn nötig
-// ensureWritable(__DIR__ . '/rate_limit.json');
-// ensureWritable(__DIR__ . '/contact_logs.txt');
 
 // Security headers
 header('X-Content-Type-Options: nosniff');
@@ -46,7 +16,7 @@ header('X-XSS-Protection: 1; mode=block');
  */
 function checkRateLimit($ip) {
     $rateFile = __DIR__ . '/rate_limit.json';
-    $maxRequests = 3; // Max 3 Nachrichten
+    $maxRequests = 3; // Erhöht von 3 auf 10 für Entwicklung
     $timeWindow = 3600; // Pro Stunde (3600 Sekunden)
     
     // Lade bestehende Rate-Daten
@@ -179,6 +149,61 @@ function createEmailTemplate($name, $email, $subject, $message) {
     </html>";
 }
 
+/**
+ * Erstellt Bestätigungs-Email für Absender
+ * @param string $name - Name des Absenders
+ * @param string $subject - Ursprünglicher Betreff
+ * @return string - HTML-Email-Template für Bestätigung
+ */
+function createConfirmationTemplate($name, $subject) {
+    return "
+    <!DOCTYPE html>
+    <html lang='de'>
+    <head>
+        <meta charset='UTF-8'>
+        <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+        <title>Bestätigung - Super~Rando</title>
+        <style>
+            body { font-family: Arial, sans-serif; line-height: 1.6; margin: 0; padding: 20px; background-color: #f4f4f4; }
+            .container { max-width: 600px; margin: 0 auto; background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+            .header { background: linear-gradient(135deg, #4ecdc4, #44a08d); color: white; padding: 20px; text-align: center; }
+            .content { padding: 30px; }
+            .footer { background: #f8f9fa; padding: 15px; text-align: center; color: #666; font-size: 14px; }
+            .button { display: inline-block; background: #4ecdc4; color: white; padding: 12px 24px; text-decoration: none; border-radius: 6px; margin: 20px 0; }
+        </style>
+    </head>
+    <body>
+        <div class='container'>
+            <div class='header'>
+                <h1>🍜 Super~Rando</h1>
+                <p>Vielen Dank für Ihre Nachricht!</p>
+            </div>
+            
+            <div class='content'>
+                <p>Hallo $name,</p>
+                
+                <p>vielen Dank für Ihre Nachricht mit dem Betreff \"$subject\". Wir haben Ihre Anfrage erhalten und werden uns so schnell wie möglich bei Ihnen melden.</p>
+                
+                <p>In der Regel antworten wir innerhalb von 24 Stunden während unserer Geschäftszeiten.</p>
+                
+                <p><strong>Unsere Öffnungszeiten:</strong><br>
+                Montag - Sonntag: 09:00 - 15:00 Uhr</p>
+                
+                <a href='https://super-rando.dev2k.org' class='button'>Zur Website</a>
+                
+                <p>Mit freundlichen Grüßen,<br>
+                Ihr Super~Rando Team</p>
+            </div>
+            
+            <div class='footer'>
+                <p>📞 +595 994 221200 | 📧 konstantin.aksenov@dev2k.org</p>
+                <p>🌐 super-rando.dev2k.org</p>
+            </div>
+        </div>
+    </body>
+    </html>";
+}
+
 switch ($_SERVER['REQUEST_METHOD']) {
     case "OPTIONS":
         header("Access-Control-Allow-Origin: https://super-rando.dev2k.org");
@@ -198,7 +223,8 @@ switch ($_SERVER['REQUEST_METHOD']) {
             http_response_code(429);
             echo json_encode([
                 'success' => false,
-                'message' => 'Zu viele Anfragen. Bitte versuchen Sie es in einer Stunde erneut.'
+                'message' => 'Too many requests. Please try again in one hour.',
+                'retry_after' => 3600
             ]);
             exit;
         }
@@ -277,6 +303,26 @@ switch ($_SERVER['REQUEST_METHOD']) {
             }
 
             logEvent('INFO', 'Email sent successfully', ['recipient' => $recipient]);
+
+            // Bestätigungs-Email an Absender senden
+            $confirmationSubject = "Bestätigung Ihrer Nachricht - Super~Rando";
+            $confirmationMessage = createConfirmationTemplate($name, $subject);
+
+            $confirmationHeaders = [
+                'MIME-Version: 1.0',
+                'Content-type: text/html; charset=utf-8',
+                'From: noreply@super-rando.dev2k.org',
+                'Reply-To: konstantin.aksenov@dev2k.org',
+                'X-Mailer: Super-Rando Contact Form'
+            ];
+
+            $confirmationSent = mail($email, $confirmationSubject, $confirmationMessage, implode("\r\n", $confirmationHeaders));
+
+            if ($confirmationSent) {
+                logEvent('INFO', 'Confirmation email sent', ['recipient' => $email]);
+            } else {
+                logEvent('WARNING', 'Failed to send confirmation email', ['recipient' => $email]);
+            }
 
             // Success response
             echo json_encode([
