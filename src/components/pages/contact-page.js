@@ -124,7 +124,8 @@ const renderContactForm = () => {
         </div>
 
         <div class="form-group captcha-group">
-          <label for="captchaAnswer">Sicherheitsfrage: Was ist ${captcha.question}? *</label>
+          <label for="captchaAnswer">Sicherheitsfrage: <br />
+            Was ist ${captcha.question}? *</label>
           <input 
             type="number" 
             id="captchaAnswer" 
@@ -262,7 +263,7 @@ const handleContactFormSubmit = async (event) => {
     if (isNaN(userAnswer) || userAnswer !== correctAnswer) {
       showErrorNotification("Die Antwort auf die Sicherheitsfrage ist falsch.");
       refreshCaptcha();
-      return;
+      return; // Stoppe hier, aber resette das Formular NICHT
     }
 
     // Disable button and show loading state
@@ -311,6 +312,7 @@ const handleContactFormSubmit = async (event) => {
   } catch (error) {
     console.error("Error sending:", error);
     showErrorNotification(`Error sending message: ${error.message}`);
+    // Nur bei echten Fehlern das Captcha erneuern, nicht das ganze Formular
     refreshCaptcha();
   } finally {
     // Re-enable button

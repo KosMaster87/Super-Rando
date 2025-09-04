@@ -77,19 +77,19 @@ export const showOrderNotification = (message) => {
 };
 
 /**
- * Zeigt eine Erfolgs-Notification an
+ * Zeigt eine Erfolgs-Notification an (immer sichtbar für wichtige Aktionen)
  * @param {string} message - Erfolgsmeldung
  */
 export const showSuccessNotification = (message) => {
-  showNotification(message, "success", 5000);
+  showNotification(message, "success", 5000, true);
 };
 
 /**
- * Zeigt eine Fehler-Notification an
+ * Zeigt eine Fehler-Notification an (immer sichtbar für wichtige Aktionen)
  * @param {string} message - Fehlermeldung
  */
 export const showErrorNotification = (message) => {
-  showNotification(message, "error", 7000);
+  showNotification(message, "error", 7000, true);
 };
 
 /**
