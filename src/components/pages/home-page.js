@@ -50,7 +50,7 @@ const createMenuBundle = () => {
         <p class="menu-savings">Sie sparen ${menu.savings.toFixed(
           2
         )} € gegenüber Einzelbestellung!</p>
-        <button class="special-order-btn menu-order-btn" id="orderMenuBundle" disabled>
+        <button class="menu-order-btn" id="orderMenuBundle" disabled>
           ${menu.name} bestellen
         </button>
       </div>

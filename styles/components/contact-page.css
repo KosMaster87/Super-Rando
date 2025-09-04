@@ -1,0 +1,299 @@
+/* Contact Page Layout */
+.contact-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  max-width: 75rem;
+  padding: 0.2rem;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.26);
+  box-shadow: 0 0.5rem 2rem var(--shadow-medium);
+  border-radius: 1rem;
+  backdrop-filter: blur(0.63rem);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+/* Contact Form Section */
+.contact-form-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  background: var(--surface-color);
+  border-radius: var(--border-radius-lg);
+  padding: 1.5rem 1rem;
+  box-shadow: var(--shadow-sm);
+  border: 0.0625rem solid var(--border-color);
+}
+
+.contact-form-section h2 {
+  color: var(--primary-color);
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+/* Form Styling */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  width: inherit;
+  align-items: center;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: inherit;
+}
+
+.form-group label {
+  color: var(--text-primary);
+  font-weight: 600;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03125rem;
+}
+
+.form-group input,
+.form-group textarea {
+  padding: 0.75rem;
+  border: 0.125rem solid var(--border-color);
+  border-radius: var(--border-radius-md);
+  font-size: 1rem;
+  font-family: inherit;
+  background: var(--background-color);
+  color: var(--text-primary);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 0.1875rem rgba(var(--primary-rgb), 0.2);
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 7.5rem;
+}
+
+.contact-submit-btn {
+  background: linear-gradient(
+    135deg,
+    var(--color-primary),
+    var(--color-primary-hover)
+  );
+  color: var(--text-light);
+  border: none;
+  padding: clamp(0.75rem, 2vw + 0.5rem, 1rem) clamp(1rem, 3vw + 0.5rem, 2rem);
+  border-radius: 1.56rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-shadow: 0.06rem 0.06rem 0.13rem var(--shadow-heavy);
+  box-shadow: 0 0.25rem 0.94rem var(--shadow-medium);
+  min-height: 2.75rem;
+  font-size: clamp(0.85rem, 2vw + 0.5rem, 1rem);
+  text-transform: uppercase;
+  letter-spacing: 0.03125rem;
+}
+
+.contact-submit-btn:hover:not(:disabled) {
+  background: linear-gradient(
+    135deg,
+    var(--color-primary-hover),
+    var(--color-neutral-medium)
+  );
+  box-shadow: 0 0.5rem 1.56rem var(--shadow-heavy);
+}
+
+.contact-submit-btn:active {
+  box-shadow: 0 0.25rem 0.94rem var(--shadow-medium);
+}
+
+/* Contact Info Section */
+.contact-info-section {
+  background: var(--surface-color);
+  border-radius: var(--border-radius-lg);
+  padding: 1.5rem 1rem;
+  box-shadow: var(--shadow-sm);
+  border: 0.0625rem solid var(--border-color);
+}
+
+.contact-info-section h2 {
+  color: var(--primary-color);
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.contact-details {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+.contact-item {
+  padding: 1rem;
+  border-left: 0.25rem solid var(--accent-color);
+  background: var(--background-color);
+  border-radius: 0 var(--border-radius-md) var(--border-radius-md) 0;
+}
+
+.contact-item h3 {
+  color: var(--secondary-color);
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03125rem;
+}
+
+.contact-item p {
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Tablet Styles */
+@media (min-width: 768px) {
+  .contact-content {
+    gap: 2.5rem;
+    padding: 0 2rem;
+  }
+
+  .contact-form-section,
+  .contact-info-section {
+    padding: 2rem;
+  }
+
+  .contact-form-section h2,
+  .contact-info-section h2 {
+    font-size: 1.75rem;
+    margin-bottom: 2rem;
+  }
+
+  .contact-form {
+    gap: 1.5rem;
+  }
+
+  .contact-details {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+
+  .contact-item {
+    padding: 1.25rem;
+  }
+
+  .contact-submit-btn {
+    padding: 1rem 2.5rem;
+    font-size: 1.125rem;
+    align-self: center;
+  }
+}
+
+/* Desktop Styles */
+@media (min-width: 1024px) {
+  .contact-content {
+    flex-direction: row;
+    gap: 3rem;
+    padding: 0 3rem;
+  }
+
+  .contact-form-section {
+    flex: 1.2;
+  }
+
+  .contact-info-section {
+    flex: 0.8;
+  }
+
+  .contact-form-section h2,
+  .contact-info-section h2 {
+    font-size: 2rem;
+    text-align: left;
+  }
+
+  .contact-details {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .contact-item {
+    padding: 1.5rem;
+  }
+
+  .contact-item h3 {
+    font-size: 1.25rem;
+  }
+
+  .contact-submit-btn {
+    align-self: flex-start;
+    padding: 1.125rem 3rem;
+  }
+}
+
+/* Large Desktop Styles */
+@media (min-width: 1200px) {
+  .contact-content {
+    gap: 4rem;
+    padding: 0 4rem;
+  }
+
+  .contact-form-section,
+  .contact-info-section {
+    padding: 2.5rem;
+  }
+
+  .contact-form {
+    gap: 2rem;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    padding: 1rem;
+    font-size: 1.125rem;
+  }
+
+  .contact-details {
+    gap: 2rem;
+  }
+
+  .contact-item {
+    padding: 2rem;
+  }
+}
+
+/* Form Validation States */
+.form-group input:invalid:not(:focus):not(:placeholder-shown),
+.form-group textarea:invalid:not(:focus):not(:placeholder-shown) {
+  border-color: var(--error-color);
+  box-shadow: 0 0 0 0.1875rem rgba(var(--error-rgb), 0.1);
+}
+
+.form-group input:valid:not(:focus):not(:placeholder-shown),
+.form-group textarea:valid:not(:focus):not(:placeholder-shown) {
+  border-color: var(--success-color);
+}
+
+/* Loading State for Submit Button */
+.contact-submit-btn:disabled {
+  background: var(--color-neutral-medium);
+  cursor: not-allowed;
+  opacity: 0.6;
+  transform: none;
+}
+
+.contact-submit-btn:disabled:hover {
+  background: var(--color-neutral-medium);
+  transform: none;
+  box-shadow: 0 0.25rem 0.94rem var(--shadow-medium);
+}

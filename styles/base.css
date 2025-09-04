@@ -64,6 +64,11 @@
   --text-dark: var(--color-text-primary);
   --text-light: whitesmoke;
   --shadow-dark: var(--shadow-heavy);
+
+  /* Border Radius */
+  --border-radius-sm: 0.2rem;
+  --border-radius-md: 0.5rem;
+  --border-radius-lg: 1rem;
 }
 
 * {
