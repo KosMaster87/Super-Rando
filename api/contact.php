@@ -6,6 +6,34 @@
 // error_reporting(E_ALL);
 // ini_set('display_errors', 1);
 
+// Automatische Dateierstellung mit korrekten Berechtigungen
+// function ensureWritable($filename) {
+//     if (!file_exists($filename)) {
+//         // Versuche Datei zu erstellen
+//         if (file_put_contents($filename, '') === false) {
+//             // Falls nicht möglich, versuche Verzeichnisberechtigungen
+//             $dir = dirname($filename);
+//             if (!is_writable($dir)) {
+//                 die(json_encode([
+//                     'success' => false,
+//                     'message' => 'Server configuration error: Directory not writable'
+//                 ]));
+//             }
+//         }
+//     }
+    
+//     // Berechtigungen setzen
+//     if (file_exists($filename) && !is_writable($filename)) {
+//         chmod($filename, 0644);
+//     }
+    
+//     return is_writable($filename);
+// }
+
+// // Prüfe und erstelle Dateien wenn nötig
+// ensureWritable(__DIR__ . '/rate_limit.json');
+// ensureWritable(__DIR__ . '/contact_logs.txt');
+
 // Security headers
 header('X-Content-Type-Options: nosniff');
 header('X-Frame-Options: DENY');

@@ -104,3 +104,26 @@
 - Keine externen Frameworks oder Libraries verwenden.
 - Keine direkten Manipulationen am State-Objekt außerhalb der Setter-Funktionen.
 - Performance: Debouncing für häufige Events (Input, Scroll) verwenden.
+
+## UI/UX Patterns
+
+- **Notification System**: Modales System statt Browser-Alerts verwenden. Typen: success, error, warning, info.
+- **Loading States**: Immer visuelles Feedback bei asynchronen Operationen (Button-Text ändern, Spinner, etc.).
+- **Form Validation**: Clientseitig und serverseitig validieren. Benutzerfreundliche Fehlermeldungen auf Deutsch.
+- **Accessibility**: Focus-Management bei Modals, Keyboard-Navigation, Screen-Reader-freundlich.
+- **Animation**: Subtile Animationen für bessere UX (fadeIn, slideUp, etc.).
+
+## Spam-Schutz und Sicherheit
+
+- **Honeypot-Felder**: Versteckte Formularfelder zum Bot-Schutz.
+- **Math-Captcha**: Einfache Rechenaufgaben als Captcha-Alternative.
+- **Rate-Limiting**: IP-basierte Begrenzung von Anfragen implementieren.
+- **Input-Sanitization**: Alle Eingaben sowohl client- als auch serverseitig sanitizen.
+- **Email-Validierung**: RFC-konforme Email-Validierung verwenden.
+
+## Email-System
+
+- **Dual-Email-System**: Benachrichtigung an Admin + Bestätigung an Absender.
+- **HTML-Email-Templates**: Responsive und ansprechend gestaltete E-Mail-Vorlagen.
+- **Email-Headers**: Korrekte MIME-Types, From/Reply-To Headers setzen.
+- **Logging**: Alle Email-Aktivitäten protokollieren für Debugging.

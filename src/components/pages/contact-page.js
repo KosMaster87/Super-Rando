@@ -141,7 +141,6 @@ const setupContactFormHandler = () => {
 
 /**
  * Behandelt Formular-Absendung
- * honeypotField - verstecktes Feld zur Spam-Erkennung - Bots defender
  * @param {Event} event - Submit-Event
  */
 const handleContactFormSubmit = async (event) => {
@@ -151,11 +150,13 @@ const handleContactFormSubmit = async (event) => {
   const originalText = submitBtn.textContent;
 
   try {
+    // Honeypot-Prüfung
     const honeypotField = event.target.querySelector('input[name="website"]');
     if (honeypotField && honeypotField.value.trim() !== "") {
       throw new Error("Spam erkannt");
     }
 
+    // Disable button and show loading state
     submitBtn.disabled = true;
     submitBtn.textContent = "Wird gesendet...";
 
@@ -167,8 +168,6 @@ const handleContactFormSubmit = async (event) => {
       message: formData.get("message"),
     };
 
-    console.log("Sending data:", data);
-
     const response = await fetch("/api/contact.php", {
       method: "POST",
       headers: {
@@ -177,21 +176,18 @@ const handleContactFormSubmit = async (event) => {
       body: JSON.stringify(data),
     });
 
-    console.log("Response status:", response.status);
-    console.log("Response headers:", response.headers);
-
     if (!response.ok) {
       const errorText = await response.text();
-      console.error("Server error response:", errorText);
       throw new Error(`Server Error (${response.status}): ${errorText}`);
     }
 
     const result = await response.json();
-    console.log("Result:", result);
 
     if (result.success) {
-      showSuccessMessage(
-        "Vielen Dank für Ihre Nachricht! Wir melden uns bald bei Ihnen."
+      showNotificationModal(
+        "success",
+        "Nachricht gesendet!",
+        "Vielen Dank für Ihre Nachricht! Wir melden uns bald bei Ihnen. Sie erhalten eine Bestätigungsmail."
       );
       event.target.reset();
     } else {
@@ -199,7 +195,11 @@ const handleContactFormSubmit = async (event) => {
     }
   } catch (error) {
     console.error("Fehler beim Senden:", error);
-    showErrorMessage(`Fehler beim Senden der Nachricht: ${error.message}`);
+    showNotificationModal(
+      "error",
+      "Fehler beim Senden",
+      `Ihre Nachricht konnte nicht gesendet werden: ${error.message}`
+    );
   } finally {
     submitBtn.disabled = false;
     submitBtn.textContent = originalText;
@@ -207,19 +207,83 @@ const handleContactFormSubmit = async (event) => {
 };
 
 /**
- * Zeigt Erfolgsmeldung an
- * @param {string} message - Erfolgsmeldung
+ * Zeigt Notification Modal an
+ * @param {string} type - success, error, warning
+ * @param {string} title - Modal-Titel
+ * @param {string} message - Modal-Nachricht
  */
-const showSuccessMessage = (message) => {
-  // TODO: Integration mit Notification-System
-  alert(message);
+const showNotificationModal = (type, title, message) => {
+  createNotificationModal(type, title, message);
 };
 
 /**
- * Zeigt Fehlermeldung an
- * @param {string} message - Fehlermeldung
+ * Erstellt und zeigt Notification Modal
+ * @param {string} type - Modal-Typ
+ * @param {string} title - Modal-Titel
+ * @param {string} message - Modal-Nachricht
  */
-const showErrorMessage = (message) => {
-  // TODO: Integration mit Notification-System
-  alert(message);
+const createNotificationModal = (type, title, message) => {
+  const modal = document.createElement("div");
+  modal.className = `notification-modal notification-${type}`;
+  modal.id = "notificationModal";
+
+  modal.innerHTML = `
+    <div class="notification-overlay" id="notificationOverlay">
+      <div class="notification-content">
+        <div class="notification-header">
+          <span class="notification-icon">${getNotificationIcon(type)}</span>
+          <h3 class="notification-title">${title}</h3>
+          <button class="notification-close" id="notificationClose">&times;</button>
+        </div>
+        <div class="notification-body">
+          <p>${message}</p>
+        </div>
+        <div class="notification-footer">
+          <button class="notification-btn notification-btn-primary" id="notificationOk">OK</button>
+        </div>
+      </div>
+    </div>
+  `;
+
+  document.body.appendChild(modal);
+
+  // Event listeners
+  const closeModal = () => {
+    modal.remove();
+  };
+
+  document
+    .getElementById("notificationClose")
+    .addEventListener("click", closeModal);
+  document
+    .getElementById("notificationOk")
+    .addEventListener("click", closeModal);
+  document
+    .getElementById("notificationOverlay")
+    .addEventListener("click", (e) => {
+      if (e.target === e.currentTarget) closeModal();
+    });
+
+  // Auto-focus OK button
+  setTimeout(() => {
+    document.getElementById("notificationOk").focus();
+  }, 100);
+};
+
+/**
+ * Gibt Icon für Notification-Typ zurück
+ * @param {string} type - Notification-Typ
+ * @returns {string} Icon-HTML
+ */
+const getNotificationIcon = (type) => {
+  switch (type) {
+    case "success":
+      return "✅";
+    case "error":
+      return "❌";
+    case "warning":
+      return "⚠️";
+    default:
+      return "ℹ️";
+  }
 };
