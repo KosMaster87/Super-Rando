@@ -162,6 +162,25 @@
   margin: 0;
 }
 
+.contact-item a {
+  color: var(--color-primary);
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.contact-item a:hover {
+  color: var(--color-primary-hover);
+  text-decoration: underline;
+}
+
+.contact-item a:focus {
+  outline: 0.125rem solid var(--color-primary);
+  outline-offset: 0.125rem;
+  border-radius: 0.25rem;
+  padding: 0.125rem;
+}
+
 /* Tablet Styles */
 @media (min-width: 768px) {
   .contact-content {

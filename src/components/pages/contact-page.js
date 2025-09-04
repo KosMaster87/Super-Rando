@@ -96,25 +96,25 @@ const renderContactInfo = () => {
       <div class="contact-details">
         <div class="contact-item">
           <h3>Adresse</h3>
-          <p>Super~Rando Fusion Küche<br>
-          Musterstraße 123<br>
-          12345 Musterstadt</p>
+          <p>Konstantin Aksenov<br>
+          Concordia-Straße<br>
+          9370 Loma Plata<br>
+          Paraguay</p>
         </div>
 
         <div class="contact-item">
           <h3>Telefon</h3>
-          <p>+49 123 456 789</p>
+          <p><a href="tel:+595994221200">+595 994 221200</a></p>
         </div>
 
         <div class="contact-item">
           <h3>E-Mail</h3>
-          <p>info@super-rando.de</p>
+          <p><a href="mailto:konstantin.aksenov@dev2k.org">konstantin.aksenov@dev2k.org</a></p>
         </div>
 
         <div class="contact-item">
           <h3>Öffnungszeiten</h3>
-          <p>Mo-Fr: 11:00 - 22:00 Uhr<br>
-          Sa-So: 12:00 - 23:00 Uhr</p>
+          <p>Mo-So: 09:00 - 15:00 Uhr</p>
         </div>
       </div>
     </div>
