@@ -1,3 +1,5 @@
+// contact-page.js
+
 /**
  * Rendert die Kontakt-Seite
  * @returns {string} HTML-String für Kontakt-Seite
@@ -30,6 +32,12 @@ const renderContactForm = () => {
       <h2>Nachricht senden</h2>
       
       <form class="contact-form" id="contactForm">
+        <!-- Honeypot Field (versteckt für Bots) -->
+        <div class="honeypot-field" style="position: absolute; left: -9999px; opacity: 0;">
+          <label for="website">Website (bitte leer lassen)</label>
+          <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+        </div>
+
         <div class="form-group">
           <label for="contactName">Name *</label>
           <input 
@@ -133,20 +141,85 @@ const setupContactFormHandler = () => {
 
 /**
  * Behandelt Formular-Absendung
+ * honeypotField - verstecktes Feld zur Spam-Erkennung - Bots defender
  * @param {Event} event - Submit-Event
  */
-const handleContactFormSubmit = (event) => {
+const handleContactFormSubmit = async (event) => {
   event.preventDefault();
 
-  const formData = new FormData(event.target);
-  const data = Object.fromEntries(formData);
+  const submitBtn = event.target.querySelector(".contact-submit-btn");
+  const originalText = submitBtn.textContent;
 
-  // Simulate form submission
-  console.log("Kontaktformular gesendet:", data);
+  try {
+    const honeypotField = event.target.querySelector('input[name="website"]');
+    if (honeypotField && honeypotField.value.trim() !== "") {
+      throw new Error("Spam erkannt");
+    }
 
-  // Show success message (you can integrate with notification system)
-  alert("Vielen Dank für Ihre Nachricht! Wir melden uns bald bei Ihnen.");
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Wird gesendet...";
 
-  // Reset form
-  event.target.reset();
+    const formData = new FormData(event.target);
+    const data = {
+      name: formData.get("name"),
+      email: formData.get("email"),
+      subject: formData.get("subject"),
+      message: formData.get("message"),
+    };
+
+    console.log("Sending data:", data);
+
+    const response = await fetch("/api/contact.php", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+
+    console.log("Response status:", response.status);
+    console.log("Response headers:", response.headers);
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.error("Server error response:", errorText);
+      throw new Error(`Server Error (${response.status}): ${errorText}`);
+    }
+
+    const result = await response.json();
+    console.log("Result:", result);
+
+    if (result.success) {
+      showSuccessMessage(
+        "Vielen Dank für Ihre Nachricht! Wir melden uns bald bei Ihnen."
+      );
+      event.target.reset();
+    } else {
+      throw new Error(result.message || "Unbekannter Fehler");
+    }
+  } catch (error) {
+    console.error("Fehler beim Senden:", error);
+    showErrorMessage(`Fehler beim Senden der Nachricht: ${error.message}`);
+  } finally {
+    submitBtn.disabled = false;
+    submitBtn.textContent = originalText;
+  }
+};
+
+/**
+ * Zeigt Erfolgsmeldung an
+ * @param {string} message - Erfolgsmeldung
+ */
+const showSuccessMessage = (message) => {
+  // TODO: Integration mit Notification-System
+  alert(message);
+};
+
+/**
+ * Zeigt Fehlermeldung an
+ * @param {string} message - Fehlermeldung
+ */
+const showErrorMessage = (message) => {
+  // TODO: Integration mit Notification-System
+  alert(message);
 };

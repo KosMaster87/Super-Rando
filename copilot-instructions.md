@@ -67,6 +67,25 @@
 - Aussagekräftige Fehlermeldungen in deutscher Sprache.
 - Console.error für Debugging-Informationen nutzen.
 
+## API und Backend Integration
+
+- API-Endpunkte im `/api/` Verzeichnis organisieren.
+- Fetch API für alle HTTP-Requests verwenden, niemals XMLHttpRequest.
+- Async/Await für asynchrone Operationen bevorzugen.
+- Proper Error Handling für alle API-Calls implementieren.
+- Loading States für Formulare und User-Feedback bereitstellen.
+- CORS-Headers korrekt für die Produktions-Domain konfigurieren.
+- Input-Validierung sowohl clientseitig (JavaScript) als auch serverseitig (PHP) durchführen.
+- Keine sensiblen Daten im Frontend-Code speichern.
+
+## Sicherheit
+
+- XSS-Schutz: Alle User-Inputs sanitizen bevor sie ins DOM eingefügt werden.
+- CSRF-Schutz für Formulare implementieren wo nötig.
+- Rate-Limiting für API-Endpunkte beachten.
+- Content Security Policy (CSP) Headers setzen.
+- Input-Längen-Validierung implementieren.
+
 ## Weitere Best Practices
 
 - Keine Inline-Styles oder Inline-Eventhandler im HTML.
