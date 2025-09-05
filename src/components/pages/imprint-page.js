@@ -41,7 +41,7 @@ const renderLegalInfo = () => {
   return `
     <div class="imprint-section">
       <h2>Vertreten durch</h2>
-      <p>Geschäftsführer: Max Mustermann</p>
+      <p>Geschäftsführer: Konstantin Aksenov</p>
       
       <h2>Registereintrag</h2>
       <p>
@@ -67,16 +67,18 @@ const renderContactInfo = () => {
   return `
     <div class="imprint-section">
       <h2>Kontakt</h2>
-      <p>
-        Telefon: +49 123 456 789<br>
-        E-Mail: info@super-rando.de
-      </p>
+
+          <p>
+            <a href="tel:+595994221200">+595 994 221200</a><br>
+            <a href="mailto:konstantin.aksenov@dev2k.org">konstantin.aksenov@dev2k.org</a>
+          </p>
+
       
       <h2>Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV</h2>
       <p>
-        Max Mustermann<br>
-        Musterstraße 123<br>
-        12345 Musterstadt
+        Konstantin Aksenov<br>
+        Concordia-Straße<br>
+        9370 Loma Plata
       </p>
     </div>
   `;

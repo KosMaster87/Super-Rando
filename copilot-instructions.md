@@ -92,7 +92,7 @@
 - Keine Magic Numbers oder Strings – stattdessen Konstanten verwenden.
 - **ECMAScript Modules**: Ausschließlich moderne ES6+ Module verwenden (`import`/`export`). Keine CommonJS (`require`/`module.exports`). Target: `module: "es2020"`.
 - **CSS Custom Properties (Variablen)**: Alle Farben über CSS-Variablen im :root definieren. Keine Hex-Codes direkt im CSS verwenden.
-- **Relative Einheiten**: Immer `rem` für Größen, Abstände und Schriftgrößen verwenden. Keine `px` außer bei Borders (1px), box-shadow und @media. Auf zwei Dezimalstellen runden.
+- **Relative Einheiten**: `rem` für Größen, Abstände und Schriftgrößen verwenden. `px` bei Borders, box-shadow und @media verwenden. Auf zwei Dezimalstellen runden.
 - Konsistente Farbpalette: Haupt-, Sekundär-, Akzent- und Neutralfarben definieren.
 - Komponenten und Funktionen klar benennen.
 - Keine doppelten IDs oder Klassennamen.

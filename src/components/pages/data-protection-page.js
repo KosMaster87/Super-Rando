@@ -99,7 +99,8 @@ const renderUserRights = () => {
       </ul>
       
       <p>
-        Bei Fragen wenden Sie sich gerne an uns unter: datenschutz@super-rando.de
+        Bei Fragen wenden Sie sich gerne an uns unter:
+        <a href="mailto:konstantin.aksenov@dev2k.org">konstantin.aksenov@dev2k.org</a>
       </p>
     </div>
   `;

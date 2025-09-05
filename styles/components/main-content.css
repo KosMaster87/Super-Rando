@@ -1,6 +1,6 @@
 /* Mobile Main Content */
 .main-content {
-  min-height: calc(100vh - 12.5rem);
+  /* min-height: calc(100vh - 12.5rem); */
   padding: 0.5rem;
 }
 
