@@ -22,7 +22,10 @@ export const initializeFooterNavigation = () => {
 const setupFooterLogoNavigation = () => {
   const footerLogoLink = document.getElementById("footerLogoLink");
   if (footerLogoLink) {
-    footerLogoLink.onclick = (e) => handleNavigationClick(e, PAGES.HOME);
+    footerLogoLink.onclick = (e) => {
+      handleNavigationClick(e, PAGES.HOME);
+      scrollToTop();
+    };
   }
 };
 
@@ -39,7 +42,20 @@ const setupFooterLinksNavigation = () => {
   footerLinks.forEach(({ id, page }) => {
     const element = document.getElementById(id);
     if (element) {
-      element.onclick = (e) => handleNavigationClick(e, page);
+      element.onclick = (e) => {
+        handleNavigationClick(e, page);
+        scrollToTop();
+      };
     }
+  });
+};
+
+/**
+ * Scrollt zum Anfang der Seite
+ */
+const scrollToTop = () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
   });
 };

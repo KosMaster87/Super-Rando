@@ -75,7 +75,6 @@ const appState = {
   menuBundle: {
     name: "Fusion Tagesmenü",
     price: 18.5,
-    savings: 3.5,
     badge: "🍽️ Tagesmenü",
     description:
       "Unser beliebtes 3-Gang-Menü: Ramen Fusion Bowl, Gyoza-Salat und Ihr Wunsch-Dessert",

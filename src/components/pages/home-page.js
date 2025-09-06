@@ -47,9 +47,6 @@ const createMenuBundle = () => {
       
       <div class="menu-footer">
         <div class="menu-price">${menu.price.toFixed(2)} €</div>
-        <p class="menu-savings">Sie sparen ${menu.savings.toFixed(
-          2
-        )} € gegenüber Einzelbestellung!</p>
         <button class="menu-order-btn" id="orderMenuBundle" disabled>
           ${menu.name} bestellen
         </button>
