@@ -1,11 +1,8 @@
-import { appState, notifyListeners, getUserPreferences } from "../state.js";
-
-/**
- * Erstellt eine neue Benachrichtigung
- * @param {string} message - Benachrichtigungstext
- * @param {string} type - Benachrichtigungstyp (success, error, info)
- * @param {number} duration - Anzeigedauer in Millisekunden
- */
+import {
+  getUserPreferences,
+  addNotification,
+  removeNotification as removeNotificationState,
+} from "../state.js";
 
 /**
  * Erstellt eine neue Benachrichtigung
@@ -20,10 +17,9 @@ export const showNotification = (
   duration = 3000,
   force = false
 ) => {
-  // Prüfen ob User Benachrichtigungen aktiviert hat, außer force=true
   const userPreferences = getUserPreferences();
   if (!force && !userPreferences.showNotifications) {
-    return; // Keine Benachrichtigung anzeigen
+    return;
   }
 
   const notification = {
@@ -34,11 +30,8 @@ export const showNotification = (
     timestamp: Date.now(),
   };
 
-  // Immutable Update: Neue Benachrichtigung hinzufügen
-  appState.notifications = [...appState.notifications, notification];
-  notifyListeners();
+  addNotification(notification);
 
-  // Auto-Remove nach duration
   setTimeout(() => {
     removeNotification(notification.id);
   }, duration);
@@ -49,11 +42,7 @@ export const showNotification = (
  * @param {number} notificationId - ID der zu entfernenden Benachrichtigung
  */
 export const removeNotification = (notificationId) => {
-  // Immutable Update: Benachrichtigung entfernen
-  appState.notifications = appState.notifications.filter(
-    (notification) => notification.id !== notificationId
-  );
-  notifyListeners();
+  removeNotificationState(notificationId);
 };
 
 /**

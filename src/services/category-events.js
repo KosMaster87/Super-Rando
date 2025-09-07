@@ -1,4 +1,4 @@
-import { setSelectedCategory } from "./category-filter.js";
+import { setSelectedCategory } from "../state.js";
 
 /**
  * Initialisiert alle Kategorie-Event-Listener

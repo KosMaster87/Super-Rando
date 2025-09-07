@@ -278,6 +278,8 @@ const loadAllStoredData = () => {
   saveUserPreferences();
 };
 
+// Setter Start ----->
+
 /**
  * Gibt eine Kopie der Warenkorb-Items zurück
  * @returns {Array} Kopie der Warenkorb-Items
@@ -358,9 +360,9 @@ export const getUserPreferences = () => ({ ...appState.userPreferences });
  */
 export const getCurrentPage = () => appState.currentPage;
 
-// ----------------------------
-// ----------------------------
-// ----------------------------
+// Setter End <-----
+
+// Getter Start ----->
 
 /**
  * Setzt die aktuelle Seite
@@ -421,10 +423,6 @@ export const setCart = (cartItems) => {
   notifyListeners();
 };
 
-// ----------------------------
-// ----------------------------
-// ----------------------------
-
 /**
  * Setzt die ausgewählte Kategorie
  * @param {string} categoryId - Kategorie-ID
@@ -432,8 +430,21 @@ export const setCart = (cartItems) => {
 export const setSelectedCategory = (categoryId) => {
   if (appState.selectedCategory !== categoryId) {
     appState.selectedCategory = categoryId;
+    saveSessionToStorage();
     notifyListeners();
   }
+};
+
+/**
+ * Setzt User-Preferences
+ * @param {Object} preferences - Neue Preferences
+ */
+export const setUserPreferences = (preferences) => {
+  appState.userPreferences = {
+    ...appState.userPreferences,
+    ...preferences,
+  };
+  notifyListeners();
 };
 
 /**
@@ -456,21 +467,8 @@ export const removeNotification = (notificationId) => {
   notifyListeners();
 };
 
-/**
- * Setzt User-Preferences
- * @param {Object} preferences - Neue Preferences
- */
-export const setUserPreferences = (preferences) => {
-  appState.userPreferences = {
-    ...appState.userPreferences,
-    ...preferences,
-  };
-  notifyListeners();
-};
+// Getter End <-----
 
-// ----------------------------
-// ----------------------------
-// ----------------------------
 /**
  * Exportiert den zentralen Anwendungszustand und die relevanten Funktionen
  */

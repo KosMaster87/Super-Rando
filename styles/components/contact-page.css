@@ -221,11 +221,9 @@
     var(--color-neutral-medium)
   );
   box-shadow: 0 0.5rem 1.25rem var(--shadow-heavy);
-  transform: translateY(-0.0625rem);
 }
 
 .captcha-refresh-btn:active {
-  transform: translateY(0);
   box-shadow: 0 0.25rem 0.75rem var(--shadow-medium);
 }
 

@@ -1,10 +1,4 @@
-import {
-  appState,
-  notifyListeners,
-  saveSessionToStorage,
-  getDishes,
-  getSelectedCategory,
-} from "../state.js";
+import { getDishes, getSelectedCategory, getCategories } from "../state.js";
 
 /**
  * Filtert Gerichte nach ausgewählter Kategorie
@@ -21,23 +15,13 @@ export const getFilteredDishes = (categoryId = getSelectedCategory()) => {
 };
 
 /**
- * Setzt die ausgewählte Kategorie
- * @param {string} categoryId - Kategorie-ID
- */
-export const setSelectedCategory = (categoryId) => {
-  if (appState.selectedCategory !== categoryId) {
-    appState.selectedCategory = categoryId;
-    saveSessionToStorage(); // ← Session speichern bei Kategorie-Wechsel!
-    notifyListeners();
-  }
-};
-
-/**
  * Aktualisiert die Kategorie-Zähler
  */
 export const updateCategoryCounts = () => {
   const dishes = getDishes();
-  appState.categories.forEach((category) => {
+  const categories = getCategories();
+
+  categories.forEach((category) => {
     if (category.id === "all") {
       category.count = dishes.length;
     } else {

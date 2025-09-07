@@ -1,5 +1,5 @@
 import { ASSETS } from "../utils/constants.js";
-import { appState } from "../state.js";
+import { getUserPreferences } from "../state.js";
 
 /**
  * Rendert die Header-Komponente
@@ -90,7 +90,8 @@ const createNavItem = (id, icon, text) => {
  * @returns {string} HTML-String für Notification-Toggle
  */
 const createNotificationToggle = () => {
-  const isActive = appState.userPreferences.showNotifications;
+  const userPreferences = getUserPreferences();
+  const isActive = userPreferences.showNotifications;
   const icon = isActive ? "🔔" : "🔕";
 
   return `

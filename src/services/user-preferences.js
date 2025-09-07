@@ -1,12 +1,11 @@
 import {
-  appState,
   saveUserPreferences,
   notifyListeners,
   getUserPreferences,
+  setUserPreferences,
 } from "../state.js";
 
 /**
- * TODO
  * Setzt das Theme
  * @param {string} theme - Theme-Name ("dark", "light")
  */
@@ -14,10 +13,7 @@ export const setTheme = (theme) => {
   const currentPreferences = getUserPreferences();
   console.log("Theme wird gesetzt:", theme); // Debug-Log
   if (currentPreferences.theme !== theme) {
-    appState.userPreferences = {
-      ...currentPreferences,
-      theme: theme,
-    };
+    setUserPreferences({ theme });
     applyTheme(theme);
     saveUserPreferences();
     notifyListeners();
@@ -29,10 +25,9 @@ export const setTheme = (theme) => {
  */
 export const toggleNotifications = () => {
   const currentPreferences = getUserPreferences();
-  appState.userPreferences = {
-    ...currentPreferences,
+  setUserPreferences({
     showNotifications: !currentPreferences.showNotifications,
-  };
+  });
   saveUserPreferences();
   notifyListeners();
 };
