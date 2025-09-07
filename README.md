@@ -12,7 +12,7 @@ A modern Single Page Application (SPA) for a fusion restaurant, developed with *
 
 ## 📸 Preview
 
-![Portfolio Screenshot](./assets/images/Super~Rando.png)
+![Portfolio Screenshot](./assets/images/Super~Rando.avif)
 
 ---
 
