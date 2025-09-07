@@ -30,7 +30,7 @@ const initializeApp = () => {
   initializeFooterNavigation();
   registerStateListeners();
   renderAllComponents();
-  ScrollManager.init();
+  ScrollManager.init(appState);
 };
 
 /**

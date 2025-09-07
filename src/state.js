@@ -14,6 +14,8 @@ const appState = {
     cartAutoClose: false,
   },
 
+  listeners: [],
+
   dishes: [
     {
       name: "Pizza Margherita",
@@ -72,6 +74,7 @@ const appState = {
       tags: ["desserts", "sweet", "italian"],
     },
   ],
+
   menuBundle: {
     name: "Fusion Tagesmenü",
     price: 18.5,
@@ -111,6 +114,7 @@ const appState = {
       },
     ],
   },
+
   popularDish: {
     name: "Spaghetti Carbonara Fusion",
     price: 10.0,
@@ -125,6 +129,7 @@ const appState = {
       { icon: "🔥", text: "Frisch zubereitet" },
     ],
   },
+
   categories: [
     { id: "all", name: "Alle", icon: "🍽️", count: 0 },
     { id: "pizza", name: "Pizza", icon: "🍕", count: 0 },
@@ -132,7 +137,6 @@ const appState = {
     { id: "salate", name: "Salate", icon: "🥗", count: 0 },
     { id: "desserts", name: "Desserts", icon: "🍰", count: 0 },
   ],
-  listeners: [],
 };
 
 /**
