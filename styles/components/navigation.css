@@ -1,5 +1,4 @@
 /* Mobile First: Navigation Styles */
-
 .nav-list {
   display: flex;
   list-style: none;
@@ -15,7 +14,6 @@
   flex: initial;
 }
 
-/* Gemeinsame Stile für alle Navigationselemente */
 .nav-link,
 .phone-number {
   display: flex;
@@ -46,7 +44,7 @@
 }
 
 .nav-text {
-  display: none; /* Mobile: nur Icons */
+  display: none; /* Mobile: icons only */
 }
 
 .nav-icon {
@@ -74,7 +72,7 @@
   }
 
   .nav-text {
-    display: block; /* Text erscheint ab Tablet */
+    display: block; /* Text appears from tablet */
   }
 }
 
@@ -213,7 +211,7 @@
   }
 
   .nav-text {
-    display: block; /* Text erscheint ab Tablet */
+    display: block; /* Text appears from tablet */
   }
 
   .dropdown-menu {

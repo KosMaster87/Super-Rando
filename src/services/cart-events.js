@@ -8,7 +8,7 @@ import {
 } from "./cart.js";
 
 /**
- * Initialisiert alle Warenkorb-Event-Listener
+ * Initializes all cart event listeners for toggle, close, item controls, and order submission.
  */
 export const initializeCartEvents = () => {
   setupCartToggleButton();
@@ -18,7 +18,7 @@ export const initializeCartEvents = () => {
 };
 
 /**
- * Setzt Event-Listener für Cart-Toggle-Button
+ * Sets up the event listener for the cart toggle button.
  */
 const setupCartToggleButton = () => {
   const toggleBtn = document.getElementById("cartToggleBtn");
@@ -28,7 +28,7 @@ const setupCartToggleButton = () => {
 };
 
 /**
- * Setzt Event-Listener für Cart-Close-Button
+ * Sets up the event listener for the cart close button.
  */
 const setupCartCloseButton = () => {
   const closeBtn = document.getElementById("closeCartBtn");
@@ -38,7 +38,7 @@ const setupCartCloseButton = () => {
 };
 
 /**
- * Setzt Event-Listener für Cart-Item-Controls
+ * Sets up the event listener for cart item controls, such as increase, decrease, or remove.
  */
 const setupCartItemControls = () => {
   const cartSidebar = document.getElementById("cartSidebar");
@@ -48,7 +48,7 @@ const setupCartItemControls = () => {
 };
 
 /**
- * Setzt Event-Listener für Bestell-Button
+ * Sets up the event listener for the cart order button.
  */
 const setupCartOrderButton = () => {
   const orderBtn = document.getElementById("orderBtn");
@@ -58,8 +58,8 @@ const setupCartOrderButton = () => {
 };
 
 /**
- * Behandelt Klicks auf Cart-Item-Controls
- * @param {Event} event - Click-Event
+ * Handles clicks on cart item controls to increase, decrease, or remove items.
+ * @param {Event} event - Click event
  */
 const handleCartItemClick = (event) => {
   const button = event.target.closest("button[data-action]");
@@ -82,10 +82,10 @@ const handleCartItemClick = (event) => {
 };
 
 /**
- * Behandelt Bestellungs-Submission
+ * Handles order submission, shows notification and clears the cart.
  */
 const handleOrderSubmit = () => {
-  // Hier könnte später eine echte Bestell-API aufgerufen werden
+  // A real ordering API could be called here later.
   import("./notification.js").then(({ showOrderNotification }) => {
     showOrderNotification("Vielen Dank für Ihre Bestellung! 🍽️");
   });

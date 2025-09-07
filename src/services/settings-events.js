@@ -2,7 +2,7 @@ import { getUserPreferences } from "../state.js";
 import { setTheme, toggleNotifications } from "./user-preferences.js";
 
 /**
- * Initialisiert alle Settings-Event-Listener
+ * Initializes all settings event listeners.
  */
 export const initializeSettingsEvents = () => {
   setupDropdownToggle();
@@ -12,7 +12,7 @@ export const initializeSettingsEvents = () => {
 };
 
 /**
- * Setzt Event-Listener für Dropdown-Toggle
+ * Sets up event listeners for the settings dropdown toggle.
  */
 const setupDropdownToggle = () => {
   const dropdownToggle = document.getElementById("settingsDropdown");
@@ -24,12 +24,12 @@ const setupDropdownToggle = () => {
       toggleDropdown();
     };
 
-    // Dropdown schließen wenn außerhalb geklickt wird
+    // Close dropdown when clicking outside
     document.onclick = () => {
       closeDropdown();
     };
 
-    // Dropdown nicht schließen wenn innen geklickt wird
+    // Do not close dropdown when clicking inside
     dropdownMenu.onclick = (e) => {
       e.stopPropagation();
     };
@@ -37,7 +37,7 @@ const setupDropdownToggle = () => {
 };
 
 /**
- * Setzt Event-Listener für Settings-Optionen
+ * Sets up event listeners for settings options.
  */
 const setupSettingsOptions = () => {
   const settingOptions = document.querySelectorAll(".setting-option");
@@ -48,7 +48,7 @@ const setupSettingsOptions = () => {
 };
 
 /**
- * Setzt Event-Listener für Notification-Toggle
+ * Sets up event listener for notification toggle.
  */
 const setupNotificationToggle = () => {
   const notificationToggle = document.getElementById("notificationToggle");
@@ -62,7 +62,7 @@ const setupNotificationToggle = () => {
 };
 
 /**
- * Togglet das Dropdown-Menü
+ * Toggles the dropdown menu open/closed.
  */
 const toggleDropdown = () => {
   const dropdownMenu = document.getElementById("settingsMenu");
@@ -80,7 +80,7 @@ const toggleDropdown = () => {
 };
 
 /**
- * Öffnet das Dropdown-Menü
+ * Opens the dropdown menu.
  */
 const openDropdown = () => {
   const dropdownMenu = document.getElementById("settingsMenu");
@@ -93,7 +93,7 @@ const openDropdown = () => {
 };
 
 /**
- * Schließt das Dropdown-Menü
+ * Closes the dropdown menu.
  */
 const closeDropdown = () => {
   const dropdownMenu = document.getElementById("settingsMenu");
@@ -106,7 +106,7 @@ const closeDropdown = () => {
 };
 
 /**
- * Aktualisiert die aktiven Settings
+ * Updates the active settings options based on current user preferences.
  */
 const updateActiveSettings = () => {
   const settingOptions = document.querySelectorAll(".setting-option");
@@ -124,7 +124,7 @@ const updateActiveSettings = () => {
 };
 
 /**
- * Aktualisiert den Notification-Toggle
+ * Updates the notification toggle UI based on current user preferences.
  */
 const updateNotificationToggle = () => {
   const toggle = document.getElementById("notificationToggle");
@@ -141,10 +141,9 @@ const updateNotificationToggle = () => {
   }
 };
 
-// ---------------
 /**
- * Behandelt Setting-Änderungen
- * @param {HTMLElement} option - Geklickte Setting-Option
+ * Handles changes to a setting option.
+ * @param {HTMLElement} option - Clicked setting option
  */
 const handleSettingChange = (option) => {
   const setting = option.dataset.setting;

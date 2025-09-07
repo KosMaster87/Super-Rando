@@ -1,4 +1,6 @@
-/** @type {Object} Zentraler Anwendungszustand */
+/**
+ * @type {Object} Central application state
+ */
 const appState = {
   currentPage: "home",
   cart: [],
@@ -6,10 +8,9 @@ const appState = {
   selectedCategory: "all",
   notifications: [],
 
-  // UI-Preferences für erweiterte Features
   userPreferences: {
-    theme: "default", // TODO
-    language: "de", // TODO
+    theme: "default",
+    language: "de",
     showNotifications: true,
     cartAutoClose: false,
   },
@@ -140,8 +141,8 @@ const appState = {
 };
 
 /**
- * Benachrichtigt alle Listener über State-Änderungen
- * Der "listener" Parameter stellt hier den aufruf der jeweiligen Listener-Funktion dar.
+ * Notifies all listeners about state changes.
+ * The "listener" parameter refers to the function to be called.
  */
 const notifyListeners = () => {
   appState.listeners.forEach((listener) => {
@@ -154,7 +155,7 @@ const notifyListeners = () => {
 };
 
 /**
- * Lädt den Warenkorb aus dem LocalStorage
+ * Loads the cart from LocalStorage.
  */
 const loadCartFromStorage = () => {
   try {
@@ -168,7 +169,7 @@ const loadCartFromStorage = () => {
 };
 
 /**
- * Speichert den Warenkorb im LocalStorage
+ * Saves the cart to LocalStorage.
  */
 const saveCartToStorage = () => {
   try {
@@ -179,7 +180,7 @@ const saveCartToStorage = () => {
 };
 
 /**
- * Lädt alle User-Preferences aus dem LocalStorage
+ * Loads all user preferences from LocalStorage.
  */
 const loadUserPreferences = () => {
   try {
@@ -197,7 +198,7 @@ const loadUserPreferences = () => {
 };
 
 /**
- * Speichert alle User-Preferences im LocalStorage
+ * Saves all user preferences to LocalStorage.
  */
 const saveUserPreferences = () => {
   try {
@@ -211,9 +212,9 @@ const saveUserPreferences = () => {
 };
 
 /**
- * Prüft ob Seite gültig ist (für Session-Wiederherstellung)
- * @param {string} page - Seitenname
- * @returns {boolean} Ist gültig
+ * Checks if a page is valid (for session restore).
+ * @param {string} page - Page name
+ * @returns {boolean} Is valid
  */
 const isValidPage = (page) => {
   const validPages = [
@@ -227,53 +228,39 @@ const isValidPage = (page) => {
 };
 
 /**
- * Lädt die Session-Daten aus dem LocalStorage
+ * Loads session data from LocalStorage.
  */
 const loadSessionFromStorage = () => {
-  try {
-    const savedSession = localStorage.getItem("superRandoSession");
-    if (savedSession) {
-      const session = JSON.parse(savedSession);
+  const savedSession = localStorage.getItem("superRandoSession");
+  if (savedSession) {
+    const session = JSON.parse(savedSession);
 
-      if (session.lastPage && isValidPage(session.lastPage)) {
-        appState.currentPage = session.lastPage;
-      }
-
-      if (session.selectedCategory) {
-        appState.selectedCategory = session.selectedCategory;
-      }
-
-      console.log("Session wiederhergestellt:", {
-        page: getCurrentPage(),
-        category: getSelectedCategory(),
-      });
-
-      notifyListeners();
+    if (session.lastPage && isValidPage(session.lastPage)) {
+      appState.currentPage = session.lastPage;
     }
-  } catch (error) {
-    console.error("Fehler beim Laden der Session:", error);
+
+    if (session.selectedCategory) {
+      appState.selectedCategory = session.selectedCategory;
+    }
+
+    notifyListeners();
   }
 };
 
 /**
- * Speichert die Session-Daten im LocalStorage
+ * Saves session data to LocalStorage.
  */
 const saveSessionToStorage = () => {
-  try {
-    const sessionData = {
-      lastPage: getCurrentPage(),
-      selectedCategory: getSelectedCategory(),
-      timestamp: Date.now(),
-    };
-    localStorage.setItem("superRandoSession", JSON.stringify(sessionData));
-    console.log("Session gespeichert:", sessionData); // Debug-Log
-  } catch (error) {
-    console.error("Fehler beim Speichern der Session:", error);
-  }
+  const sessionData = {
+    lastPage: getCurrentPage(),
+    selectedCategory: getSelectedCategory(),
+    timestamp: Date.now(),
+  };
+  localStorage.setItem("superRandoSession", JSON.stringify(sessionData));
 };
 
 /**
- * Lädt alle gespeicherten Daten beim App-Start
+ * Loads all stored data at app start.
  */
 const loadAllStoredData = () => {
   loadCartFromStorage();
@@ -282,95 +269,89 @@ const loadAllStoredData = () => {
   saveUserPreferences();
 };
 
-// Setter Start ----->
-
 /**
- * Gibt eine Kopie der Warenkorb-Items zurück
- * @returns {Array} Kopie der Warenkorb-Items
+ * Returns a copy of the cart items.
+ * @returns {Array} Copy of cart items
  */
 export const getCartItems = () => [...appState.cart];
 
 /**
- * Prüft ob der Warenkorb leer ist
- * @returns {boolean} Ist Warenkorb leer
+ * Checks if the cart is empty.
+ * @returns {boolean} Is cart empty
  */
 export const isCartEmpty = () => appState.cart.length === 0;
 
 /**
- * Berechnet die Gesamtsumme des Warenkorbs
- * @returns {number} Gesamtsumme
+ * Calculates the total amount of the cart.
+ * @returns {number} Total amount
  */
 export const getCartTotal = () =>
   appState.cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
 /**
- * Gibt die Anzahl aller Items im Warenkorb zurück
- * @returns {number} Anzahl Items
+ * Returns the total number of items in the cart.
+ * @returns {number} Item count
  */
 export const getCartItemCount = () =>
   appState.cart.reduce((sum, item) => sum + item.quantity, 0);
 
 /**
- * Gibt den Warenkorb-Sichtbarkeitsstatus zurück
- * @returns {boolean} Ist Warenkorb sichtbar
+ * Returns the cart visibility status.
+ * @returns {boolean} Is cart visible
  */
 export const isCartVisible = () => appState.cartVisible;
 
 /**
- * Gibt eine Kopie der Kategorien zurück
- * @returns {Array} Kopie der Kategorien
+ * Returns a copy of the categories.
+ * @returns {Array} Copy of categories
  */
 export const getCategories = () => [...appState.categories];
 
 /**
- * Gibt die ausgewählte Kategorie zurück
- * @returns {string} Ausgewählte Kategorie
+ * Returns the selected category.
+ * @returns {string} Selected category
  */
 export const getSelectedCategory = () => appState.selectedCategory;
 
 /**
- * Gibt eine Kopie der Gerichte zurück
- * @returns {Array} Kopie der Gerichte
+ * Returns a copy of the dishes.
+ * @returns {Array} Copy of dishes
  */
 export const getDishes = () => [...appState.dishes];
 
 /**
- * Gibt das Menü-Bundle zurück
- * @returns {Object} Menü-Bundle
+ * Returns the menu bundle.
+ * @returns {Object} Menu bundle
  */
 export const getMenuBundle = () => ({ ...appState.menuBundle });
 
 /**
- * Gibt das beliebte Gericht zurück
- * @returns {Object} Beliebtes Gericht
+ * Returns the popular dish.
+ * @returns {Object} Popular dish
  */
 export const getPopularDish = () => ({ ...appState.popularDish });
 
 /**
- * Gibt eine Kopie der Benachrichtigungen zurück
- * @returns {Array} Kopie der Benachrichtigungen
+ * Returns a copy of the notifications.
+ * @returns {Array} Copy of notifications
  */
 export const getNotifications = () => [...appState.notifications];
 
 /**
- * Gibt die User-Preferences zurück
- * @returns {Object} User-Preferences
+ * Returns the user preferences.
+ * @returns {Object} User preferences
  */
 export const getUserPreferences = () => ({ ...appState.userPreferences });
 
 /**
- * Gibt die aktuelle Seite zurück
- * @returns {string} Aktuelle Seite
+ * Returns the current page.
+ * @returns {string} Current page
  */
 export const getCurrentPage = () => appState.currentPage;
 
-// Setter End <-----
-
-// Getter Start ----->
-
 /**
- * Setzt die aktuelle Seite
- * @param {string} page - Seitenname
+ * Sets the current page.
+ * @param {string} page - Page name
  */
 export const setCurrentPage = (page) => {
   if (appState.currentPage !== page) {
@@ -380,8 +361,8 @@ export const setCurrentPage = (page) => {
 };
 
 /**
- * Fügt ein Item zum Warenkorb hinzu
- * @param {Object} item - Warenkorb-Item
+ * Adds an item to the cart.
+ * @param {Object} item - Cart item
  */
 export const addCartItem = (item) => {
   appState.cart = [...appState.cart, item];
@@ -389,9 +370,9 @@ export const addCartItem = (item) => {
 };
 
 /**
- * Aktualisiert ein Cart-Item
- * @param {string} itemName - Name des Items
- * @param {Object} updates - Updates für das Item
+ * Updates a cart item.
+ * @param {string} itemName - Name of the item
+ * @param {Object} updates - Item updates
  */
 export const updateCartItem = (itemName, updates) => {
   appState.cart = appState.cart.map((item) =>
@@ -401,8 +382,8 @@ export const updateCartItem = (itemName, updates) => {
 };
 
 /**
- * Entfernt ein Item aus dem Warenkorb
- * @param {string} itemName - Name des zu entfernenden Items
+ * Removes an item from the cart.
+ * @param {string} itemName - Name of the item to remove
  */
 export const removeCartItem = (itemName) => {
   appState.cart = appState.cart.filter((item) => item.name !== itemName);
@@ -410,8 +391,8 @@ export const removeCartItem = (itemName) => {
 };
 
 /**
- * Setzt den Warenkorb-Sichtbarkeitsstatus und triggert Scroll-Management
- * @param {boolean} visible - Soll der Warenkorb sichtbar sein
+ * Sets the cart visibility status and triggers scroll management.
+ * @param {boolean} visible - Should the cart be visible
  */
 const setCartVisible = (visible) => {
   appState.cartVisible = visible;
@@ -419,8 +400,8 @@ const setCartVisible = (visible) => {
 };
 
 /**
- * Setzt den Warenkorb
- * @param {Array} cartItems - Neue Warenkorb-Items
+ * Sets the cart.
+ * @param {Array} cartItems - New cart items
  */
 export const setCart = (cartItems) => {
   appState.cart = [...cartItems];
@@ -428,8 +409,8 @@ export const setCart = (cartItems) => {
 };
 
 /**
- * Setzt die ausgewählte Kategorie
- * @param {string} categoryId - Kategorie-ID
+ * Sets the selected category.
+ * @param {string} categoryId - Category ID
  */
 export const setSelectedCategory = (categoryId) => {
   if (appState.selectedCategory !== categoryId) {
@@ -440,8 +421,8 @@ export const setSelectedCategory = (categoryId) => {
 };
 
 /**
- * Setzt User-Preferences
- * @param {Object} preferences - Neue Preferences
+ * Sets user preferences.
+ * @param {Object} preferences - New preferences
  */
 export const setUserPreferences = (preferences) => {
   appState.userPreferences = {
@@ -452,8 +433,8 @@ export const setUserPreferences = (preferences) => {
 };
 
 /**
- * Fügt eine Benachrichtigung hinzu
- * @param {Object} notification - Benachrichtigungs-Objekt
+ * Adds a notification.
+ * @param {Object} notification - Notification object
  */
 export const addNotification = (notification) => {
   appState.notifications = [...appState.notifications, notification];
@@ -461,8 +442,8 @@ export const addNotification = (notification) => {
 };
 
 /**
- * Entfernt eine Benachrichtigung
- * @param {number} notificationId - ID der zu entfernenden Benachrichtigung
+ * Removes a notification.
+ * @param {number} notificationId - ID of the notification to remove
  */
 export const removeNotification = (notificationId) => {
   appState.notifications = appState.notifications.filter(
@@ -471,10 +452,8 @@ export const removeNotification = (notificationId) => {
   notifyListeners();
 };
 
-// Getter End <-----
-
 /**
- * Exportiert den zentralen Anwendungszustand und die relevanten Funktionen
+ * Exports the central application state and relevant functions.
  */
 export {
   appState,

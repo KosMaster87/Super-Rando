@@ -9,13 +9,11 @@
   gap: 2rem;
 }
 
-/* Mobile Products Header */
 .products-header {
   text-align: center;
   margin-bottom: 1rem;
 }
 
-/* Mobile Product Categories - Kompaktes Menü */
 .product-categories {
   display: flex;
   gap: 0.25rem;
@@ -48,7 +46,6 @@
 .category-card:hover {
   box-shadow: 0 0.31rem 0.94rem var(--shadow-medium);
   border-color: var(--color-primary);
-  /* background: var(--color-surface); */
 }
 
 .category-card.active {
@@ -78,7 +75,6 @@
   display: none;
 }
 
-/* Mobile Dishes Section */
 .dishes-section {
   position: relative;
 }
@@ -90,7 +86,6 @@
   width: 100%;
 }
 
-/* Mobile Dish Cards */
 .dish-card {
   background: var(--secondary-gradient);
   border-radius: 0.94rem;
@@ -344,7 +339,6 @@
   }
 }
 
-/* Dishes Section Updates */
 .dishes-header {
   text-align: center;
   margin-bottom: 2rem;
@@ -363,7 +357,6 @@
   font-style: italic;
 }
 
-/* Empty State */
 .dishes-empty {
   text-align: center;
   padding: 3rem 1rem;

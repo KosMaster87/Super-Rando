@@ -2,7 +2,8 @@ import { handleNavigationClick } from "./navigation.js";
 import { PAGES } from "../utils/constants.js";
 
 /**
- * Setzt Event-Listener für Footer-Navigation (bei jedem Re-Render)
+ * Sets up event listeners for footer navigation.
+ * Should be called on every re-render.
  */
 export const setupFooterNavigationListeners = () => {
   setupFooterLogoNavigation();
@@ -10,14 +11,16 @@ export const setupFooterNavigationListeners = () => {
 };
 
 /**
- * Initialisiert die Footer-Navigation (nur einmal)
+ * Initializes the footer navigation.
+ * Use for one-time initializations if needed.
  */
 export const initializeFooterNavigation = () => {
-  // Kann leer bleiben oder für einmalige Initialisierungen verwendet werden
+  // Reserved for one-time initializations.
 };
 
 /**
- * Setzt die Navigation für das Footer-Logo
+ * Sets up navigation for the footer logo.
+ * Navigates to the home page and scrolls to top when clicked.
  */
 const setupFooterLogoNavigation = () => {
   const footerLogoLink = document.getElementById("footerLogoLink");
@@ -30,7 +33,8 @@ const setupFooterLogoNavigation = () => {
 };
 
 /**
- * Setzt die Footer-Links Navigation
+ * Sets up navigation for footer links.
+ * Navigates to the corresponding page and scrolls to top when a link is clicked.
  */
 const setupFooterLinksNavigation = () => {
   const footerLinks = [
@@ -51,7 +55,7 @@ const setupFooterLinksNavigation = () => {
 };
 
 /**
- * Scrollt zum Anfang der Seite
+ * Scrolls the page to the top smoothly.
  */
 const scrollToTop = () => {
   window.scrollTo({

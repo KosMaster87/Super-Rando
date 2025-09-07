@@ -6,12 +6,13 @@ import {
 } from "../state.js";
 
 /**
- * Setzt das Theme
- * @param {string} theme - Theme-Name ("dark", "light")
+ * Sets the theme.
+ * Updates the user preferences and applies the theme to the HTML page.
+ * @param {string} theme - Theme name ("dark", "light")
  */
 export const setTheme = (theme) => {
   const currentPreferences = getUserPreferences();
-  console.log("Theme wird gesetzt:", theme); // Debug-Log
+
   if (currentPreferences.theme !== theme) {
     setUserPreferences({ theme });
     applyTheme(theme);
@@ -21,7 +22,8 @@ export const setTheme = (theme) => {
 };
 
 /**
- * Togglet Benachrichtigungen an/aus
+ * Toggles notifications on or off.
+ * Updates the user preferences accordingly.
  */
 export const toggleNotifications = () => {
   const currentPreferences = getUserPreferences();
@@ -33,8 +35,9 @@ export const toggleNotifications = () => {
 };
 
 /**
- * Wendet das Theme auf die HTML-Seite an
- * @param {string} theme - Theme-Name
+ * Applies the theme to the HTML page.
+ * Removes previous theme classes and adds the new theme class.
+ * @param {string} theme - Theme name
  */
 const applyTheme = (theme) => {
   document.body.className = document.body.className.replace(/theme-\w+/g, "");
@@ -42,7 +45,8 @@ const applyTheme = (theme) => {
 };
 
 /**
- * Initialisiert User-Preferences beim App-Start
+ * Initializes user preferences at app start.
+ * Applies the saved theme and persists user preferences.
  */
 export const initializeUserPreferences = () => {
   const userPreferences = getUserPreferences();

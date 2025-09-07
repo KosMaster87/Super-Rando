@@ -1,4 +1,6 @@
-/** @type {Object} Verfügbare Seiten der Anwendung */
+/**
+ * @type {Object} Available pages of the application.
+ */
 export const PAGES = {
   HOME: "home",
   PRODUCTS: "products",
@@ -7,14 +9,20 @@ export const PAGES = {
   DATAPROTECTION: "dataProtection",
 };
 
-/** @type {Object} Asset-Pfade */
+/**
+ * @type {Object} Asset paths.
+ */
 export const ASSETS = {
   ICONS: "./assets/icons/",
   IMAGES: "./assets/images/",
 };
 
-/** @type {number} Maximale Anzahl Items im Warenkorb */
+/**
+ * @type {number} Maximum number of items allowed in the cart.
+ */
 export const MAX_CART_ITEMS = 99;
 
-/** @type {Array} Seiten mit Warenkorb */
+/**
+ * @type {Array} Pages on which the cart is available.
+ */
 export const CART_PAGES = ["home", "products"];

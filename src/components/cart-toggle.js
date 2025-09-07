@@ -1,8 +1,8 @@
 import { getCartItemCount } from "../state.js";
 
 /**
- * Rendert den Warenkorb-Toggle-Button
- * @returns {string} HTML-String für Cart-Toggle
+ * Renders the cart toggle button.
+ * @returns {string} HTML string for the cart toggle button
  */
 export const renderCartToggle = () => {
   const itemCount = getCartItemCount();

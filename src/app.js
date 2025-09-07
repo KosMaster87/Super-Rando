@@ -19,7 +19,10 @@ import {
 import { ScrollManager } from "./utils/scroll-manager.js";
 
 /**
- * Initialisiert die gesamte Anwendung
+ * Initializes the entire application:
+ * Loads stored data, sets up user preferences, category system, cart status,
+ * navigation, footer navigation, state listeners, renders all components,
+ * and enables scroll management.
  */
 const initializeApp = () => {
   loadAllStoredData();
@@ -34,14 +37,16 @@ const initializeApp = () => {
 };
 
 /**
- * Registriert alle State-Listener für automatische UI-Updates
+ * Registers all state listeners for automatic UI updates.
+ * Adds the main render function to the appState listeners array.
  */
 const registerStateListeners = () => {
   appState.listeners.push(renderAllComponents);
 };
 
 /**
- * Rendert alle Hauptkomponenten der Anwendung
+ * Renders all main components of the application:
+ * Header, main content, footer, and sets up component-specific event listeners.
  */
 const renderAllComponents = () => {
   renderHeader();
@@ -51,7 +56,8 @@ const renderAllComponents = () => {
 };
 
 /**
- * Setzt Event-Listener die bei jedem Re-Render neu gesetzt werden müssen
+ * Sets up event listeners that need to be re-initialized on each re-render.
+ * Includes navigation, footer navigation, cart, dish, and settings event handlers.
  */
 const setupComponentEventListeners = () => {
   setupNavigationListeners();
@@ -62,6 +68,6 @@ const setupComponentEventListeners = () => {
 };
 
 /**
- * Startet die Anwendung nach DOM-Load
+ * Starts the application after the DOM has loaded.
  */
 document.addEventListener("DOMContentLoaded", initializeApp);

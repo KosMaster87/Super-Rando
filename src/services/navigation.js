@@ -4,7 +4,8 @@ import { PAGES } from "../utils/constants.js";
 let isNavigationInitialized = false;
 
 /**
- * Initialisiert das Navigations-System
+ * Initializes the navigation system.
+ * Sets up browser history navigation and loads the initial page from the URL.
  */
 export const initializeNavigation = () => {
   if (isNavigationInitialized) return;
@@ -15,22 +16,23 @@ export const initializeNavigation = () => {
 };
 
 /**
- * Setzt Event-Listener für Navigation-Links
+ * Sets event listeners for navigation links in the header.
  */
 export const setupNavigationListeners = () => {
   setupHeaderNavigation();
 };
 
 /**
- * Setzt Browser-Navigation (Zurück/Vor-Buttons)
+ * Sets up browser navigation event listeners (back/forward buttons).
  */
 const setupBrowserNavigation = () => {
   window.addEventListener("popstate", handlePopState);
 };
 
 /**
- * Behandelt Browser-Navigation Events
- * @param {PopStateEvent} event - PopState Event
+ * Handles browser navigation events.
+ * Updates the page state according to browser history.
+ * @param {PopStateEvent} event - PopState event
  */
 const handlePopState = (event) => {
   const page = event.state?.page || extractPageFromURL();
@@ -40,7 +42,7 @@ const handlePopState = (event) => {
 };
 
 /**
- * Lädt die initiale Seite basierend auf der URL
+ * Loads the initial page based on the current URL.
  */
 const loadInitialPage = () => {
   const page = extractPageFromURL();
@@ -51,7 +53,7 @@ const loadInitialPage = () => {
 };
 
 /**
- * Setzt Header-Navigation
+ * Sets up header navigation link event listeners.
  */
 const setupHeaderNavigation = () => {
   const logoLink = document.getElementById("logoLink");
@@ -73,9 +75,10 @@ const setupHeaderNavigation = () => {
 };
 
 /**
- * Behandelt Navigation-Klicks
- * @param {Event} event - Click Event
- * @param {string} page - Zielseite
+ * Handles navigation clicks.
+ * Prevents the default behavior and navigates to the selected page.
+ * @param {Event} event - Click event
+ * @param {string} page - Target page
  */
 export const handleNavigationClick = (event, page) => {
   event.preventDefault();
@@ -83,8 +86,9 @@ export const handleNavigationClick = (event, page) => {
 };
 
 /**
- * Navigiert zu einer Seite
- * @param {string} page - Zielseite
+ * Navigates to a page.
+ * Updates state, browser history, document title, and saves session.
+ * @param {string} page - Target page
  */
 export const navigateToPage = (page) => {
   if (!isValidPage(page)) return;
@@ -96,8 +100,8 @@ export const navigateToPage = (page) => {
 };
 
 /**
- * Aktualisiert die Browser-History
- * @param {string} page - Seitenname
+ * Updates the browser history with the new page.
+ * @param {string} page - Page name
  */
 const updateBrowserHistory = (page) => {
   const url = page === PAGES.HOME ? "/" : `/${page}`;
@@ -105,8 +109,8 @@ const updateBrowserHistory = (page) => {
 };
 
 /**
- * Aktualisiert den Dokument-Titel
- * @param {string} page - Seitenname
+ * Updates the document title based on the current page.
+ * @param {string} page - Page name
  */
 const updateDocumentTitle = (page) => {
   const title = `Super~Rando - ${getPageTitle(page)}`;
@@ -114,8 +118,8 @@ const updateDocumentTitle = (page) => {
 };
 
 /**
- * Extrahiert Seite aus URL
- * @returns {string} Seitenname
+ * Extracts the page name from the current URL.
+ * @returns {string} Page name
  */
 const extractPageFromURL = () => {
   const path = window.location.pathname;
@@ -123,18 +127,18 @@ const extractPageFromURL = () => {
 };
 
 /**
- * Prüft ob Seite gültig ist
- * @param {string} page - Seitenname
- * @returns {boolean} Ist gültig
+ * Checks if a page is valid.
+ * @param {string} page - Page name
+ * @returns {boolean} Is valid
  */
 const isValidPage = (page) => {
   return Object.values(PAGES).includes(page);
 };
 
 /**
- * Gibt Seitentitel zurück
- * @param {string} page - Seitenname
- * @returns {string} Titel
+ * Returns the page title for a given page.
+ * @param {string} page - Page name
+ * @returns {string} Title
  */
 const getPageTitle = (page) => {
   const titles = {

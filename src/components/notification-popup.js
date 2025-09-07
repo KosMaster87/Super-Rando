@@ -2,8 +2,8 @@ import { getNotifications } from "../state.js";
 import { removeNotification } from "../services/notification.js";
 
 /**
- * Rendert alle aktiven Benachrichtigungen
- * @returns {string} HTML-String für Benachrichtigungen
+ * Renders all active notifications.
+ * @returns {string} HTML string for notifications
  */
 export const renderNotifications = () => {
   const notifications = getNotifications();
@@ -21,9 +21,9 @@ export const renderNotifications = () => {
 };
 
 /**
- * Erstellt HTML für eine einzelne Benachrichtigung
- * @param {Object} notification - Benachrichtigungs-Objekt
- * @returns {string} HTML-String für Benachrichtigung
+ * Creates HTML for a single notification.
+ * @param {Object} notification - Notification object
+ * @returns {string} HTML string for the notification
  */
 const createNotificationHTML = (notification) => {
   const typeIcon = getNotificationIcon(notification.type);
@@ -45,9 +45,9 @@ const createNotificationHTML = (notification) => {
 };
 
 /**
- * Gibt das passende Icon für den Benachrichtigungstyp zurück
- * @param {string} type - Benachrichtigungstyp
- * @returns {string} Icon-Emoji
+ * Returns the appropriate icon for the notification type.
+ * @param {string} type - Notification type
+ * @returns {string} Icon emoji
  */
 const getNotificationIcon = (type) => {
   const icons = {
@@ -60,8 +60,8 @@ const getNotificationIcon = (type) => {
 };
 
 /**
- * Globale Funktion für das Schließen von Benachrichtigungen
- * @param {number} notificationId - ID der zu schließenden Benachrichtigung
+ * Global function to close a notification.
+ * @param {number} notificationId - ID of the notification to close
  */
 window.handleNotificationClose = (notificationId) => {
   removeNotification(notificationId);

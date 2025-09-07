@@ -1,20 +1,19 @@
-/* CSS Custom Properties - Farbpalette */
 :root {
-  /* Neue Farbpalette aus altem Projekt */
-  --color-dark-brown: #32291d; /* sehr dunkel (Text / Kontrast) */
-  --color-medium-brown: #514434; /* Sekundärfarbe */
-  --color-warm-brown: #905133; /* Primary / Hauptfarbe */
-  --color-light-brown: #bd854c; /* Akzent */
-  --color-cream: #baab7e; /* Hintergrundfarbe */
+  /* Color palette */
+  --color-dark-brown: #32291d;
+  --color-medium-brown: #514434;
+  --color-warm-brown: #905133;
+  --color-light-brown: #bd854c;
+  --color-cream: #baab7e;
 
-  /* Hauptfarbpalette - gemappt auf neue Farben */
+  /* Main color palette - mapped to new colors */
   --color-primary: var(--color-warm-brown);
   --color-secondary: var(--color-medium-brown);
   --color-accent: var(--color-light-brown);
   --color-neutral-light: var(--color-medium-brown);
   --color-neutral-medium: var(--color-dark-brown);
 
-  /* Semantische Farben */
+  /* Semantic colors */
   --color-background: var(--color-cream);
   --color-surface: #ffffff;
   --color-card-background: var(--color-medium-brown);
@@ -23,23 +22,23 @@
   --color-text-secondary: var(--color-dark-brown);
   --color-text-muted: var(--color-dark-brown);
 
-  /* Status Farben */
+  /* Status colors */
   --color-success: var(--color-light-brown);
   --color-warning: var(--color-warm-brown);
   --color-error: #c0392b;
   --color-info: var(--color-medium-brown);
 
-  /* Schatten und Transparenzen - angepasst an neue Farben */
+  /* Shadows and transparencies - adapted to new colors */
   --shadow-light: rgba(50, 41, 29, 0.1);
   --shadow-medium: rgba(50, 41, 29, 0.22);
   --shadow-heavy: rgba(50, 41, 29, 0.35);
 
-  /* Hover und Interaktionsfarben */
+  /* Hover and interaction colors */
   --color-primary-hover: #7a3f2b;
   --color-secondary-hover: #a69669;
   --color-accent-hover: #a5723f;
 
-  /* Gradients aus altem Projekt */
+  /* Gradients */
   --primary-gradient: linear-gradient(
     135deg,
     var(--color-primary),
@@ -56,7 +55,7 @@
     var(--color-accent) 100%
   );
 
-  /* Legacy Support - für Backward Compatibility */
+  /* Legacy Support - for backward compatibility */
   --primary-color: var(--color-primary);
   --secondary-color: var(--color-neutral-light);
   --accent-color: var(--color-accent);

@@ -1,5 +1,4 @@
 /* Imprint Page Styles - Mobile First */
-
 .imprint-page {
   padding: 1rem;
   max-width: 75rem;
@@ -74,7 +73,6 @@
   color: var(--color-text-primary);
 }
 
-/* Überarbeitetes Link-Styling nach dem Vorbild der Kontaktseite */
 .imprint-page a {
   color: var(--color-primary);
   text-decoration: none;

@@ -1,13 +1,11 @@
-/* Page Layouts */
-
-/* Standard Layout (ohne Cart) */
+/* Standard Layout (without cart) */
 .page-layout-standard {
   width: 100%;
   max-width: 75rem;
   margin: 0 auto;
 }
 
-/* Layout mit Cart */
+/* Layout with Cart */
 .page-layout-with-cart {
   display: flex;
   flex-direction: column;
@@ -22,10 +20,9 @@
   flex: 1;
   min-width: 0;
   min-height: 50rem;
-  transition: flex 0.3s ease; /* Smooth transition für Breitenänderung */
+  transition: flex 0.3s ease; /* Smooth transition for width change */
 }
-
-.content-child {
+v .content-child {
   background: rgba(255, 255, 255, 0.26);
   box-shadow: 0 0.5rem 2rem var(--shadow-medium);
   border-radius: 1rem;
@@ -38,7 +35,7 @@
   transition: all 0.3s ease;
 }
 
-/* Mobile: cart-area ist sichtbar für Cart-Toggle */
+/* Mobile: cart-area is visible for Cart-Toggle */
 @media (max-width: 767px) {
   .cart-area {
     display: block;
@@ -46,7 +43,7 @@
   }
 }
 
-/* Tablet/Desktop: cart-area als Flexbox-Container */
+/* Tablet/Desktop: cart area as a Flexbox container */
 @media (min-width: 768px) {
   .cart-area {
     display: flex;
@@ -79,15 +76,14 @@
     max-width: 35%;
   }
 
-  /* Wenn Warenkorb geschlossen ist - Content-Area volle Breite */
+  /* When shopping cart is closed - content area full width */
   .page-layout-with-cart:has(.cart-sidebar:not(.cart-open)) .content-area {
-    flex: 1; /* Volle Breite */
+    flex: 1;
   }
 
   .page-layout-with-cart:has(.cart-sidebar:not(.cart-open)) .cart-area {
     flex: 0 0 auto;
-    max-width: 4rem; /* Platz für Cart-Toggle-Button */
-    min-width: 4rem;
+    width: 4rem;
     overflow: visible;
   }
 }
@@ -111,15 +107,14 @@
     max-width: 30%;
   }
 
-  /* Desktop: Wenn Warenkorb geschlossen ist */
+  /* Desktop: When shopping cart is closed */
   .page-layout-with-cart:has(.cart-sidebar:not(.cart-open)) .content-area {
-    flex: 1; /* Volle Breite */
+    flex: 1;
   }
 
   .page-layout-with-cart:has(.cart-sidebar:not(.cart-open)) .cart-area {
     flex: 0 0 auto;
-    max-width: 4rem; /* Platz für Cart-Toggle-Button */
-    min-width: 4rem;
+    width: 4rem;
     overflow: visible;
   }
 }

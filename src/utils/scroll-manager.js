@@ -1,12 +1,13 @@
 import { isCartVisible } from "../state.js";
 
 /**
- * Verwaltet das Ausblenden des Scrollbalkens auf Mobile-Geräten bei geöffnetem Warenkorb
+ * Manages hiding the scrollbar on mobile devices when the cart is open.
  */
 export class ScrollManager {
   /**
-   * Initialisiert den ScrollManager als State-Listener
-   * @param {Object} appState - State-Objekt für Listener-Registrierung
+   * Initializes the ScrollManager as a state listener.
+   * Registers the cart visibility handler to state changes and window resize events.
+   * @param {Object} appState - The state object for listener registration
    */
   static init(appState) {
     appState.listeners.push(() => this.handleCartVisibilityChange());
@@ -15,7 +16,8 @@ export class ScrollManager {
   }
 
   /**
-   * Reagiert auf Änderungen der Warenkorb-Sichtbarkeit
+   * Handles changes in cart visibility.
+   * Adds or removes the "no-scroll" class on the body depending on cart visibility and device width.
    */
   static handleCartVisibilityChange() {
     const body = document.body;

@@ -7,8 +7,8 @@ import {
 } from "../state.js";
 
 /**
- * Rendert die Warenkorb-Komponente
- * @returns {string} HTML-String für Warenkorb
+ * Renders the cart component.
+ * @returns {string} HTML string for the cart
  */
 export const renderCart = () => {
   return `
@@ -25,22 +25,22 @@ export const renderCart = () => {
 };
 
 /**
- * Erstellt den Warenkorb-Header
- * @returns {string} HTML-String für Cart-Header
+ * Creates the cart header.
+ * @returns {string} HTML string for the cart header
  */
 const createCartHeader = () => {
   const itemCount = getCartItemCount();
   return `
     <div class="cart-header">
-      <h3 class="cart-title">Warenkorb (${itemCount})</h3>
-      <button class="cart-close-btn" id="closeCartBtn" title="Warenkorb schließen"><span class="cart-close-icon">❌</span></button>
+      <h3 class="cart-title">Cart (${itemCount})</h3>
+      <button class="cart-close-btn" id="closeCartBtn" title="Close cart"><span class="cart-close-icon">❌</span></button>
     </div>
   `;
 };
 
 /**
- * Erstellt den Warenkorb-Inhalt
- * @returns {string} HTML-String für Cart-Content
+ * Creates the cart content.
+ * @returns {string} HTML string for the cart content
  */
 const createCartContent = () => {
   if (isCartEmpty()) {
@@ -56,22 +56,22 @@ const createCartContent = () => {
 };
 
 /**
- * Erstellt leeren Warenkorb
- * @returns {string} HTML-String für leeren Cart
+ * Creates the empty cart message.
+ * @returns {string} HTML string for an empty cart
  */
 const createEmptyCart = () => {
   return `
     <div class="cart-empty">
-      <p>Ihr Warenkorb ist leer</p>
+      <p>Your cart is empty</p>
       <span class="cart-empty-icon">🛒</span>
     </div>
   `;
 };
 
 /**
- * Erstellt ein Warenkorb-Item
- * @param {Object} item - Warenkorb-Item
- * @returns {string} HTML-String für Cart-Item
+ * Creates a cart item entry.
+ * @param {Object} item - Cart item object
+ * @returns {string} HTML string for a cart item
  */
 const createCartItem = (item) => {
   const total = (item.price * item.quantity).toFixed(2);
@@ -99,8 +99,8 @@ const createCartItem = (item) => {
 };
 
 /**
- * Erstellt den Warenkorb-Footer
- * @returns {string} HTML-String für Cart-Footer
+ * Creates the cart footer.
+ * @returns {string} HTML string for the cart footer
  */
 const createCartFooter = () => {
   const total = getCartTotal();
@@ -110,12 +110,12 @@ const createCartFooter = () => {
   return `
     <div class="cart-footer">
       <div class="cart-total">
-        <strong>Gesamt: ${total.toFixed(2)} €</strong>
+        <strong>Total: ${total.toFixed(2)} €</strong>
       </div>
       <button class="cart-order-btn" id="orderBtn" ${
         !hasItems ? "disabled" : ""
       }>
-        Jetzt bestellen
+        Order now
       </button>
     </div>
   `;

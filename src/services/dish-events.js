@@ -3,7 +3,8 @@ import { getMenuBundle, getPopularDish } from "../state.js";
 import { initializeCategoryEvents } from "./category-events.js";
 
 /**
- * Initialisiert alle Dish-Event-Listener
+ * Initializes all dish event listeners.
+ * Sets up events for menu bundle, popular dish, products page, and category events.
  */
 export const initializeDishEvents = () => {
   setupMenuBundleEvents();
@@ -13,13 +14,12 @@ export const initializeDishEvents = () => {
 };
 
 /**
- * Setzt Event-Listener für Menü-Bundle
+ * Sets up event listeners for the menu bundle order button and dessert selection.
  */
 const setupMenuBundleEvents = () => {
   const menuOrderBtn = document.getElementById("orderMenuBundle");
   const dessertRadios = document.querySelectorAll('input[name="menuDessert"]');
 
-  // Dessert-Auswahl aktiviert Bestell-Button
   dessertRadios.forEach((radio) => {
     radio.onchange = () => {
       if (menuOrderBtn) {
@@ -28,14 +28,13 @@ const setupMenuBundleEvents = () => {
     };
   });
 
-  // Menü-Bestellung
   if (menuOrderBtn) {
     menuOrderBtn.onclick = () => handleMenuBundleOrder();
   }
 };
 
 /**
- * Behandelt Menü-Bundle-Bestellung
+ * Handles ordering the menu bundle and adds it to the cart.
  */
 const handleMenuBundleOrder = () => {
   const selectedDessert = document.querySelector(
@@ -52,7 +51,6 @@ const handleMenuBundleOrder = () => {
 
   addToCart(menuName, menuPrice);
 
-  // Reset selection
   selectedDessert.checked = false;
   const orderBtn = document.getElementById("orderMenuBundle");
   if (orderBtn) {
@@ -61,7 +59,7 @@ const handleMenuBundleOrder = () => {
 };
 
 /**
- * Setzt Event-Listener für Popular Dish
+ * Sets up event listener for ordering the popular dish.
  */
 const setupPopularDishEvents = () => {
   const carbonaraBtn = document.getElementById("orderCarbonara");
@@ -73,7 +71,7 @@ const setupPopularDishEvents = () => {
 };
 
 /**
- * Setzt Event-Listener für Products-Page Gerichte
+ * Sets up event listeners for ordering dishes on the products page.
  */
 const setupProductsPageDishEvents = () => {
   const dishButtons = document.querySelectorAll(".dish-order-btn");

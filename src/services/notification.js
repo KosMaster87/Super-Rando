@@ -5,11 +5,12 @@ import {
 } from "../state.js";
 
 /**
- * Erstellt eine neue Benachrichtigung
- * @param {string} message - Benachrichtigungstext
- * @param {string} type - Benachrichtigungstyp (success, error, info)
- * @param {number} duration - Anzeigedauer in Millisekunden
- * @param {boolean} force - Erzwingt Anzeige, auch wenn Notifications deaktiviert
+ * Creates a new notification.
+ * Displays the notification if user preferences allow it, or if forced.
+ * @param {string} message - Notification text
+ * @param {string} type - Notification type ("success", "error", "info")
+ * @param {number} duration - Display duration in milliseconds
+ * @param {boolean} force - Forces display even if notifications are disabled
  */
 export const showNotification = (
   message,
@@ -38,53 +39,54 @@ export const showNotification = (
 };
 
 /**
- * Entfernt eine Benachrichtigung
- * @param {number} notificationId - ID der zu entfernenden Benachrichtigung
+ * Removes a notification.
+ * @param {number} notificationId - ID of the notification to remove
  */
 export const removeNotification = (notificationId) => {
   removeNotificationState(notificationId);
 };
 
 /**
- * Zeigt eine Erfolgs-Benachrichtigung für hinzugefügte Gerichte
- * @param {string} dishName - Name des hinzugefügten Gerichts
- * @param {number} quantity - Anzahl der hinzugefügten Portionen
+ * Shows a success notification for added dishes.
+ * @param {string} dishName - Name of the added dish
+ * @param {number} quantity - Number of portions added
  */
 export const showAddToCartNotification = (dishName, quantity = 1) => {
   const message =
     quantity === 1
-      ? `"${dishName}" wurde zum Warenkorb hinzugefügt! 🛒`
-      : `${quantity}x "${dishName}" wurden zum Warenkorb hinzugefügt! 🛒`;
+      ? `"${dishName}" was added to the cart! 🛒`
+      : `${quantity}x "${dishName}" were added to the cart! 🛒`;
 
   showNotification(message, "success", 3000);
 };
+
 /**
- * Zeigt eine Info-Benachrichtigung für Bestellungen (immer sichtbar)
- * @param {string} message - Bestellungs-Nachricht
+ * Shows an info notification for orders (always visible)
+ * @param {string} message - Order message
  */
 export const showOrderNotification = (message) => {
   showNotification(message, "info", 4000, true);
 };
 
 /**
- * Zeigt eine Erfolgs-Notification an (immer sichtbar für wichtige Aktionen)
- * @param {string} message - Erfolgsmeldung
+ * Shows a success notification (always visible for important actions).
+ * @param {string} message - Success message
  */
 export const showSuccessNotification = (message) => {
   showNotification(message, "success", 5000, true);
 };
 
 /**
- * Zeigt eine Fehler-Notification an (immer sichtbar für wichtige Aktionen)
- * @param {string} message - Fehlermeldung
+ * Shows an error notification (always visible for important actions).
+ * @param {string} message - Error message
  */
 export const showErrorNotification = (message) => {
   showNotification(message, "error", 7000, true);
 };
 
 /**
- * Zeigt eine Info-Notification an
- * @param {string} message - Info-Meldung
+ * Shows an info notification.
+ * @param {string} message - Info message
  */
 export const showInfoNotification = (message) => {
   showNotification(message, "info", 4000);

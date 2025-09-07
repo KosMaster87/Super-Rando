@@ -12,9 +12,10 @@ import { MAX_CART_ITEMS } from "../utils/constants.js";
 import { showAddToCartNotification } from "./notification.js";
 
 /**
- * Fügt ein Gericht zum Warenkorb hinzu
- * @param {string} dishName - Name des Gerichts
- * @param {number} price - Preis des Gerichts
+ * Adds a dish to the cart.
+ * If the dish already exists, increases its quantity.
+ * @param {string} dishName - Name of the dish
+ * @param {number} price - Price of the dish
  */
 export const addToCart = (dishName, price) => {
   const cartItems = getCartItems();
@@ -36,8 +37,8 @@ export const addToCart = (dishName, price) => {
 };
 
 /**
- * Erhöht die Menge eines Items
- * @param {string} itemName - Name des Items
+ * Increases the quantity of a cart item by 1, up to the maximum allowed.
+ * @param {string} itemName - Name of the item
  */
 export const increaseCartItem = (itemName) => {
   const cartItems = getCartItems();
@@ -50,8 +51,8 @@ export const increaseCartItem = (itemName) => {
 };
 
 /**
- * Verringert die Menge eines Items
- * @param {string} itemName - Name des Items
+ * Decreases the quantity of a cart item by 1, or removes it if quantity reaches 0.
+ * @param {string} itemName - Name of the item
  */
 export const decreaseCartItem = (itemName) => {
   const cartItems = getCartItems();
@@ -69,8 +70,8 @@ export const decreaseCartItem = (itemName) => {
 };
 
 /**
- * Entfernt ein Item komplett aus dem Warenkorb
- * @param {string} itemName - Name des Items
+ * Removes an item from the cart entirely.
+ * @param {string} itemName - Name of the item
  */
 export const removeFromCart = (itemName) => {
   removeCartItem(itemName);
@@ -78,7 +79,7 @@ export const removeFromCart = (itemName) => {
 };
 
 /**
- * Togglet die Warenkorb-Sichtbarkeit
+ * Toggles the cart's visibility and updates the body class.
  */
 export const toggleCartVisibility = () => {
   const currentVisible = isCartVisible();
@@ -87,7 +88,7 @@ export const toggleCartVisibility = () => {
 };
 
 /**
- * Öffnet den Warenkorb
+ * Opens the cart and updates the body class.
  */
 export const openCart = () => {
   setCartVisible(true);
@@ -95,7 +96,7 @@ export const openCart = () => {
 };
 
 /**
- * Schließt den Warenkorb
+ * Closes the cart and updates the body class.
  */
 export const closeCart = () => {
   setCartVisible(false);
@@ -103,7 +104,7 @@ export const closeCart = () => {
 };
 
 /**
- * Leert den kompletten Warenkorb
+ * Clears all items from the cart, hides the cart, and updates the body class.
  */
 export const clearCart = () => {
   setCart([]);
@@ -113,7 +114,7 @@ export const clearCart = () => {
 };
 
 /**
- * Aktualisiert die Body-Klasse basierend auf Warenkorb-Status
+ * Updates the body class based on the cart's visibility.
  */
 const updateCartBodyClass = () => {
   const body = document.body;
@@ -125,7 +126,7 @@ const updateCartBodyClass = () => {
 };
 
 /**
- * Initialisiert den Cart-Status und setzt die Body-Klasse
+ * Initializes cart status by updating the body class.
  */
 export const initializeCartStatus = () => {
   updateCartBodyClass();

@@ -2,8 +2,8 @@ import { getCategories, getSelectedCategory } from "../../state.js";
 import { getFilteredDishes } from "../../services/category-filter.js";
 
 /**
- * Rendert die Products-Seite
- * @returns {string} HTML-String für Products-Seite
+ * Renders the Products page.
+ * @returns {string} HTML string for the Products page
  */
 export const renderProductsPage = () => {
   return `
@@ -18,21 +18,21 @@ export const renderProductsPage = () => {
 };
 
 /**
- * Erstellt den Products-Header
- * @returns {string} HTML-String für Products-Header
+ * Creates the Products header section.
+ * @returns {string} HTML string for the Products header
  */
 const createProductsHeader = () => {
   return `
     <div class="products-header">
-      <h1 class="page-title">Unsere Produktkategorien</h1>
-      <p class="page-subtitle">Entdecken Sie unsere vielfältige Fusion-Küche</p>
+      <h1 class="page-title">Our Product Categories</h1>
+      <p class="page-subtitle">Discover our diverse fusion cuisine</p>
     </div>
   `;
 };
 
 /**
- * Erstellt die Produktkategorien
- * @returns {string} HTML-String für Kategorien
+ * Creates the product categories section.
+ * @returns {string} HTML string for categories
  */
 const createProductCategories = () => {
   const categories = getCategories();
@@ -44,9 +44,9 @@ const createProductCategories = () => {
 };
 
 /**
- * Erstellt eine Kategorie-Karte
- * @param {Object} category - Kategorie-Objekt
- * @returns {string} HTML-String für Kategorie-Karte
+ * Creates a category card.
+ * @param {Object} category - Category object
+ * @returns {string} HTML string for the category card
  */
 const createCategoryCard = (category) => {
   const selectedCategory = getSelectedCategory();
@@ -59,14 +59,14 @@ const createCategoryCard = (category) => {
       <div class="category-icon">${category.icon}</div>
       <div class="line-products"></div>
       <h3 class="category-title">${category.name}</h3>
-      <p class="category-description">${category.count} Gerichte</p>
+      <p class="category-description">${category.count} dishes</p>
     </div>
   `;
 };
 
 /**
- * Erstellt die Gerichte-Sektion
- * @returns {string} HTML-String für Gerichte-Sektion
+ * Creates the dishes section.
+ * @returns {string} HTML string for the dishes section
  */
 const createDishesSection = () => {
   const filteredDishes = getFilteredDishes();
@@ -78,13 +78,11 @@ const createDishesSection = () => {
         <h2 class="dishes-title">
           ${
             selectedCategory === "all"
-              ? "Alle Spezialitäten"
+              ? "All specialties"
               : getCategoryDisplayName()
           }
         </h2>
-        <p class="dishes-subtitle">${
-          filteredDishes.length
-        } Gerichte gefunden</p>
+        <p class="dishes-subtitle">${filteredDishes.length} dishes found</p>
       </div>
       <div class="dishes-grid">
         ${
@@ -98,34 +96,34 @@ const createDishesSection = () => {
 };
 
 /**
- * Gibt den Anzeigenamen der aktuellen Kategorie zurück
- * @returns {string} Kategorie-Anzeigename
+ * Returns the display name of the current category.
+ * @returns {string} Category display name
  */
 const getCategoryDisplayName = () => {
   const categories = getCategories();
   const selectedCategory = getSelectedCategory();
   const category = categories.find((cat) => cat.id === selectedCategory);
-  return category ? category.name : "Alle Spezialitäten";
+  return category ? category.name : "All specialties";
 };
 
 /**
- * Erstellt den Empty State für keine Gerichte
- * @returns {string} HTML-String für Empty State
+ * Creates the empty state message for no dishes found.
+ * @returns {string} HTML string for the empty state
  */
 const createEmptyState = () => {
   return `
     <div class="dishes-empty">
       <div class="empty-icon">🍽️</div>
-      <h3 class="empty-title">Keine Gerichte gefunden</h3>
-      <p class="empty-description">In dieser Kategorie sind momentan keine Gerichte verfügbar.</p>
+      <h3 class="empty-title">No dishes found</h3>
+      <p class="empty-description">There are currently no dishes available in this category.</p>
     </div>
   `;
 };
 
 /**
- * Erstellt eine Gericht-Karte
- * @param {Object} dish - Gericht-Objekt
- * @returns {string} HTML-String für Gericht-Karte
+ * Creates a dish card.
+ * @param {Object} dish - Dish object
+ * @returns {string} HTML string for the dish card
  */
 const createDishCard = (dish) => {
   return `
@@ -139,7 +137,7 @@ const createDishCard = (dish) => {
           <button class="dish-order-btn" data-dish-name="${
             dish.name
           }" data-dish-price="${dish.price}">
-            Bestellen
+            Order
           </button>
         </div>
       </div>

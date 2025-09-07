@@ -1,14 +1,14 @@
 import { getMenuBundle, getPopularDish } from "../../state.js";
 
 /**
- * Rendert die Home-Seite
- * @returns {string} HTML-String für Home-Seite
+ * Renders the Home page.
+ * @returns {string} HTML string for the Home page
  */
 export const renderHomePage = () => {
   return `
     <section class="welcome-content">
-      <h1 class="page-title">Willkommen bei Super~Rando</h1>
-      <p class="page-subtitle">Entdecken Sie unsere Fusion-Küche</p>
+      <h1 class="page-title">Welcome to Super~Rando</h1>
+      <p class="page-subtitle">Discover our fusion cuisine</p>
 
       ${createDailySpecials()}
       ${createPopularDish()}
@@ -17,8 +17,8 @@ export const renderHomePage = () => {
 };
 
 /**
- * Erstellt die Tagesspecials-Sektion
- * @returns {string} HTML-String für Tagesspecials
+ * Creates the daily specials section.
+ * @returns {string} HTML string for daily specials
  */
 const createDailySpecials = () => {
   return `
@@ -29,8 +29,8 @@ const createDailySpecials = () => {
 };
 
 /**
- * Erstellt das Tagesmenü-Bundle
- * @returns {string} HTML-String für Menü-Bundle
+ * Creates the daily menu bundle section.
+ * @returns {string} HTML string for the menu bundle
  */
 const createMenuBundle = () => {
   const menu = getMenuBundle();
@@ -48,7 +48,7 @@ const createMenuBundle = () => {
       <div class="menu-footer">
         <div class="menu-price">${menu.price.toFixed(2)} €</div>
         <button class="menu-order-btn" id="orderMenuBundle" disabled>
-          ${menu.name} bestellen
+          Order ${menu.name}
         </button>
       </div>
     </div>
@@ -56,9 +56,9 @@ const createMenuBundle = () => {
 };
 
 /**
- * Erstellt ein Menü-Item
- * @param {Object} item - Menü-Item Objekt
- * @returns {string} HTML-String für Menü-Item
+ * Creates a menu item.
+ * @param {Object} item - Menu item object
+ * @returns {string} HTML string for a menu item
  */
 const createMenuItem = (item) => {
   return `
@@ -74,13 +74,12 @@ const createMenuItem = (item) => {
     <div class="menu-item-plus">
       <span>➕</span>
     </div>
-
   `;
 };
 
 /**
- * Erstellt die Dessert-Auswahl
- * @returns {string} HTML-String für Dessert-Auswahl
+ * Creates the dessert selection section.
+ * @returns {string} HTML string for dessert selection
  */
 const createDessertSelectionItem = () => {
   const menuBundle = getMenuBundle();
@@ -89,7 +88,7 @@ const createDessertSelectionItem = () => {
   return `
     <div class="menu-item dessert-selection">
       <div class="menu-item-content">
-        <h4 class="menu-item-name">Wählen Sie Ihren Nachgang</h4>
+        <h4 class="menu-item-name">Choose your dessert</h4>
         <div class="dessert-options">
           ${desserts.map((dessert) => createDessertOption(dessert)).join("")}
         </div>
@@ -99,9 +98,9 @@ const createDessertSelectionItem = () => {
 };
 
 /**
- * Erstellt eine Dessert-Option
- * @param {Object} dessert - Dessert-Objekt
- * @returns {string} HTML-String für Dessert-Option
+ * Creates a dessert option.
+ * @param {Object} dessert - Dessert object
+ * @returns {string} HTML string for a dessert option
  */
 const createDessertOption = (dessert) => {
   return `
@@ -119,8 +118,8 @@ const createDessertOption = (dessert) => {
 };
 
 /**
- * Erstellt das beliebte Gericht
- * @returns {string} HTML-String für beliebtes Gericht
+ * Creates the popular dish section.
+ * @returns {string} HTML string for the popular dish
  */
 const createPopularDish = () => {
   const dish = getPopularDish();
@@ -141,7 +140,7 @@ const createPopularDish = () => {
           <div class="popular-footer">
             <div class="popular-price">${dish.price.toFixed(2)} €</div>
             <button class="popular-order-btn" id="orderCarbonara">
-              Jetzt probieren!
+              Try now!
             </button>
           </div>
         </div>
@@ -151,9 +150,9 @@ const createPopularDish = () => {
 };
 
 /**
- * Erstellt ein Feature-Tag
- * @param {Object} feature - Feature-Objekt
- * @returns {string} HTML-String für Feature
+ * Creates a feature tag.
+ * @param {Object} feature - Feature object
+ * @returns {string} HTML string for a feature
  */
 const createFeature = (feature) => {
   return `<span class="feature">${feature.icon} ${feature.text}</span>`;

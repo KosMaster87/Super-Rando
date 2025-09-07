@@ -1,9 +1,9 @@
 import { getDishes, getSelectedCategory, getCategories } from "../state.js";
 
 /**
- * Filtert Gerichte nach ausgewählter Kategorie
- * @param {string} categoryId - Kategorie-ID
- * @returns {Array} Gefilterte Gerichte
+ * Returns dishes filtered by selected category.
+ * @param {string} categoryId - Category ID to filter by
+ * @returns {Array} Filtered dishes
  */
 export const getFilteredDishes = (categoryId = getSelectedCategory()) => {
   const dishes = getDishes();
@@ -15,7 +15,14 @@ export const getFilteredDishes = (categoryId = getSelectedCategory()) => {
 };
 
 /**
- * Aktualisiert die Kategorie-Zähler
+ * Initializes the category system by updating category counts.
+ */
+export const initializeCategorySystem = () => {
+  updateCategoryCounts();
+};
+
+/**
+ * Updates the count for each category based on current dishes.
  */
 export const updateCategoryCounts = () => {
   const dishes = getDishes();
@@ -30,11 +37,4 @@ export const updateCategoryCounts = () => {
       ).length;
     }
   });
-};
-
-/**
- * Initialisiert das Kategorie-System
- */
-export const initializeCategorySystem = () => {
-  updateCategoryCounts();
 };

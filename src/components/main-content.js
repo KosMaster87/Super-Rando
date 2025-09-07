@@ -10,7 +10,7 @@ import { renderNotifications } from "./notification-popup.js";
 import { CART_PAGES } from "../utils/constants.js";
 
 /**
- * Rendert den Main-Content basierend auf der aktuellen Seite
+ * Renders the main content based on the current page.
  */
 export const renderMainContent = () => {
   const mainElement = document.getElementById("mainContent");
@@ -23,8 +23,8 @@ export const renderMainContent = () => {
 };
 
 /**
- * Erstellt Layout mit Warenkorb (Home/Products)
- * @returns {string} HTML-String für Layout mit Cart
+ * Creates the layout with the cart section (Home/Products pages).
+ * @returns {string} HTML string with cart section
  */
 const createLayoutWithCart = () => {
   return `
@@ -46,8 +46,8 @@ const createLayoutWithCart = () => {
 };
 
 /**
- * Erstellt Layout ohne Warenkorb
- * @returns {string} HTML-String für Layout ohne Cart
+ * Creates the layout without the cart section.
+ * @returns {string} HTML string without cart section
  */
 const createLayoutWithoutCart = () => {
   return `
@@ -59,8 +59,8 @@ const createLayoutWithoutCart = () => {
 };
 
 /**
- * Gibt das HTML für die aktuelle Seite zurück
- * @returns {string} HTML-String für aktuelle Seite
+ * Returns the HTML for the currently selected page.
+ * @returns {string} HTML string for the current page
  */
 const getCurrentPageHTML = () => {
   const currentPage = getCurrentPage();

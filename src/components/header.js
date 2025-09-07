@@ -2,7 +2,7 @@ import { ASSETS } from "../utils/constants.js";
 import { getUserPreferences } from "../state.js";
 
 /**
- * Rendert die Header-Komponente
+ * Renders the header component.
  */
 export const renderHeader = () => {
   const headerElement = document.getElementById("headerComponent");
@@ -10,8 +10,8 @@ export const renderHeader = () => {
 };
 
 /**
- * Erstellt das HTML für den Header
- * @returns {string} HTML-String für Header
+ * Creates the HTML for the header.
+ * @returns {string} HTML string for the header
  */
 const createHeaderHTML = () => {
   return `
@@ -23,8 +23,8 @@ const createHeaderHTML = () => {
 };
 
 /**
- * Erstellt die linke Header-Sektion mit Logo
- * @returns {string} HTML-String für Header-Links
+ * Creates the left section of the header containing the logo.
+ * @returns {string} HTML string for the header left section
  */
 const createHeaderLeft = () => {
   return `
@@ -33,7 +33,7 @@ const createHeaderLeft = () => {
         <img class="logo" src="${ASSETS.ICONS}star.png" alt="Super~Rando Logo" />
         <div class="brand-info">
           <h1 class="brand-name">Super~Rando</h1>
-          <p class="brand-tagline">Fusion Küche erleben</p>
+          <p class="brand-tagline">Experience fusion cuisine</p>
         </div>
       </a>
     </div>
@@ -41,8 +41,9 @@ const createHeaderLeft = () => {
 };
 
 /**
- * Erstellt die Header-Navigation
- * @returns {string} HTML-String für Navigation
+/**
+ * Creates the header navigation section.
+ * @returns {string} HTML string for the navigation section
  */
 const createHeaderNav = () => {
   return `
@@ -53,8 +54,8 @@ const createHeaderNav = () => {
 };
 
 /**
- * Erstellt die Navigations-Links
- * @returns {string} HTML-String für Navigation
+ * Creates the navigation links for the header.
+ * @returns {string} HTML string for the navigation links
  */
 const createNavigation = () => {
   return `
@@ -68,11 +69,11 @@ const createNavigation = () => {
 };
 
 /**
- * Erstellt ein Standard-Navigations-Item
- * @param {string} id - Element-ID
- * @param {string} icon - Icon für Navigation
- * @param {string} text - Text für Navigation
- * @returns {string} HTML-String für Nav-Item
+ * Creates a standard navigation item.
+ * @param {string} id - Element ID
+ * @param {string} icon - Icon for the navigation item
+ * @param {string} text - Text for the navigation item
+ * @returns {string} HTML string for a navigation item
  */
 const createNavItem = (id, icon, text) => {
   return `
@@ -86,8 +87,8 @@ const createNavItem = (id, icon, text) => {
 };
 
 /**
- * Erstellt den Benachrichtigungs-Toggle-Button
- * @returns {string} HTML-String für Notification-Toggle
+ * Creates the notification toggle button for the navigation.
+ * @returns {string} HTML string for the notification toggle
  */
 const createNotificationToggle = () => {
   const userPreferences = getUserPreferences();
@@ -98,15 +99,15 @@ const createNotificationToggle = () => {
     <li class="nav-item">
       <button class="nav-link notification-toggle" id="notificationToggle" data-active="${isActive}">
         <span class="nav-icon notification-icon">${icon}</span>
-        <span class="nav-text">Benachrichtigungen</span>
+        <span class="nav-text">Notifications</span>
       </button>
     </li>
   `;
 };
 
 /**
- * Erstellt das Telefon-Navigations-Item
- * @returns {string} HTML-String für Telefon-Nav-Item
+ * Creates the phone navigation item.
+ * @returns {string} HTML string for the phone navigation item
  */
 const createPhoneNavItem = () => {
   return `

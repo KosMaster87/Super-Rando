@@ -2,7 +2,7 @@
    CART TOGGLE BUTTON
    ============================================ */
 
-/* Cart Toggle Button - Basis-Styles */
+/* Cart Toggle Button - Basic Styles */
 .cart-toggle-btn {
   width: 3.5rem;
   height: 3.5rem;
@@ -52,7 +52,7 @@
    CART SIDEBAR
    ============================================ */
 
-/* Body Scroll-Lock für Mobile bei geöffnetem Warenkorb */
+/* Body Scroll-Lock for mobile when shopping cart is open */
 @media (max-width: 768px) {
   body.no-scroll {
     overflow: hidden;
@@ -172,7 +172,7 @@
   display: flex;
   flex-direction: column;
   flex: 1;
-  min-width: 0; /* Wichtig für text-overflow */
+  min-width: 0; /* Important for text overflow */
 }
 
 .cart-item-name {
@@ -192,7 +192,7 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  flex-shrink: 0; /* Verhindert Schrumpfen */
+  flex-shrink: 0;
 }
 
 .quantity-btn {
@@ -208,7 +208,7 @@
   font-weight: bold;
   color: var(--color-primary);
   transition: all 0.3s ease;
-  flex-shrink: 0; /* Verhindert Schrumpfen */
+  flex-shrink: 0;
 }
 
 .quantity-btn:hover {
@@ -221,15 +221,15 @@
   min-width: 1.5rem;
   text-align: center;
   color: var(--color-primary);
-  flex-shrink: 0; /* Verhindert Schrumpfen */
+  flex-shrink: 0;
 }
 
 .cart-item-total {
   font-weight: bold;
   color: var(--color-primary);
   font-size: 0.9rem;
-  margin-left: auto; /* Schiebt das Total nach rechts */
-  flex-shrink: 0; /* Verhindert Schrumpfen */
+  margin-left: auto;
+  flex-shrink: 0;
   min-width: fit-content;
 }
 
@@ -247,7 +247,7 @@
   justify-content: center;
   transition: background 0.3s ease;
   color: var(--color-text-muted);
-  flex-shrink: 0; /* Verhindert Schrumpfen */
+  flex-shrink: 0;
 }
 
 .remove-item-btn:hover {
@@ -318,7 +318,7 @@
     z-index: 101;
   }
 
-  /* Cart Sidebar - Mobile mit Desktop-Styling */
+  /* Cart Sidebar - Mobile with desktop styling */
   .cart-sidebar {
     background: var(--secondary-gradient);
     border-radius: 0;
@@ -328,7 +328,7 @@
     background: var(--secondary-gradient);
   }
 
-  /* Cart Header - Mobile mit Desktop-Styling */
+  /* Cart Header - Mobile with desktop styling */
   .cart-header {
     background: linear-gradient(
       135deg,
@@ -396,7 +396,7 @@
     display: flex;
   }
 
-  /* Cart Toggle ausblenden wenn Warenkorb geöffnet ist */
+  /* Hide Cart Toggle when shopping cart is open */
   body.cart-is-open .cart-toggle-btn.has-items {
     opacity: 0;
     transform: scale(0.8);
@@ -404,7 +404,7 @@
     transition: opacity 0.3s ease, transform 0.3s ease;
   }
 
-  /* Cart Items - Kompakteres Layout */
+  /* Cart Items - More compact layout */
   .cart-item {
     gap: 0.75rem;
     padding: 0.75rem;
@@ -502,7 +502,7 @@
   }
 }
 
-/* Cart Items Column Layout für mittlere Bildschirme */
+/* Cart Items Column Layout for medium screens */
 @media (min-width: 768px) and (max-width: 1439px) {
   .cart-item {
     flex-direction: column;
@@ -541,7 +541,7 @@
   }
 }
 
-/* Large Desktop - Horizontales Layout (min-width: 1440px) */
+/* Large Desktop - Horizontal Layout (min-width: 1440px) */
 @media (min-width: 1440px) {
   .cart-item {
     flex-direction: row;

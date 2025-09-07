@@ -1,7 +1,7 @@
 import { ASSETS } from "../utils/constants.js";
 
 /**
- * Rendert die Footer-Komponente
+ * Renders the footer component.
  */
 export const renderFooter = () => {
   const footerElement = document.getElementById("footerComponent");
@@ -9,8 +9,8 @@ export const renderFooter = () => {
 };
 
 /**
- * Erstellt das HTML für den Footer
- * @returns {string} HTML-String für Footer
+ * Creates the HTML for the footer.
+ * @returns {string} HTML string for the footer
  */
 const createFooterHTML = () => {
   return `
@@ -25,8 +25,8 @@ const createFooterHTML = () => {
 };
 
 /**
- * Erstellt das Footer-Logo
- * @returns {string} HTML-String für Footer-Logo
+ * Creates the footer logo section.
+ * @returns {string} HTML string for the footer logo
  */
 const createFooterLogo = () => {
   return `
@@ -37,16 +37,16 @@ const createFooterLogo = () => {
 };
 
 /**
- * Erstellt einen Trennstrich
- * @returns {string} HTML-String für Trennlinie
+ * Creates a divider line for the footer.
+ * @returns {string} HTML string for the divider line
  */
 const createFooterDivider = () => {
   return '<div class="line"></div>';
 };
 
 /**
- * Erstellt die Footer-Links
- * @returns {string} HTML-String für Footer-Links
+ * Creates the footer navigation links.
+ * @returns {string} HTML string for the footer links
  */
 const createFooterLinks = () => {
   return `
@@ -59,11 +59,10 @@ const createFooterLinks = () => {
 };
 
 /**
- * Erstellt ein Footer-Navigations-Item
- * @param {string} id - Element-ID
- * @param {string} icon - Icon für Navigation
- * @param {string} text - Text für Navigation
- * @returns {string} HTML-String für Footer-Nav-Item
+ * Creates a single footer navigation item.
+ * @param {string} id - Element ID
+ * @param {string} text - Text for the navigation item
+ * @returns {string} HTML string for a footer navigation item
  */
 const createFooterNavItem = (id, text) => {
   return `
@@ -74,8 +73,8 @@ const createFooterNavItem = (id, text) => {
 };
 
 /**
- * Erstellt die Social Media Icons
- * @returns {string} HTML-String für Social Media
+ * Creates the social media icons section in the footer.
+ * @returns {string} HTML string for social media icons
  */
 const createSocialMedia = () => {
   return `
