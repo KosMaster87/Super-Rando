@@ -229,6 +229,25 @@
   box-shadow: 0 0.25rem 0.75rem var(--shadow-medium);
 }
 
+/* Custom Number Input Spinner Styling */
+.form-group input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+/* Webkit browsers (Chrome, Safari, Edge) - Hide default spinners */
+.form-group input[type="number"]::-webkit-outer-spin-button,
+.form-group input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox specific styling */
+@-moz-document url-prefix() {
+  .form-group input[type="number"] {
+    -moz-appearance: textfield;
+  }
+}
+
 /* Tablet Styles */
 @media (min-width: 768px) {
   .contact-content {
