@@ -1,4 +1,4 @@
-import { appState, notifyListeners } from "../state.js";
+import { appState, notifyListeners, getUserPreferences } from "../state.js";
 
 /**
  * Erstellt eine neue Benachrichtigung
@@ -21,7 +21,8 @@ export const showNotification = (
   force = false
 ) => {
   // Prüfen ob User Benachrichtigungen aktiviert hat, außer force=true
-  if (!force && !appState.userPreferences.showNotifications) {
+  const userPreferences = getUserPreferences();
+  if (!force && !userPreferences.showNotifications) {
     return; // Keine Benachrichtigung anzeigen
   }
 

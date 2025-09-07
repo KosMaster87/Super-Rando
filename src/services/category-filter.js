@@ -1,18 +1,23 @@
-import { appState, notifyListeners, saveSessionToStorage } from "../state.js";
+import {
+  appState,
+  notifyListeners,
+  saveSessionToStorage,
+  getDishes,
+  getSelectedCategory,
+} from "../state.js";
 
 /**
  * Filtert Gerichte nach ausgewählter Kategorie
  * @param {string} categoryId - Kategorie-ID
  * @returns {Array} Gefilterte Gerichte
  */
-export const getFilteredDishes = (categoryId = appState.selectedCategory) => {
+export const getFilteredDishes = (categoryId = getSelectedCategory()) => {
+  const dishes = getDishes();
   if (categoryId === "all") {
-    return appState.dishes;
+    return dishes;
   }
 
-  return appState.dishes.filter(
-    (dish) => dish.tags && dish.tags.includes(categoryId)
-  );
+  return dishes.filter((dish) => dish.tags && dish.tags.includes(categoryId));
 };
 
 /**
@@ -31,11 +36,12 @@ export const setSelectedCategory = (categoryId) => {
  * Aktualisiert die Kategorie-Zähler
  */
 export const updateCategoryCounts = () => {
+  const dishes = getDishes();
   appState.categories.forEach((category) => {
     if (category.id === "all") {
-      category.count = appState.dishes.length;
+      category.count = dishes.length;
     } else {
-      category.count = appState.dishes.filter(
+      category.count = dishes.filter(
         (dish) => dish.tags && dish.tags.includes(category.id)
       ).length;
     }

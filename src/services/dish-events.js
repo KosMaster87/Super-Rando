@@ -1,5 +1,5 @@
 import { addToCart } from "./cart.js";
-import { appState } from "../state.js";
+import { getMenuBundle, getPopularDish } from "../state.js";
 import { initializeCategoryEvents } from "./category-events.js";
 
 /**
@@ -42,17 +42,13 @@ const handleMenuBundleOrder = () => {
     'input[name="menuDessert"]:checked'
   );
 
-  if (!selectedDessert) {
-    alert("Bitte wählen Sie einen Nachgang aus.");
-    return;
-  }
-
-  const dessertOption = appState.menuBundle.dessertOptions.find(
+  const menuBundle = getMenuBundle();
+  const dessertOption = menuBundle.dessertOptions.find(
     (option) => option.value === selectedDessert.value
   );
 
-  const menuName = `${appState.menuBundle.name} (mit ${dessertOption.name})`;
-  const menuPrice = appState.menuBundle.price;
+  const menuName = `${menuBundle.name} (mit ${dessertOption.name})`;
+  const menuPrice = menuBundle.price;
 
   addToCart(menuName, menuPrice);
 
@@ -71,8 +67,8 @@ const setupPopularDishEvents = () => {
   const carbonaraBtn = document.getElementById("orderCarbonara");
 
   if (carbonaraBtn) {
-    carbonaraBtn.onclick = () =>
-      addToCart(appState.popularDish.name, appState.popularDish.price);
+    const popularDish = getPopularDish();
+    carbonaraBtn.onclick = () => addToCart(popularDish.name, popularDish.price);
   }
 };
 

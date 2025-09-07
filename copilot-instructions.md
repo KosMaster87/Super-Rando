@@ -20,12 +20,12 @@
 
 ## JSDoc-Anforderungen
 
-- Alle JavaScript-Funktionen müssen JSDoc-Kommentare auf Deutsch haben.
+- Alle JavaScript-Funktionen müssen JSDoc-Kommentare auf Englisch haben.
 - JSDoc-Format verwenden: `/** */`
 - Kurze, prägnante Beschreibung der Funktionsaufgabe.
 - Parameter mit `@param {type} name - Beschreibung` dokumentieren.
 - Rückgabewerte mit `@returns {type} Beschreibung` dokumentieren.
-- Deutsche Beschreibungen und Parameter-Erklärungen verwenden.
+<!-- - Englische Beschreibungen und Parameter-Erklärungen verwenden. -->
 - Bei async Funktionen: `@async` verwenden.
 
 ## Reactive UI Updates

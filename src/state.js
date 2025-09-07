@@ -158,8 +158,6 @@ const setCartVisible = (visible) => {
   notifyListeners();
 };
 
-// ---------------------------------
-
 /**
  * Lädt den Warenkorb aus dem LocalStorage
  */
@@ -184,8 +182,6 @@ const saveCartToStorage = () => {
     console.error("Fehler beim Speichern des Warenkorbs:", error);
   }
 };
-
-// ---------------------------------
 
 /**
  * Lädt alle User-Preferences aus dem LocalStorage
@@ -218,8 +214,6 @@ const saveUserPreferences = () => {
     console.error("Fehler beim Speichern der User-Preferences:", error);
   }
 };
-
-// ---------------------------------
 
 /**
  * Prüft ob Seite gültig ist (für Session-Wiederherstellung)
@@ -255,8 +249,8 @@ const loadSessionFromStorage = () => {
       }
 
       console.log("Session wiederhergestellt:", {
-        page: appState.currentPage,
-        category: appState.selectedCategory,
+        page: getCurrentPage(),
+        category: getSelectedCategory(),
       });
 
       notifyListeners();
@@ -272,8 +266,8 @@ const loadSessionFromStorage = () => {
 const saveSessionToStorage = () => {
   try {
     const sessionData = {
-      lastPage: appState.currentPage,
-      selectedCategory: appState.selectedCategory,
+      lastPage: getCurrentPage(),
+      selectedCategory: getSelectedCategory(),
       timestamp: Date.now(),
     };
     localStorage.setItem("superRandoSession", JSON.stringify(sessionData));
@@ -293,6 +287,89 @@ const loadAllStoredData = () => {
   saveUserPreferences();
 };
 
+/**
+ * Gibt eine Kopie der Warenkorb-Items zurück
+ * @returns {Array} Kopie der Warenkorb-Items
+ */
+export const getCartItems = () => [...appState.cart];
+
+/**
+ * Prüft ob der Warenkorb leer ist
+ * @returns {boolean} Ist Warenkorb leer
+ */
+export const isCartEmpty = () => appState.cart.length === 0;
+
+/**
+ * Berechnet die Gesamtsumme des Warenkorbs
+ * @returns {number} Gesamtsumme
+ */
+export const getCartTotal = () =>
+  appState.cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+
+/**
+ * Gibt die Anzahl aller Items im Warenkorb zurück
+ * @returns {number} Anzahl Items
+ */
+export const getCartItemCount = () =>
+  appState.cart.reduce((sum, item) => sum + item.quantity, 0);
+
+/**
+ * Gibt den Warenkorb-Sichtbarkeitsstatus zurück
+ * @returns {boolean} Ist Warenkorb sichtbar
+ */
+export const isCartVisible = () => appState.cartVisible;
+
+/**
+ * Gibt eine Kopie der Kategorien zurück
+ * @returns {Array} Kopie der Kategorien
+ */
+export const getCategories = () => [...appState.categories];
+
+/**
+ * Gibt die ausgewählte Kategorie zurück
+ * @returns {string} Ausgewählte Kategorie
+ */
+export const getSelectedCategory = () => appState.selectedCategory;
+
+/**
+ * Gibt eine Kopie der Gerichte zurück
+ * @returns {Array} Kopie der Gerichte
+ */
+export const getDishes = () => [...appState.dishes];
+
+/**
+ * Gibt das Menü-Bundle zurück
+ * @returns {Object} Menü-Bundle
+ */
+export const getMenuBundle = () => ({ ...appState.menuBundle });
+
+/**
+ * Gibt das beliebte Gericht zurück
+ * @returns {Object} Beliebtes Gericht
+ */
+export const getPopularDish = () => ({ ...appState.popularDish });
+
+/**
+ * Gibt eine Kopie der Benachrichtigungen zurück
+ * @returns {Array} Kopie der Benachrichtigungen
+ */
+export const getNotifications = () => [...appState.notifications];
+
+/**
+ * Gibt die User-Preferences zurück
+ * @returns {Object} User-Preferences
+ */
+export const getUserPreferences = () => ({ ...appState.userPreferences });
+
+/**
+ * Gibt die aktuelle Seite zurück
+ * @returns {string} Aktuelle Seite
+ */
+export const getCurrentPage = () => appState.currentPage;
+
+/**
+ * Exportiert den zentralen Anwendungszustand und die relevanten Funktionen
+ */
 export {
   appState,
   loadCartFromStorage,

@@ -1,4 +1,4 @@
-import { appState } from "../../state.js";
+import { getMenuBundle, getPopularDish } from "../../state.js";
 
 /**
  * Rendert die Home-Seite
@@ -33,7 +33,7 @@ const createDailySpecials = () => {
  * @returns {string} HTML-String für Menü-Bundle
  */
 const createMenuBundle = () => {
-  const menu = appState.menuBundle;
+  const menu = getMenuBundle();
 
   return `
     <div class="menu-bundle">
@@ -83,7 +83,8 @@ const createMenuItem = (item) => {
  * @returns {string} HTML-String für Dessert-Auswahl
  */
 const createDessertSelectionItem = () => {
-  const desserts = appState.menuBundle.dessertOptions;
+  const menuBundle = getMenuBundle();
+  const desserts = menuBundle.dessertOptions;
 
   return `
     <div class="menu-item dessert-selection">
@@ -122,7 +123,7 @@ const createDessertOption = (dessert) => {
  * @returns {string} HTML-String für beliebtes Gericht
  */
 const createPopularDish = () => {
-  const dish = appState.popularDish;
+  const dish = getPopularDish();
 
   return `
     <section class="popular-dish">

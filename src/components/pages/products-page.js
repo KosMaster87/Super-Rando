@@ -1,4 +1,4 @@
-import { appState } from "../../state.js";
+import { getCategories, getSelectedCategory } from "../../state.js";
 import { getFilteredDishes } from "../../services/category-filter.js";
 
 /**
@@ -35,11 +35,10 @@ const createProductsHeader = () => {
  * @returns {string} HTML-String für Kategorien
  */
 const createProductCategories = () => {
+  const categories = getCategories();
   return `
     <section class="product-categories">
-      ${appState.categories
-        .map((category) => createCategoryCard(category))
-        .join("")}
+      ${categories.map((category) => createCategoryCard(category)).join("")}
     </section>
   `;
 };
@@ -50,7 +49,8 @@ const createProductCategories = () => {
  * @returns {string} HTML-String für Kategorie-Karte
  */
 const createCategoryCard = (category) => {
-  const isActive = appState.selectedCategory === category.id;
+  const selectedCategory = getSelectedCategory();
+  const isActive = selectedCategory === category.id;
 
   return `
     <div class="category-card ${isActive ? "active" : ""}" 
@@ -70,13 +70,14 @@ const createCategoryCard = (category) => {
  */
 const createDishesSection = () => {
   const filteredDishes = getFilteredDishes();
+  const selectedCategory = getSelectedCategory();
 
   return `
     <section class="dishes-section">
       <div class="dishes-header">
         <h2 class="dishes-title">
           ${
-            appState.selectedCategory === "all"
+            selectedCategory === "all"
               ? "Alle Spezialitäten"
               : getCategoryDisplayName()
           }
@@ -101,9 +102,9 @@ const createDishesSection = () => {
  * @returns {string} Kategorie-Anzeigename
  */
 const getCategoryDisplayName = () => {
-  const category = appState.categories.find(
-    (cat) => cat.id === appState.selectedCategory
-  );
+  const categories = getCategories();
+  const selectedCategory = getSelectedCategory();
+  const category = categories.find((cat) => cat.id === selectedCategory);
   return category ? category.name : "Alle Spezialitäten";
 };
 

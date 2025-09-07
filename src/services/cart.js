@@ -152,22 +152,3 @@ const addNewCartItem = (dishName, price) => {
   };
   appState.cart.push(newItem);
 };
-
-/**
- * Gibt die Gesamtanzahl der Items im Warenkorb zurück
- * @returns {number} Anzahl der Items
- */
-export const getCartItemCount = () => {
-  return appState.cart.reduce((total, item) => total + item.quantity, 0);
-};
-
-/**
- * Gibt den Gesamtpreis des Warenkorbs zurück
- * @returns {number} Gesamtpreis
- */
-export const getCartTotal = () => {
-  return appState.cart.reduce(
-    (total, item) => total + item.price * item.quantity,
-    0
-  );
-};

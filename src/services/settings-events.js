@@ -1,4 +1,4 @@
-import { appState } from "../state.js";
+import { getUserPreferences } from "../state.js";
 import { setTheme, toggleNotifications } from "./user-preferences.js";
 
 /**
@@ -110,11 +110,12 @@ const closeDropdown = () => {
  */
 const updateActiveSettings = () => {
   const settingOptions = document.querySelectorAll(".setting-option");
+  const userPreferences = getUserPreferences();
 
   settingOptions.forEach((option) => {
     const setting = option.dataset.setting;
     const value = option.dataset.value;
-    const isActive = appState.userPreferences[setting] === value;
+    const isActive = userPreferences[setting] === value;
 
     option.classList.toggle("setting-active", isActive);
   });
@@ -129,12 +130,29 @@ const updateNotificationToggle = () => {
   const toggle = document.getElementById("notificationToggle");
 
   if (toggle) {
-    const isEnabled = appState.userPreferences.showNotifications;
+    const userPreferences = getUserPreferences();
+    const isEnabled = userPreferences.showNotifications;
     toggle.classList.toggle("toggle-active", isEnabled);
 
     const indicator = toggle.querySelector(".toggle-indicator");
     if (indicator) {
       indicator.textContent = isEnabled ? "●" : "○";
     }
+  }
+};
+
+// ---------------
+/**
+ * Behandelt Setting-Änderungen
+ * @param {HTMLElement} option - Geklickte Setting-Option
+ */
+const handleSettingChange = (option) => {
+  const setting = option.dataset.setting;
+  const value = option.dataset.value;
+
+  if (setting === "theme") {
+    setTheme(value);
+    updateActiveSettings();
+    closeDropdown();
   }
 };

@@ -1,5 +1,4 @@
-import { appState } from "../state.js";
-import { getCartItemCount } from "../services/cart.js";
+import { getCartItemCount } from "../state.js";
 
 /**
  * Rendert den Warenkorb-Toggle-Button

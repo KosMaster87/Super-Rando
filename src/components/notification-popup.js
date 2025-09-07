@@ -1,4 +1,4 @@
-import { appState } from "../state.js";
+import { getNotifications } from "../state.js";
 import { removeNotification } from "../services/notification.js";
 
 /**
@@ -6,13 +6,14 @@ import { removeNotification } from "../services/notification.js";
  * @returns {string} HTML-String für Benachrichtigungen
  */
 export const renderNotifications = () => {
-  if (appState.notifications.length === 0) {
+  const notifications = getNotifications();
+  if (notifications.length === 0) {
     return "";
   }
 
   return `
     <div class="notification-container" id="notificationContainer">
-      ${appState.notifications
+      ${notifications
         .map((notification) => createNotificationHTML(notification))
         .join("")}
     </div>

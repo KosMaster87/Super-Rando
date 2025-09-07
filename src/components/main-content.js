@@ -1,4 +1,4 @@
-import { appState } from "../state.js";
+import { getCurrentPage } from "../state.js";
 import { renderHomePage } from "./pages/home-page.js";
 import { renderProductsPage } from "./pages/products-page.js";
 import { renderContactPage } from "./pages/contact-page.js";
@@ -14,7 +14,8 @@ import { CART_PAGES } from "../utils/constants.js";
  */
 export const renderMainContent = () => {
   const mainElement = document.getElementById("mainContent");
-  const hasCart = CART_PAGES.includes(appState.currentPage);
+  const currentPage = getCurrentPage();
+  const hasCart = CART_PAGES.includes(currentPage);
 
   mainElement.innerHTML = hasCart
     ? createLayoutWithCart()
@@ -62,7 +63,8 @@ const createLayoutWithoutCart = () => {
  * @returns {string} HTML-String für aktuelle Seite
  */
 const getCurrentPageHTML = () => {
-  switch (appState.currentPage) {
+  const currentPage = getCurrentPage();
+  switch (currentPage) {
     case "home":
       return renderHomePage();
     case "products":

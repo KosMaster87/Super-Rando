@@ -1,5 +1,10 @@
-import { appState } from "../state.js";
-import { getCartItemCount, getCartTotal } from "../services/cart.js";
+import {
+  getCartItems,
+  getCartItemCount,
+  getCartTotal,
+  isCartVisible,
+  isCartEmpty,
+} from "../state.js";
 
 /**
  * Rendert die Warenkorb-Komponente
@@ -8,7 +13,7 @@ import { getCartItemCount, getCartTotal } from "../services/cart.js";
 export const renderCart = () => {
   return `
     <aside class="cart-sidebar ${
-      appState.cartVisible ? "cart-open" : ""
+      isCartVisible() ? "cart-open" : ""
     }" id="cartSidebar">
       <div class="cart-container">
         ${createCartHeader()}
@@ -38,13 +43,14 @@ const createCartHeader = () => {
  * @returns {string} HTML-String für Cart-Content
  */
 const createCartContent = () => {
-  if (appState.cart.length === 0) {
+  if (isCartEmpty()) {
     return createEmptyCart();
   }
 
+  const cartItems = getCartItems();
   return `
     <div class="cart-items">
-      ${appState.cart.map((item) => createCartItem(item)).join("")}
+      ${cartItems.map((item) => createCartItem(item)).join("")}
     </div>
   `;
 };
@@ -98,7 +104,8 @@ const createCartItem = (item) => {
  */
 const createCartFooter = () => {
   const total = getCartTotal();
-  const hasItems = appState.cart.length > 0;
+  const cartItems = getCartItems();
+  const hasItems = cartItems.length > 0;
 
   return `
     <div class="cart-footer">
