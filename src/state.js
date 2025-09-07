@@ -150,15 +150,6 @@ const notifyListeners = () => {
 };
 
 /**
- * Setzt den Warenkorb-Sichtbarkeitsstatus und triggert Scroll-Management
- * @param {boolean} visible - Soll der Warenkorb sichtbar sein
- */
-const setCartVisible = (visible) => {
-  appState.cartVisible = visible;
-  notifyListeners();
-};
-
-/**
  * Lädt den Warenkorb aus dem LocalStorage
  */
 const loadCartFromStorage = () => {
@@ -367,6 +358,119 @@ export const getUserPreferences = () => ({ ...appState.userPreferences });
  */
 export const getCurrentPage = () => appState.currentPage;
 
+// ----------------------------
+// ----------------------------
+// ----------------------------
+
+/**
+ * Setzt die aktuelle Seite
+ * @param {string} page - Seitenname
+ */
+export const setCurrentPage = (page) => {
+  if (appState.currentPage !== page) {
+    appState.currentPage = page;
+    notifyListeners();
+  }
+};
+
+/**
+ * Fügt ein Item zum Warenkorb hinzu
+ * @param {Object} item - Warenkorb-Item
+ */
+export const addCartItem = (item) => {
+  appState.cart = [...appState.cart, item];
+  notifyListeners();
+};
+
+/**
+ * Aktualisiert ein Cart-Item
+ * @param {string} itemName - Name des Items
+ * @param {Object} updates - Updates für das Item
+ */
+export const updateCartItem = (itemName, updates) => {
+  appState.cart = appState.cart.map((item) =>
+    item.name === itemName ? { ...item, ...updates } : item
+  );
+  notifyListeners();
+};
+
+/**
+ * Entfernt ein Item aus dem Warenkorb
+ * @param {string} itemName - Name des zu entfernenden Items
+ */
+export const removeCartItem = (itemName) => {
+  appState.cart = appState.cart.filter((item) => item.name !== itemName);
+  notifyListeners();
+};
+
+/**
+ * Setzt den Warenkorb-Sichtbarkeitsstatus und triggert Scroll-Management
+ * @param {boolean} visible - Soll der Warenkorb sichtbar sein
+ */
+const setCartVisible = (visible) => {
+  appState.cartVisible = visible;
+  notifyListeners();
+};
+
+/**
+ * Setzt den Warenkorb
+ * @param {Array} cartItems - Neue Warenkorb-Items
+ */
+export const setCart = (cartItems) => {
+  appState.cart = [...cartItems];
+  notifyListeners();
+};
+
+// ----------------------------
+// ----------------------------
+// ----------------------------
+
+/**
+ * Setzt die ausgewählte Kategorie
+ * @param {string} categoryId - Kategorie-ID
+ */
+export const setSelectedCategory = (categoryId) => {
+  if (appState.selectedCategory !== categoryId) {
+    appState.selectedCategory = categoryId;
+    notifyListeners();
+  }
+};
+
+/**
+ * Fügt eine Benachrichtigung hinzu
+ * @param {Object} notification - Benachrichtigungs-Objekt
+ */
+export const addNotification = (notification) => {
+  appState.notifications = [...appState.notifications, notification];
+  notifyListeners();
+};
+
+/**
+ * Entfernt eine Benachrichtigung
+ * @param {number} notificationId - ID der zu entfernenden Benachrichtigung
+ */
+export const removeNotification = (notificationId) => {
+  appState.notifications = appState.notifications.filter(
+    (notification) => notification.id !== notificationId
+  );
+  notifyListeners();
+};
+
+/**
+ * Setzt User-Preferences
+ * @param {Object} preferences - Neue Preferences
+ */
+export const setUserPreferences = (preferences) => {
+  appState.userPreferences = {
+    ...appState.userPreferences,
+    ...preferences,
+  };
+  notifyListeners();
+};
+
+// ----------------------------
+// ----------------------------
+// ----------------------------
 /**
  * Exportiert den zentralen Anwendungszustand und die relevanten Funktionen
  */

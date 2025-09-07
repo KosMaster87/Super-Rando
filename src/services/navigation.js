@@ -1,4 +1,4 @@
-import { appState, notifyListeners, saveSessionToStorage } from "../state.js";
+import { setCurrentPage, saveSessionToStorage } from "../state.js";
 import { PAGES } from "../utils/constants.js";
 
 let isNavigationInitialized = false;
@@ -35,8 +35,7 @@ const setupBrowserNavigation = () => {
 const handlePopState = (event) => {
   const page = event.state?.page || extractPageFromURL();
   if (isValidPage(page)) {
-    appState.currentPage = page;
-    notifyListeners();
+    setCurrentPage(page);
   }
 };
 
@@ -46,7 +45,7 @@ const handlePopState = (event) => {
 const loadInitialPage = () => {
   const page = extractPageFromURL();
   if (isValidPage(page)) {
-    appState.currentPage = page;
+    setCurrentPage(page);
     updateDocumentTitle(page);
   }
 };
@@ -90,11 +89,10 @@ export const handleNavigationClick = (event, page) => {
 export const navigateToPage = (page) => {
   if (!isValidPage(page)) return;
 
-  appState.currentPage = page;
+  setCurrentPage(page);
   updateBrowserHistory(page);
   updateDocumentTitle(page);
-  saveSessionToStorage(); // ← Session speichern bei Navigation
-  notifyListeners();
+  saveSessionToStorage();
 };
 
 /**

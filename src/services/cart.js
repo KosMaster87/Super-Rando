@@ -1,4 +1,13 @@
-import { appState, saveCartToStorage, notifyListeners } from "../state.js";
+import {
+  saveCartToStorage,
+  setCartVisible,
+  addCartItem,
+  updateCartItem,
+  removeCartItem,
+  setCart,
+  getCartItems,
+  isCartVisible,
+} from "../state.js";
 import { MAX_CART_ITEMS } from "../utils/constants.js";
 import { showAddToCartNotification } from "./notification.js";
 
@@ -8,18 +17,22 @@ import { showAddToCartNotification } from "./notification.js";
  * @param {number} price - Preis des Gerichts
  */
 export const addToCart = (dishName, price) => {
-  const existingItem = findCartItem(dishName);
+  const cartItems = getCartItems();
+  const existingItem = cartItems.find((item) => item.name === dishName);
 
   if (existingItem) {
-    increaseQuantity(existingItem);
-    showAddToCartNotification(dishName, 1);
+    increaseCartItem(dishName);
   } else {
-    addNewCartItem(dishName, price);
-    showAddToCartNotification(dishName, 1);
+    const newItem = {
+      name: dishName,
+      price: price,
+      quantity: 1,
+    };
+    addCartItem(newItem);
   }
 
+  showAddToCartNotification(dishName, 1);
   saveCartToStorage();
-  notifyListeners();
 };
 
 /**
@@ -27,11 +40,12 @@ export const addToCart = (dishName, price) => {
  * @param {string} itemName - Name des Items
  */
 export const increaseCartItem = (itemName) => {
-  const item = findCartItem(itemName);
+  const cartItems = getCartItems();
+  const item = cartItems.find((item) => item.name === itemName);
+
   if (item && item.quantity < MAX_CART_ITEMS) {
-    item.quantity += 1;
+    updateCartItem(itemName, { quantity: item.quantity + 1 });
     saveCartToStorage();
-    notifyListeners();
   }
 };
 
@@ -40,16 +54,17 @@ export const increaseCartItem = (itemName) => {
  * @param {string} itemName - Name des Items
  */
 export const decreaseCartItem = (itemName) => {
-  const item = findCartItem(itemName);
+  const cartItems = getCartItems();
+  const item = cartItems.find((item) => item.name === itemName);
+
   if (item) {
     if (item.quantity > 1) {
-      item.quantity -= 1;
+      updateCartItem(itemName, { quantity: item.quantity - 1 });
     } else {
       removeFromCart(itemName);
       return;
     }
     saveCartToStorage();
-    notifyListeners();
   }
 };
 
@@ -58,47 +73,43 @@ export const decreaseCartItem = (itemName) => {
  * @param {string} itemName - Name des Items
  */
 export const removeFromCart = (itemName) => {
-  appState.cart = appState.cart.filter((item) => item.name !== itemName);
+  removeCartItem(itemName);
   saveCartToStorage();
-  notifyListeners();
 };
 
 /**
  * Togglet die Warenkorb-Sichtbarkeit
  */
 export const toggleCartVisibility = () => {
-  appState.cartVisible = !appState.cartVisible;
+  const currentVisible = isCartVisible();
+  setCartVisible(!currentVisible);
   updateCartBodyClass();
-  notifyListeners();
 };
 
 /**
  * Öffnet den Warenkorb
  */
 export const openCart = () => {
-  appState.cartVisible = true;
+  setCartVisible(true);
   updateCartBodyClass();
-  notifyListeners();
 };
 
 /**
  * Schließt den Warenkorb
  */
 export const closeCart = () => {
-  appState.cartVisible = false;
+  setCartVisible(false);
   updateCartBodyClass();
-  notifyListeners();
 };
 
 /**
  * Leert den kompletten Warenkorb
  */
 export const clearCart = () => {
-  appState.cart = [];
-  appState.cartVisible = false;
+  setCart([]);
+  setCartVisible(false);
   updateCartBodyClass();
   saveCartToStorage();
-  notifyListeners();
 };
 
 /**
@@ -106,7 +117,7 @@ export const clearCart = () => {
  */
 const updateCartBodyClass = () => {
   const body = document.body;
-  if (appState.cartVisible) {
+  if (isCartVisible()) {
     body.classList.add("cart-is-open");
   } else {
     body.classList.remove("cart-is-open");
@@ -118,37 +129,4 @@ const updateCartBodyClass = () => {
  */
 export const initializeCartStatus = () => {
   updateCartBodyClass();
-};
-
-/**
- * Sucht ein Item im Warenkorb
- * @param {string} dishName - Name des Gerichts
- * @returns {Object|undefined} Gefundenes Item oder undefined
- */
-const findCartItem = (dishName) => {
-  return appState.cart.find((item) => item.name === dishName);
-};
-
-/**
- * Erhöht die Anzahl eines existierenden Items
- * @param {Object} item - Warenkorb-Item
- */
-const increaseQuantity = (item) => {
-  if (item.quantity < MAX_CART_ITEMS) {
-    item.quantity += 1;
-  }
-};
-
-/**
- * Fügt neues Item zum Warenkorb hinzu
- * @param {string} dishName - Name des Gerichts
- * @param {number} price - Preis des Gerichts
- */
-const addNewCartItem = (dishName, price) => {
-  const newItem = {
-    name: dishName,
-    price: price,
-    quantity: 1,
-  };
-  appState.cart.push(newItem);
 };
