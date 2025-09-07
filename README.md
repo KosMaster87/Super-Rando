@@ -1,51 +1,51 @@
-# 🍜 Super~Rando SPA - Fusion Küche Restaurant
+# 🍜 Super~Rando SPA - Fusion Cuisine Restaurant
 
-Eine moderne Single Page Application (SPA) für ein Fusion-Restaurant, entwickelt mit **Vanilla JavaScript, CSS und PHP Backend**. Das Projekt demonstriert professionelle Frontend-Architektur ohne externe Frameworks.
+A modern Single Page Application (SPA) for a fusion restaurant, developed with **Vanilla JavaScript, CSS, and PHP backend**. This project demonstrates professional frontend architecture without any external frameworks.
 
-## ✨ Kern-Features
+## ✨ Core Features
 
-- 🌱 **100% Vanilla JavaScript** - Keine externen Dependencies
+- 🌱 **100% Vanilla JavaScript** - No external dependencies
 - 🎨 **Mobile First Responsive** - CSS Grid & Flexbox
-- 🛒 **Smart Shopping Cart** - LocalStorage-persistent
-- 📧 **Sicheres Kontaktformular** - Spam-Schutz & E-Mail-Bestätigung
-- 🔔 **Toast-Benachrichtigungen** - Benutzerfreundliches Feedback
-- ♿ **Accessibility-Ready** - ARIA & Keyboard-Navigation
+- 🛒 **Smart Shopping Cart** - LocalStorage persistent
+- 📧 **Secure Contact Form** - Spam protection & email confirmation
+- 🔔 **Toast Notifications** - User-friendly feedback
+- ♿ **Accessibility Ready** - ARIA & keyboard navigation
 
 ## 🚀 Quick Start
 
 ```bash
 npm install
 npm run dev
-# → Öffnet automatisch http://localhost:3000
+# → Automatically opens http://localhost:3000
 ```
 
-## 🏗️ Architektur-Highlights
+## 🏗️ Architecture Highlights
 
 ### State Management ✅
 
 ```js
-// Getter/Setter Pattern für sicheren State-Zugriff
+// Getter/Setter pattern for secure state access
 export const getCartItems = () => [...appState.cart];
 export const setCurrentPage = (page) => { notifyListeners(); };
 
 // Reactive UI Updates
-State-Änderung → notifyListeners() → automatisches Re-Rendering
+State change → notifyListeners() → automatic re-rendering
 ```
 
 ### Service Layer ✅
 
 ```
 src/services/
-├── cart.js           # Warenkorb-Logik
-├── navigation.js     # SPA-Routing
-├── contact-form.js   # Formular-Handling
-└── notification.js   # Toast-System
+├── cart.js           # Cart logic
+├── navigation.js     # SPA routing
+├── contact-form.js   # Form handling
+└── notification.js   # Toast system
 ```
 
-### 14-Zeilen-Funktionen ✅
+### 14-Line Functions ✅
 
 ```js
-// Jede Funktion max. 14 Zeilen, Single Responsibility
+// Each function max. 14 lines, single responsibility
 const handleCartClick = (itemName) => {
   updateCartItem(itemName, { quantity: item.quantity + 1 });
   saveCartToStorage();
@@ -53,88 +53,88 @@ const handleCartClick = (itemName) => {
 };
 ```
 
-## 📁 Projektstruktur
+## 📁 Project Structure
 
 ```
 Super-Rando-SPA/
 ├── src/
-│   ├── app.js                   # App-Einstiegspunkt
-│   ├── state.js                 # Zentraler State + Getter/Setter
-│   ├── components/              # UI-Komponenten
-│   │   ├── pages/               # Seiten-spezifische Komponenten
-│   │   ├── cart.js, header.js   # Wiederverwendbare Komponenten
-│   ├── services/                # Business Logic
-│   └── utils/                   # Hilfsfunktionen & Konstanten
-├── styles/components/           # Komponenten-basiertes CSS
-├── assets/                      # Bilder, Icons, PWA-Manifest
-└── api/contact.php              # Backend-Endpunkt
+│   ├── app.js                   # App entry point
+│   ├── state.js                 # Central state + getter/setter
+│   ├── components/              # UI components
+│   │   ├── pages/               # Page-specific components
+│   │   ├── cart.js, header.js   # Reusable components
+│   ├── services/                # Business logic
+│   └── utils/                   # Utility functions & constants
+├── styles/components/           # Component-based CSS
+├── assets/                      # Images, icons, PWA manifest
+└── api/contact.php              # Backend endpoint
 ```
 
-## 🔧 Implementierte Standards
+## 🔧 Implemented Standards
 
 ### JavaScript ✅
 
-- **ES6+ Modules** - Import/Export durchgängig
-- **14-Zeilen-Regel** - Alle Funktionen eingehalten
-- **JSDoc-Dokumentation** - Alle öffentlichen Funktionen
-- **Immutable Updates** - State nie direkt mutiert
-- **Arrow Functions** - Moderne Syntax
+- **ES6+ Modules** - Consistent import/export usage
+- **14-Line Rule** - All functions comply
+- **JSDoc Documentation** - All public functions
+- **Immutable Updates** - State never mutated directly
+- **Arrow Functions** - Modern syntax
 
 ### CSS ✅
 
 - **Mobile First** - Breakpoints: 768px, 1024px, 1280px
-- **CSS Custom Properties** - Alle Farben als Variablen
-- **Relative Einheiten** - rem für Größen, px für Borders
-- **BEM-ähnliche Klassen** - Konsistente Namensgebung
+- **CSS Custom Properties** - All colors as variables
+- **Relative Units** - rem for sizing, px for borders
+- **BEM-like Classes** - Consistent naming convention
 
-### Sicherheit ✅
+### Security ✅
 
-- **Honeypot-Felder** - Bot-Schutz
-- **Math-Captcha** - Benutzerfreundliche Spam-Abwehr
-- **Rate-Limiting** - IP-basierte Anfragebegrenzung (3/Stunde)
-- **Input-Sanitization** - XSS-Schutz client- & serverseitig
+- **Honeypot Fields** - Bot protection
+- **Math Captcha** - User-friendly spam prevention
+- **Rate Limiting** - IP-based request limit (3/hour)
+- **Input Sanitization** - XSS protection on client & server
 
-## 🌟 Besonderheiten
+## 🌟 Special Features
 
-### Reactive UI ohne Framework
-
-```js
-// Event-getriebene Architektur
-cart.add() → notifyListeners() → renderAllComponents() → Events neu setzen
-```
-
-### Session-Wiederherstellung
+### Reactive UI Without Framework
 
 ```js
-// Navigation & Warenkorb überleben Browser-Reload
-localStorage: Warenkorb + User-Preferences
-sessionStorage: Aktuelle Seite + Kategorie-Filter
+// Event-driven architecture
+cart.add() → notifyListeners() → renderAllComponents() → reset events
 ```
 
-### Service-orientierte Architektur
+### Session Restoration
 
 ```js
-// Klare Trennung: Presentation vs. Business Logic
-Components: HTML - Rendering;
-Services: State - Manipulation + API - Calls;
+// Navigation & cart persist across browser reloads
+localStorage: Cart + user preferences
+sessionStorage: Current page + category filter
 ```
 
-## 🎯 Nächste Features
+### Service-Oriented Architecture
 
-### 🚧 In Entwicklung
+```js
+// Clear separation: presentation vs. business logic
+Components: HTML rendering;
+Services: State manipulation + API calls;
+```
 
-- [ ] **Theme System** - Dark/Light Mode
-- [ ] **Mehrsprachigkeit** - DE/EN Toggle
-- [ ] **PWA-Features** - Offline-Funktionalität
+## 🎯 Upcoming Features
+
+### 🚧 In Development
+
+- [ ] **Theme System** - Dark/Light mode
+- [ ] **Multi-language Support** - DE/EN toggle
+- [ ] **PWA Features** - Offline functionality
 
 ### 📋 Roadmap
 
-- [ ] **User Authentication** - Login/Registrierung
-- [ ] **Order History** - Bestellübersicht
-- [ ] **Advanced Search** - Zutaten-Filter
-- [ ] **Push Notifications** - PWA-Benachrichtigungen
+- [ ] **User Authentication** - Login/registration
+- [ ] **Order History** - View past orders
+- [ ] **Advanced Search** - Ingredient filtering
+- [ ] **Push Notifications** - PWA notifications
 
-## 📧 API-Dokumentation
+## 📧 API Documentation
 
 ### Contact Endpoint
 
@@ -145,18 +145,18 @@ Content-Type: application/json
 {
   "name": "Max Mustermann",
   "email": "max@example.com",
-  "subject": "Reservierung",
-  "message": "Tisch für 4 Personen...",
+  "subject": "Reservation",
+  "message": "Table for 4 persons...",
   "captcha": 42
 }
 ```
 
 **Features:**
 
-- Rate-Limiting (3 Anfragen/Stunde pro IP)
-- Dual-E-Mail-System (Admin + Bestätigung)
-- HTML-E-Mail-Templates
-- Umfassende Eingabe-Validierung
+- Rate limiting (3 requests/hour per IP)
+- Dual email system (admin + confirmation)
+- HTML email templates
+- Comprehensive input validation
 
 ## 🎨 Design System
 
@@ -170,98 +170,98 @@ Content-Type: application/json
 }
 ```
 
-**Typography:** Comic Neue (lokal gehostet) + system-ui Fallback
+**Typography:** Comic Neue (locally hosted) + system-ui fallback
 
-## 💻 Entwicklung
+## 💻 Development
 
-### Browser-Support
+### Browser Support
 
-- ✅ Chrome/Edge/Firefox (moderne Versionen)
-- ✅ Safari (moderne Versionen)
-- ✅ Mobile Browsers (iOS Safari, Chrome Mobile)
+- ✅ Chrome/Edge/Firefox (modern versions)
+- ✅ Safari (modern versions)
+- ✅ Mobile browsers (iOS Safari, Chrome Mobile)
 
 ### Performance
 
-- ⚡ Kein Framework-Overhead
-- 📱 Touch-optimierte Interaktionen
-- 💾 Aggressive LocalStorage-Nutzung
-- 🎯 CSS-only Animationen
+- ⚡ No framework overhead
+- 📱 Touch-optimized interactions
+- 💾 Aggressive LocalStorage usage
+- 🎯 CSS-only animations
 
-## 📄 Lizenz
+## 📄 License
 
-MIT License - siehe [LICENSE](LICENSE) für Details.
+MIT License - see [LICENSE](LICENSE) for details.
 
 ---
 
-**🍜 Entwickelt mit ❤️ für moderne Web-Entwicklung**
+**🍜 Built with ❤️ for modern web development**
 
-_Ein Showcase für professionelle Frontend-Architektur mit Vanilla JavaScript_
+_A showcase for professional frontend architecture with Vanilla JavaScript_
 
-- [ ] **Bestellhistorie** - Persönliche Bestellübersicht
-- [ ] **Push Notifications** - PWA-Benachrichtigungen
-- [ ] **Erweiterte Suche** - Filterung nach Zutaten/Allergenen
-- [ ] **Social Sharing** - Gerichte in sozialen Medien teilen
+- [ ] **Order History** - Personal order overview
+- [ ] **Push Notifications** - PWA notifications
+- [ ] **Advanced Search** - Ingredient/allergen filtering
+- [ ] **Social Sharing** - Share dishes on social media
 - [ ] **Admin Dashboard** - Content Management System
 
 ### 🔍 Code Quality & Testing
 
-- [ ] **Unit Tests** - Jest Test Suite
-- [ ] **E2E Tests** - Playwright Integration
+- [ ] **Unit Tests** - Jest test suite
+- [ ] **E2E Tests** - Playwright integration
 - [ ] **Performance Monitoring** - Lighthouse CI
-- [ ] **Error Logging** - Sentry Integration
-- [ ] **Code Coverage** - 90%+ Abdeckung anstreben
+- [ ] **Error Logging** - Sentry integration
+- [ ] **Code Coverage** - Targeting 90%+ coverage
 
-## 🛠️ Entwicklung
+## 🛠️ Development
 
 ### Coding Standards ✅
 
-- Alle JavaScript-Funktionen max. 14 Zeilen
-- JSDoc-Kommentare für alle öffentlichen Funktionen
-- Konsistente Namenskonventionen (camelCase für JS, kebab-case für CSS)
-- Mobile First CSS-Entwicklung
-- Keine inline Styles oder Event-Handler
+- All JavaScript functions max. 14 lines
+- JSDoc comments for all public functions
+- Consistent naming conventions (camelCase for JS, kebab-case for CSS)
+- Mobile first CSS development
+- No inline styles or event handlers
 
-### Browser-Unterstützung ✅
+### Browser Support ✅
 
-- ✅ Chrome/Edge (moderne Versionen)
-- ✅ Firefox (moderne Versionen)
-- ✅ Safari (moderne Versionen)
-- ✅ Mobile Browsers (iOS Safari, Chrome Mobile)
+- ✅ Chrome/Edge (modern versions)
+- ✅ Firefox (modern versions)
+- ✅ Safari (modern versions)
+- ✅ Mobile browsers (iOS Safari, Chrome Mobile)
 
 ### Performance ✅
 
-- ⚡ Vanilla JavaScript (kein Framework-Overhead)
-- 🗜️ CSS-only Animationen
-- 📱 Touch-optimierte Interaktionen
-- 🎯 Lazy Loading für Bilder
-- 💾 Aggressive LocalStorage-Nutzung
+- ⚡ Vanilla JavaScript (no framework overhead)
+- 🗜️ CSS-only animations
+- 📱 Touch-optimized interactions
+- 🎯 Lazy loading for images
+- 💾 Aggressive LocalStorage usage
 
-## 📧 API-Endpunkte
+## 📧 API Endpoints
 
 ### POST /api/contact.php ✅
 
 ```js
-// Kontaktformular mit Spam-Schutz
+// Contact form with spam protection
 {
   "name": "Max Mustermann",
   "email": "max@example.com",
-  "subject": "Reservierung",
-  "message": "Tisch für 4 Personen...",
+  "subject": "Reservation",
+  "message": "Table for 4 persons...",
   "captcha": 42
 }
 ```
 
 **Features:**
 
-- Rate-Limiting (3 Anfragen/Stunde pro IP)
-- Honeypot-Spam-Schutz
-- HTML-E-Mail-Templates
-- Dual-E-Mail-System (Admin + Bestätigung)
-- Umfassende Eingabe-Validierung
+- Rate limiting (3 requests/hour per IP)
+- Honeypot spam protection
+- HTML email templates
+- Dual email system (admin + confirmation)
+- Comprehensive input validation
 
 ## 🎨 Design System
 
-### Farbpalette ✅
+### Color Palette ✅
 
 ```css
 :root {
@@ -275,74 +275,74 @@ _Ein Showcase für professionelle Frontend-Architektur mit Vanilla JavaScript_
 
 ### Typography ✅
 
-- **Primary Font:** Comic Neue (lokal gehostet)
+- **Primary Font:** Comic Neue (locally hosted)
 - **Fallback:** system-ui, -apple-system, sans-serif
-- **Größensystem:** rem-basiert für Skalierbarkeit
+- **Sizing System:** rem-based for scalability
 
 ## 📱 Progressive Web App
 
 ### Manifest ✅
 
-- App-Icons (32px bis 512px)
-- Offline-fähige Grundstruktur
-- Theme-Color Integration
-- Display-Mode: standalone
+- App icons (32px to 512px)
+- Offline-ready basic structure
+- Theme color integration
+- Display mode: standalone
 
-### Performance-Optimierungen ✅
+### Performance Optimizations ✅
 
-- CSS Custom Properties für schnelle Theme-Wechsel
-- Event-Delegation für bessere Performance
-- Minimal-DOM-Manipulationen durch Virtual-DOM-ähnliche Updates
+- CSS custom properties for fast theme switching
+- Event delegation for better performance
+- Minimal DOM manipulations via virtual-DOM-like updates
 
-## 🔒 Sicherheitsfeatures
+## 🔒 Security Features
 
-### Frontend-Sicherheit ✅
+### Frontend Security ✅
 
-- XSS-Schutz durch HTML-Escaping
-- Input-Längen-Validierung
-- CSRF-Token-Vorbereitung
-- Honeypot-Anti-Spam
+- XSS protection via HTML escaping
+- Input length validation
+- CSRF token preparation
+- Honeypot anti-spam
 
-### Backend-Sicherheit ✅
+### Backend Security ✅
 
-- Rate-Limiting mit IP-Tracking
-- Input-Sanitization
-- E-Mail-Header-Injection-Schutz
-- Umfassende Error-Behandlung
+- Rate limiting with IP tracking
+- Input sanitization
+- Email header injection protection
+- Comprehensive error handling
 
 ## 🌟 Highlights
 
-Das Projekt demonstriert moderne Frontend-Entwicklung **ohne externe Abhängigkeiten** und zeigt, wie ein professionelles SPA mit Vanilla-Technologien umgesetzt werden kann:
+This project demonstrates modern frontend development **without external dependencies** and shows how to build a professional SPA with vanilla technologies:
 
-- **🏆 100% Vanilla** - Kein Framework-Lock-in
-- **📐 Saubere Architektur** - Service Layer + State Management
-- **♿ Accessibility First** - WCAG-konform entwickelt
-- **🚀 Performance** - Optimiert für Mobile & Desktop
-- **🔧 Wartbar** - Modularer, testbarer Code
-- **📱 Modern** - PWA-Ready & Future-Proof
+- **🏆 100% Vanilla** - No framework lock-in
+- **📐 Clean Architecture** - Service layer + state management
+- **♿ Accessibility First** - Developed WCAG-compliant
+- **🚀 Performance** - Optimized for mobile & desktop
+- **🔧 Maintainable** - Modular, testable code
+- **📱 Modern** - PWA-ready & future-proof
 
-## 💻 Lokale Entwicklung
+## 💻 Local Development
 
 ```bash
-# Repository klonen
+# Clone repository
 git clone [repository-url]
 cd Super-Rando-SPA
 
-# Dependencies installieren
+# Install dependencies
 npm install
 
-# Development Server starten
+# Start development server
 npm run dev
 
-# Browser öffnet automatisch http://localhost:3000
+# Browser will automatically open http://localhost:3000
 ```
 
-## 📄 Lizenz
+## 📄 License
 
-MIT License - siehe [LICENSE](LICENSE) für Details.
+MIT License - see [LICENSE](LICENSE) for details.
 
 ---
 
-**🍜 Entwickelt mit ❤️ für moderne Web-Entwicklung**
+**🍜 Built with ❤️ for modern web development**
 
-_Ein Showcase für professionelle Frontend-Architektur mit Vanilla JavaScript_
+_A showcase for professional frontend architecture with Vanilla JavaScript_
