@@ -52,6 +52,14 @@
    CART SIDEBAR
    ============================================ */
 
+/* Body Scroll-Lock für Mobile bei geöffnetem Warenkorb */
+@media (max-width: 768px) {
+  body.no-scroll {
+    overflow: hidden;
+    height: 100vh;
+  }
+}
+
 /* Mobile Cart Sidebar (Overlay) */
 .cart-sidebar {
   position: fixed;
@@ -301,8 +309,8 @@
    RESPONSIVE STYLES
    ============================================ */
 
-/* Mobile (max-width: 767px) */
-@media (max-width: 767px) {
+/* Mobile (max-width: 768px) */
+@media (max-width: 768px) {
   .cart-toggle-btn {
     position: fixed;
     bottom: 2rem;

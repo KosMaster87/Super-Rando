@@ -16,6 +16,7 @@ import {
   initializeNavigation,
   setupNavigationListeners,
 } from "./services/navigation.js";
+import { ScrollManager } from "./utils/scroll-manager.js";
 
 /**
  * Initialisiert die gesamte Anwendung
@@ -29,6 +30,7 @@ const initializeApp = () => {
   initializeFooterNavigation();
   registerStateListeners();
   renderAllComponents();
+  ScrollManager.init();
 };
 
 /**

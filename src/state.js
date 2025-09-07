@@ -149,6 +149,15 @@ const notifyListeners = () => {
   });
 };
 
+/**
+ * Setzt den Warenkorb-Sichtbarkeitsstatus und triggert Scroll-Management
+ * @param {boolean} visible - Soll der Warenkorb sichtbar sein
+ */
+const setCartVisible = (visible) => {
+  appState.cartVisible = visible;
+  notifyListeners();
+};
+
 // ---------------------------------
 
 /**
@@ -293,4 +302,5 @@ export {
   saveSessionToStorage,
   loadAllStoredData,
   notifyListeners,
+  setCartVisible,
 };
