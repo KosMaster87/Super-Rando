@@ -2,6 +2,20 @@
 
 A modern Single Page Application (SPA) for a fusion restaurant, developed with **Vanilla JavaScript, CSS, and PHP backend**. This project demonstrates professional frontend architecture without any external frameworks.
 
+---
+
+## 🚀 Live Demo
+
+🔗 [Live Demo – super-rando.dev2k.org](https://super-rando.dev2k.org)
+
+---
+
+## 📸 Preview
+
+![Portfolio Screenshot](./public/media/Super~Rando.png)
+
+---
+
 ## ✨ Core Features
 
 - 🌱 **100% Vanilla JavaScript** - No external dependencies
