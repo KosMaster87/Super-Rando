@@ -46,7 +46,7 @@ Thumbs.db
 /bazel-out
 
 # Coverage reports
-/coverage
+# /coverage
 
 # Firebase
 .firebase
@@ -59,7 +59,7 @@ privateKey.pem
 certificate.pem
 
 # Apache
-.htaccess
+# .htaccess
 
 # Cache
 /.angular/cache
@@ -70,3 +70,6 @@ certificate.pem
 /libpeerconnection.log
 testem.log
 /typings
+
+# Copilot
+# copilot-instructions.md
