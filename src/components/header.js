@@ -112,9 +112,9 @@ const createNotificationToggle = () => {
 const createPhoneNavItem = () => {
   return `
     <li class="nav-item">
-      <a href="tel:+49123456789" class="nav-link" id="phoneNavLink">
+      <a href="tel:+595994221200" class="nav-link" id="phoneNavLink">
         <span class="nav-icon">📞</span>
-        <span class="nav-text">+49 123 456 789</span>
+        <span class="nav-text">+595 994 221200</span>
       </a>
     </li>
   `;
