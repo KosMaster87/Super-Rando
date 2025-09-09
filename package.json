@@ -9,12 +9,8 @@
     "livereload": "livereload . --wait 500 --debug --extraExts js,css,html",
     "start": "node dev-server.js",
     "watch": "nodemon dev-server.js --watch src --watch styles",
-    "docs": "jsdoc -c jsdoc.json && (chmod +x scripts/fix-docs-css.sh && ./scripts/fix-docs-css.sh || npm run docs:fix-css-node)",
-    "docs:generate": "jsdoc -c jsdoc.json",
-    "docs:fix-css": "./scripts/fix-docs-css.sh",
-    "docs:fix-css-node": "node scripts/fix-docs-css.js",
+    "docs": "jsdoc -c jsdoc.json",
     "docs:serve": "npx http-server docs -p 8080 -o",
-    "docs:complete": "npm run docs:generate && npm run docs:fix-css-node",
     "generate-docs": "jsdoc --configure jsdoc.json --verbose"
   },
   "dependencies": {

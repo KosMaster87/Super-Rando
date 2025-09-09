@@ -6,6 +6,16 @@
   --color-light-brown: #bd854c;
   --color-cream: #baab7e;
 
+  /* Shadows and transparencies - adapted to new colors */
+  --shadow-light: rgba(50, 41, 29, 0.1);
+  --shadow-medium: rgba(50, 41, 29, 0.22);
+  --shadow-heavy: rgba(50, 41, 29, 0.35);
+
+  /* Hover and interaction colors */
+  --color-primary-hover: #7a3f2b;
+  --color-secondary-hover: #a69669;
+  --color-accent-hover: #a5723f;
+
   /* Main color palette - mapped to new colors */
   --color-primary: var(--color-warm-brown);
   --color-secondary: var(--color-medium-brown);
@@ -27,16 +37,6 @@
   --color-warning: var(--color-warm-brown);
   --color-error: #c0392b;
   --color-info: var(--color-medium-brown);
-
-  /* Shadows and transparencies - adapted to new colors */
-  --shadow-light: rgba(50, 41, 29, 0.1);
-  --shadow-medium: rgba(50, 41, 29, 0.22);
-  --shadow-heavy: rgba(50, 41, 29, 0.35);
-
-  /* Hover and interaction colors */
-  --color-primary-hover: #7a3f2b;
-  --color-secondary-hover: #a69669;
-  --color-accent-hover: #a5723f;
 
   /* Gradients */
   --primary-gradient: linear-gradient(
