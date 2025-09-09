@@ -1,150 +1,185 @@
-#!/usr/bin/env node
+/**
+ * Fix JSDoc CSS for Super-Rando-SPA Documentation
+ * Node.js version for cross-platform compatibility
+ */
+import fs from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const DOCS_DIR = path.join(__dirname, "..", "docs");
+
+console.log("🎨 Applying custom styling to JSDoc documentation...");
 
 /**
- * Script to automatica    // Check if the CSS link already exists
-    if (content.includes('super-rand  // Verify CSS file exists
-  const cssPath = path.join(DOCS_DIR, 'styles', 'super-rando-theme.css');
-  if (!fs.existsSync(cssPath)) {
-    console.log('');
-    console.log('Warning: super-rando-theme.css not found in docs/styles directory!');
-    console.log('Make sure to copy the CSS file to the docs/styles folder.');
-  }.css')) {
-      console.log(`Skip: CSS already exists in ${path.basename(filePath)}`);
-      return;
-    }dd dark theme CSS link to all generated JSDoc HTML files
- * Runs after JSDoc generation to ensure the custom CSS is always included
+ * Checks if the documentation directory exists
+ * @returns {boolean} True if directory exists
  */
-
-const fs = require("fs");
-const path = require("path");
-
-const DOCS_DIR = path.join(__dirname, "../docs");
-const CSS_LINK =
-  '    <link rel="stylesheet" href="styles/super-rando-theme.css" />';
-
-/**
- * Recursively finds all HTML files in the docs directory
- * @param {string} dir - Directory to search
- * @param {Array} files - Array to store found files
- * @returns {Array} Array of HTML file paths
- */
-function findHtmlFiles(dir, files = []) {
-  if (!fs.existsSync(dir)) {
-    return files;
+const checkDocsDirectory = () => {
+  if (!fs.existsSync(DOCS_DIR)) {
+    console.error(
+      "❌ Error: Documentation directory not found. Run 'npm run docs:generate' first."
+    );
+    process.exit(1);
   }
-
-  const items = fs.readdirSync(dir);
-
-  items.forEach((item) => {
-    const fullPath = path.join(dir, item);
-    const stat = fs.statSync(fullPath);
-
-    if (stat.isDirectory()) {
-      findHtmlFiles(fullPath, files);
-    } else if (path.extname(item) === ".html") {
-      files.push(fullPath);
-    }
-  });
-
-  return files;
-}
+  return true;
+};
 
 /**
- * Adds the CSS link to an HTML file if it doesn't already exist
+ * Adds custom CSS link to an HTML file
  * @param {string} filePath - Path to the HTML file
  */
-function addCssLinkToFile(filePath) {
+const addCustomCSS = (filePath) => {
   try {
     let content = fs.readFileSync(filePath, "utf8");
 
-    // Check if the CSS link already exists
-    if (content.includes("docdash-dark.css")) {
-      console.log(`Skip: CSS already exists in ${path.basename(filePath)}`);
+    // Check if custom CSS link already exists
+    if (content.includes("custom-jsdoc.css")) {
+      console.log(
+        `⏭️  Custom CSS already linked in ${path.basename(filePath)}`
+      );
       return;
     }
 
-    // Find the position to insert the CSS link (after jsdoc.css)
-    const jsdocCssPattern = /(<link[^>]*jsdoc\.css[^>]*>)/;
-    const match = content.match(jsdocCssPattern);
+    // Add custom CSS link after the existing jsdoc.css link
+    content = content.replace(
+      '<link type="text/css" rel="stylesheet" href="styles/jsdoc.css">',
+      '<link type="text/css" rel="stylesheet" href="styles/jsdoc.css">\n    <link type="text/css" rel="stylesheet" href="styles/custom-jsdoc.css">'
+    );
 
-    if (match) {
-      // Insert CSS link after jsdoc.css line
-      const newContent = content.replace(
-        jsdocCssPattern,
-        match[1] + "\n" + CSS_LINK
+    fs.writeFileSync(filePath, content, "utf8");
+    console.log(`✅ Added custom CSS link to ${path.basename(filePath)}`);
+  } catch (error) {
+    console.error(
+      `❌ Error processing ${path.basename(filePath)}:`,
+      error.message
+    );
+  }
+};
+
+/**
+ * Updates navigation and meta information in HTML file
+ * @param {string} filePath - Path to the HTML file
+ */
+const updateNavigation = (filePath) => {
+  try {
+    let content = fs.readFileSync(filePath, "utf8");
+
+    // Update page titles to be more descriptive
+    content = content.replace(
+      "<title>Home - Documentation</title>",
+      "<title>Super-Rando-SPA - Restaurant Documentation</title>"
+    );
+    content = content.replace(
+      /<title>(.*) - Documentation<\/title>/g,
+      "<title>Super-Rando-SPA - $1</title>"
+    );
+
+    // Add meta description if not present
+    if (!content.includes('meta name="description"')) {
+      content = content.replace(
+        '<meta name="viewport" content="width=device-width, initial-scale=1.0">',
+        '<meta name="viewport" content="width=device-width, initial-scale=1.0">\n    <meta name="description" content="Complete documentation for Super-Rando Single Page Application - Modern restaurant ordering system built with vanilla JavaScript">'
       );
+    }
 
-      fs.writeFileSync(filePath, newContent, "utf8");
-      console.log(`Added CSS to: ${path.basename(filePath)}`);
-    } else {
-      // Fallback: Insert before </head>
-      const headEndPattern = /(\s*<\/head>)/;
-      if (content.match(headEndPattern)) {
-        const newContent = content.replace(
-          headEndPattern,
-          "\n" + CSS_LINK + "\n$1"
-        );
+    // Add favicon link if not present
+    if (!content.includes("favicon")) {
+      content = content.replace(
+        '<meta name="viewport" content="width=device-width, initial-scale=1.0">',
+        '<meta name="viewport" content="width=device-width, initial-scale=1.0">\n    <link rel="icon" type="image/x-icon" href="../assets/icons/favicon.ico">'
+      );
+    }
 
-        fs.writeFileSync(filePath, newContent, "utf8");
-        console.log(`Added CSS (fallback) to: ${path.basename(filePath)}`);
-      } else {
-        console.log(`Could not process: ${path.basename(filePath)}`);
+    fs.writeFileSync(filePath, content, "utf8");
+  } catch (error) {
+    console.error(
+      `❌ Error updating navigation in ${path.basename(filePath)}:`,
+      error.message
+    );
+  }
+};
+
+/**
+ * Adds custom footer to HTML file
+ * @param {string} filePath - Path to the HTML file
+ */
+const addCustomFooter = (filePath) => {
+  try {
+    let content = fs.readFileSync(filePath, "utf8");
+
+    // Replace empty footer with custom content
+    content = content.replace(
+      /<footer>\s*<\/footer>/g,
+      `<footer>
+    <div class="footer-content">
+        <p>&copy; 2024 Super-Rando-SPA Documentation | Built with ❤️ using JSDoc</p>
+        <p>Modern restaurant ordering system with vanilla JavaScript</p>
+    </div>
+</footer>`
+    );
+
+    fs.writeFileSync(filePath, content, "utf8");
+  } catch (error) {
+    console.error(
+      `❌ Error adding footer to ${path.basename(filePath)}:`,
+      error.message
+    );
+  }
+};
+
+/**
+ * Recursively finds all HTML files in a directory
+ * @param {string} dir - Directory to search
+ * @returns {string[]} Array of HTML file paths
+ */
+const findHtmlFiles = (dir) => {
+  const files = [];
+
+  const scanDirectory = (currentDir) => {
+    const items = fs.readdirSync(currentDir);
+
+    for (const item of items) {
+      const itemPath = path.join(currentDir, item);
+      const stat = fs.statSync(itemPath);
+
+      if (stat.isDirectory()) {
+        scanDirectory(itemPath);
+      } else if (item.endsWith(".html")) {
+        files.push(itemPath);
       }
     }
-  } catch (error) {
-    console.error(`Error processing ${filePath}:`, error.message);
-  }
-}
+  };
+
+  scanDirectory(dir);
+  return files;
+};
 
 /**
  * Main function to process all HTML files
  */
-function main() {
-  console.log("Adding dark theme CSS to JSDoc documentation...");
-  console.log("");
-
-  if (!fs.existsSync(DOCS_DIR)) {
-    console.error("Docs directory not found. Please run JSDoc first.");
-    process.exit(1);
-  }
+const main = () => {
+  checkDocsDirectory();
 
   const htmlFiles = findHtmlFiles(DOCS_DIR);
 
-  if (htmlFiles.length === 0) {
-    console.log("No HTML files found in docs directory.");
-    return;
-  }
+  console.log(`📁 Found ${htmlFiles.length} HTML files to process`);
 
-  console.log(`Found ${htmlFiles.length} HTML files to process...`);
-  console.log("");
-
-  let processed = 0;
+  // Process each HTML file
   htmlFiles.forEach((file) => {
-    const sizeBefore = fs.statSync(file).size;
-    addCssLinkToFile(file);
-    const sizeAfter = fs.statSync(file).size;
-
-    if (sizeAfter > sizeBefore) {
-      processed++;
-    }
+    addCustomCSS(file);
+    updateNavigation(file);
+    addCustomFooter(file);
   });
 
-  console.log("");
-  console.log(`Successfully processed ${processed} documentation files!`);
-  console.log("Your documentation now uses the Super-Rando-SPA color scheme.");
+  console.log(
+    "🎉 Custom styling successfully applied to all documentation files!"
+  );
+  console.log(`📁 Files processed: ${htmlFiles.length}`);
+  console.log("🌐 Serve documentation with: npm run docs:serve");
+};
 
-  // Verify CSS file exists
-  const cssPath = path.join(DOCS_DIR, "docdash-dark.css");
-  if (!fs.existsSync(cssPath)) {
-    console.log("");
-    console.log("Warning: docdash-dark.css not found in docs directory!");
-    console.log("Make sure to copy the CSS file to the docs folder.");
-  }
-}
-
-// Run the script if called directly
-if (require.main === module) {
-  main();
-}
-
-module.exports = { main };
+// Run the script
+main();

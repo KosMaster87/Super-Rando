@@ -8,7 +8,7 @@ A modern Single Page Application (SPA) for a fusion restaurant, developed with *
 
 🔗 [Live Demo – super-rando.dev2k.org](https://super-rando.dev2k.org)
 
-🧾 [API Dokumentation](./docs/index.html)
+🔗 [API Dokumentation](https://super-rando.dev2k.org/docs/index.html)
 
 ---
 

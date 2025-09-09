@@ -1,66 +1,77 @@
 #!/bin/bash
 
-# Super-Rando-SPA Documentation CSS Fixer
-# Adds Super-Rando theme CSS link to all generated JSDoc HTML files
+# Fix JSDoc CSS for Super-Rando-SPA Documentation
+# Adds custom styling to all generated HTML files
 
+echo "🎨 Applying custom styling to JSDoc documentation..."
+
+# Directory containing the generated docs
 DOCS_DIR="./docs"
-CSS_LINK='    <link rel="stylesheet" href="styles/super-rando-theme.css" />'
-
-echo "🎨 Adding Super-Rando theme CSS to JSDoc documentation..."
-echo ""
 
 # Check if docs directory exists
 if [ ! -d "$DOCS_DIR" ]; then
-    echo "❌ Docs directory not found. Please run JSDoc first."
+    echo "❌ Error: Documentation directory not found. Run 'npm run docs:generate' first."
     exit 1
 fi
 
-# Counter for processed files
-count=0
-
-# Find all HTML files and process them
-for file in $(find "$DOCS_DIR" -name "*.html" -type f); do
-    # Check if CSS link already exists
-    if grep -q "super-rando-theme.css" "$file"; then
-        echo "⚠️  CSS already exists in: $(basename "$file")"
-        continue
+# Function to add custom CSS link to HTML files
+add_custom_css() {
+    local file="$1"
+    
+    # Check if custom CSS link already exists
+    if grep -q "custom-jsdoc.css" "$file"; then
+        echo "⏭️  Custom CSS already linked in $(basename "$file")"
+        return
     fi
     
-    # Add CSS link after jsdoc.css line
-    if grep -q "jsdoc.css" "$file"; then
-        # Create backup
-        cp "$file" "${file}.bak"
-        
-        # Insert CSS link after jsdoc.css
-        sed '/jsdoc\.css/a\
-    <link rel="stylesheet" href="styles/super-rando-theme.css" />' "${file}.bak" > "$file"
-        
-        # Remove backup if successful
-        if [ $? -eq 0 ]; then
-            rm "${file}.bak"
-            echo "✅ Added Super-Rando theme CSS to: $(basename "$file")"
-            ((count++))
-        else
-            # Restore backup on error
-            mv "${file}.bak" "$file"
-            echo "❌ Failed to process: $(basename "$file")"
-        fi
-    else
-        echo "⚠️  No jsdoc.css found in: $(basename "$file")"
-    fi
+    # Add custom CSS link after the existing jsdoc.css link
+    sed -i 's|<link type="text/css" rel="stylesheet" href="styles/jsdoc.css">|<link type="text/css" rel="stylesheet" href="styles/jsdoc.css">\n    <link type="text/css" rel="stylesheet" href="styles/custom-jsdoc.css">|' "$file"
+    
+    echo "✅ Added custom CSS link to $(basename "$file")"
+}
+
+# Process all HTML files in the docs directory
+find "$DOCS_DIR" -name "*.html" -type f | while read -r file; do
+    add_custom_css "$file"
 done
 
-echo ""
-if [ $count -gt 0 ]; then
-    echo "🎉 Successfully processed $count documentation files!"
-    echo "💡 Your documentation now uses the Super-Rando-SPA theme."
-else
-    echo "ℹ️  No files needed processing (CSS links already exist)."
-fi
+# Update navigation titles and meta information
+update_navigation() {
+    local file="$1"
+    
+    # Update page titles to be more descriptive
+    sed -i 's|<title>Home - Documentation</title>|<title>Super-Rando-SPA - Restaurant Documentation</title>|' "$file"
+    sed -i 's|<title>\(.*\) - Documentation</title>|<title>Super-Rando-SPA - \1</title>|' "$file"
+    
+    # Add meta description if not present
+    if ! grep -q "meta name=\"description\"" "$file"; then
+        sed -i 's|<meta name="viewport" content="width=device-width, initial-scale=1.0">|<meta name="viewport" content="width=device-width, initial-scale=1.0">\n    <meta name="description" content="Complete documentation for Super-Rando Single Page Application - Modern restaurant ordering system built with vanilla JavaScript">|' "$file"
+    fi
+    
+    # Add favicon link if not present
+    if ! grep -q "favicon" "$file"; then
+        sed -i 's|<meta name="viewport" content="width=device-width, initial-scale=1.0">|<meta name="viewport" content="width=device-width, initial-scale=1.0">\n    <link rel="icon" type="image/x-icon" href="../assets/icons/favicon.ico">|' "$file"
+    fi
+}
 
-# Check if CSS file exists
-if [ ! -f "$DOCS_DIR/styles/super-rando-theme.css" ]; then
-    echo ""
-    echo "⚠️  Warning: super-rando-theme.css not found in docs/styles directory!"
-    echo "   Make sure the CSS file exists in the docs/styles folder."
-fi
+# Apply navigation updates to all HTML files
+find "$DOCS_DIR" -name "*.html" -type f | while read -r file; do
+    update_navigation "$file"
+done
+
+# Create a custom footer for better branding
+add_custom_footer() {
+    local file="$1"
+    
+    # Replace empty footer with custom content
+    sed -i 's|<footer>\s*</footer>|<footer>\n    <div class="footer-content">\n        <p>&copy; 2024 Super-Rando-SPA Documentation | Built with ❤️ using JSDoc</p>\n        <p>Modern restaurant ordering system with vanilla JavaScript</p>\n    </div>\n</footer>|' "$file"
+}
+
+# Apply custom footer to all HTML files
+find "$DOCS_DIR" -name "*.html" -type f | while read -r file; do
+    add_custom_footer "$file"
+done
+
+echo "🎉 Custom styling successfully applied to all documentation files!"
+echo "📁 Files processed: $(find "$DOCS_DIR" -name "*.html" -type f | wc -l)"
+echo "🌐 Serve documentation with: npm run docs:serve"

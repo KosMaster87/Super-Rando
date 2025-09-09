@@ -7,33 +7,49 @@
   "opts": {
     "destination": "./docs",
     "recurse": true,
-    "template": "./node_modules/docdash"
+    "template": "./node_modules/clean-jsdoc-theme"
   },
   "plugins": ["plugins/markdown"],
   "templates": {
-    "docdash": {
-      "static": true,
-      "sort": true,
-      "collapse": true,
+    "clean-jsdoc-theme": {
+      "theme": "dark",
+      "title": "Super-Rando-SPA Documentation",
+      "description": "Complete documentation for Super-Rando Single Page Application - Restaurant ordering system built with vanilla JavaScript",
+      "logo": "/assets/icons/star.png",
+      "menu": [
+        {
+          "title": "🏠 Home",
+          "link": "index.html"
+        },
+        {
+          "title": "📚 Global Functions",
+          "link": "global.html"
+        },
+        {
+          "title": "🔗 GitHub Repository",
+          "link": "https://github.com/KosMaster87/Super-Rando",
+          "target": "_blank"
+        },
+        {
+          "title": "🚀 Live Demo",
+          "link": "#",
+          "target": "_blank"
+        }
+      ],
       "search": true,
-      "includeDate": false,
+      "collapse": false,
+      "sort": true,
       "sectionOrder": [
-        "Tutorials",
         "Classes",
         "Modules",
-        "Externals",
-        "Events",
+        "Global",
         "Namespaces",
-        "Mixins",
+        "Events",
+        "Tutorials",
         "Interfaces"
       ],
-      "color": {
-        "primary": "#32291d",
-        "secondary": "#514434",
-        "background": "#32291d",
-        "link": "#bd854c",
-        "heading": "#baab7e",
-        "text": "#e8dcc0"
+      "meta": {
+        "keywords": "JavaScript, SPA, Restaurant, Documentation, JSDoc, ES6, Modules, State Management"
       }
     },
     "cleverLinks": false,
