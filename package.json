@@ -1,23 +1,30 @@
 {
   "name": "super-rando-spa",
   "version": "1.0.0",
-  "description": "Super~Rando Fusion Küche SPA",
+  "description": "Super Rando Restaurant SPA Documentation",
   "main": "dev-server.js",
   "type": "module",
   "scripts": {
     "dev": "concurrently -n SERVER,RELOAD \"nodemon dev-server.js\" \"npm run livereload\"",
     "livereload": "livereload . --wait 500 --debug --extraExts js,css,html",
     "start": "node dev-server.js",
-    "watch": "nodemon dev-server.js --watch src --watch styles"
+    "watch": "nodemon dev-server.js --watch src --watch styles",
+    "docs": "jsdoc -c jsdoc.json && chmod +x scripts/fix-docs-css.sh && ./scripts/fix-docs-css.sh",
+    "docs:generate": "jsdoc -c jsdoc.json",
+    "docs:fix-css": "./scripts/fix-docs-css.sh",
+    "docs:fix-css-node": "node scripts/fix-docs-css.js",
+    "docs:serve": "npx http-server docs -p 8080 -o"
   },
   "dependencies": {
     "express": "^4.18.2"
   },
   "devDependencies": {
-    "@types/livereload": "^0.9.5",
     "@types/connect-livereload": "^0.6.3",
+    "@types/livereload": "^0.9.5",
     "concurrently": "^9.1.2",
     "connect-livereload": "^0.6.1",
+    "docdash": "^2.0.2",
+    "jsdoc": "^4.0.4",
     "livereload": "^0.9.3",
     "nodemon": "^3.1.10"
   }

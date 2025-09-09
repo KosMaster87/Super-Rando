@@ -1,5 +1,6 @@
 /**
- * @type {Object} Central application state
+ * Central application state
+ * @type {Object}
  */
 const appState = {
   currentPage: "home",

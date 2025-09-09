@@ -1,5 +1,6 @@
 /**
- * @type {Object} Available pages of the application.
+ * Available pages of the application
+ * @type {Object}
  */
 export const PAGES = {
   HOME: "home",
@@ -10,7 +11,8 @@ export const PAGES = {
 };
 
 /**
- * @type {Object} Asset paths.
+ * Asset paths
+ * @type {Object}
  */
 export const ASSETS = {
   ICONS: "./assets/icons/",
@@ -18,11 +20,13 @@ export const ASSETS = {
 };
 
 /**
- * @type {number} Maximum number of items allowed in the cart.
+ * Maximum number of items allowed in the cart
+ * @type {number}
  */
 export const MAX_CART_ITEMS = 99;
 
 /**
- * @type {Array} Pages on which the cart is available.
+ * Pages on which the cart is available
+ * @type {Array}
  */
 export const CART_PAGES = ["home", "products"];
