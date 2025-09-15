@@ -232,19 +232,23 @@ const isValidPage = (page) => {
  * Loads session data from LocalStorage.
  */
 const loadSessionFromStorage = () => {
-  const savedSession = localStorage.getItem("superRandoSession");
-  if (savedSession) {
-    const session = JSON.parse(savedSession);
+  try {
+    const savedSession = localStorage.getItem("superRandoSession");
+    if (savedSession) {
+      const session = JSON.parse(savedSession);
 
-    if (session.lastPage && isValidPage(session.lastPage)) {
-      appState.currentPage = session.lastPage;
+      if (session.lastPage && isValidPage(session.lastPage)) {
+        appState.currentPage = session.lastPage;
+      }
+
+      if (session.selectedCategory) {
+        appState.selectedCategory = session.selectedCategory;
+      }
+
+      notifyListeners();
     }
-
-    if (session.selectedCategory) {
-      appState.selectedCategory = session.selectedCategory;
-    }
-
-    notifyListeners();
+  } catch (error) {
+    console.error("Error loading session:", error);
   }
 };
 
@@ -252,12 +256,16 @@ const loadSessionFromStorage = () => {
  * Saves session data to LocalStorage.
  */
 const saveSessionToStorage = () => {
-  const sessionData = {
-    lastPage: getCurrentPage(),
-    selectedCategory: getSelectedCategory(),
-    timestamp: Date.now(),
-  };
-  localStorage.setItem("superRandoSession", JSON.stringify(sessionData));
+  try {
+    const sessionData = {
+      lastPage: getCurrentPage(),
+      selectedCategory: getSelectedCategory(),
+      timestamp: Date.now(),
+    };
+    localStorage.setItem("superRandoSession", JSON.stringify(sessionData));
+  } catch (error) {
+    console.error("Error saving session:", error);
+  }
 };
 
 /**
