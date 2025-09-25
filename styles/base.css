@@ -78,6 +78,7 @@
 
 ::-webkit-scrollbar {
   width: 12px;
+  background: inherit;
 }
 
 ::-webkit-scrollbar-track {
