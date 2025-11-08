@@ -1,3 +1,12 @@
+/**
+ * @fileoverview Handles event listeners related to dishes, including menu bundles,
+ * popular dishes, and products page dish orders.
+ * @description This module sets up event listeners for ordering the menu bundle,
+ * the popular dish, and individual dishes on the products page. It also integrates
+ * category event initialization.
+ * @module services/dish-events
+ */
+
 import { addToCart } from "./cart.js";
 import { getMenuBundle, getPopularDish } from "../state.js";
 import { initializeCategoryEvents } from "./category-events.js";

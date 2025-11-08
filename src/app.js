@@ -1,3 +1,10 @@
+/**
+ * @fileoverview Main application entry point for Super Rando.
+ * @description This module initializes the application by loading stored data,
+ * setting up event listeners, and rendering the main components.
+ * @module app
+ */
+
 import { appState, loadAllStoredData } from "./state.js";
 import { renderHeader } from "./components/header.js";
 import { renderFooter } from "./components/footer.js";

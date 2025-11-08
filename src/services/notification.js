@@ -1,3 +1,10 @@
+/**
+ * @fileoverview Notification service to manage user notifications.
+ * @description This service provides functions to create and manage notifications
+ * based on user preferences stored in the application state.
+ * @module services/notification
+ */
+
 import {
   getUserPreferences,
   addNotification,

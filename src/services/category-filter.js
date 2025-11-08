@@ -1,3 +1,10 @@
+/**
+ * @fileoverview Service for filtering dishes by category.
+ * @description This module provides functions to filter dishes based on selected categories
+ *              and to update category counts dynamically.
+ * @module services/category-filter
+ */
+
 import { getDishes, getSelectedCategory, getCategories } from "../state.js";
 
 /**

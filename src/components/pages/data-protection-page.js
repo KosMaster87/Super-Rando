@@ -1,4 +1,11 @@
 /**
+ * @fileoverview Renders the Data Protection page content.
+ * @description This module provides functions to render the Data Protection page,
+ * including sections on general information, data collection, data usage, and user rights.
+ * @module components/pages/data-protection-page
+ */
+
+/**
  * Renders the Data Protection page.
  * @returns {string} HTML string for the Data Protection page
  */
@@ -44,7 +51,7 @@ const renderDataCollection = () => {
       <p>
         Data processing on this website is carried out by the website operator. You can find the contact details in the imprint of this website.
       </p>
-      
+
       <h3>How do we collect your data?</h3>
       <p>
         Your data is collected by you providing it to us. This can be, for example, data that you enter in a contact form.
@@ -64,7 +71,7 @@ const renderDataUsage = () => {
       <p>
         Part of the data is collected to ensure the error-free provision of the website. Other data can be used to analyze your user behavior.
       </p>
-      
+
       <h3>What rights do you have regarding your data?</h3>
       <p>
         You have the right at any time to receive information free of charge about the origin, recipient, and purpose of your stored personal data.
@@ -91,7 +98,7 @@ const renderUserRights = () => {
         <li>Request restriction of data processing</li>
         <li>Object to data processing</li>
       </ul>
-      
+
       <p>
         If you have any questions, feel free to contact us at:
         <a href="mailto:konstantin.aksenov@dev2k.org">konstantin.aksenov@dev2k.org</a>

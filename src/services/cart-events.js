@@ -1,3 +1,10 @@
+/**
+ * @fileoverview Manages event listeners related to the shopping cart functionality.
+ * @description This module sets up event listeners for toggling the cart visibility,
+ * closing the cart, handling item quantity adjustments, removing items, and submitting orders.
+ * @module services/cart-events
+ */
+
 import {
   toggleCartVisibility,
   closeCart,
@@ -87,7 +94,7 @@ const handleCartItemClick = (event) => {
 const handleOrderSubmit = () => {
   // A real ordering API could be called here later.
   import("./notification.js").then(({ showOrderNotification }) => {
-    showOrderNotification("Vielen Dank für Ihre Bestellung! 🍽️");
+    showOrderNotification("Thank you for your order! 🍽️");
   });
 
   clearCart();

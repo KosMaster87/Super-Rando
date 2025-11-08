@@ -1,3 +1,10 @@
+/**
+ * @fileoverview Service for managing user preferences such as theme and notifications.
+ * @description This module provides functions to set and get user preferences,
+ * apply themes, and initialize preferences at app start.
+ * @module services/user-preferences
+ */
+
 import {
   saveUserPreferences,
   notifyListeners,

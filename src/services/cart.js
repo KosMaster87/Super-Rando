@@ -1,3 +1,10 @@
+/**
+ * @fileoverview Service for managing the shopping cart.
+ * @description This module provides functions to add, remove, and update items in the cart,
+ *              as well as to manage the cart's visibility and state.
+ * @module services/cart
+ */
+
 import {
   saveCartToStorage,
   setCartVisible,

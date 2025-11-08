@@ -1,3 +1,10 @@
+/**
+ * @fileoverview Header component rendering and related functions.
+ * @description This module contains functions to render the header component,
+ * including the logo, navigation links, and notification toggle.
+ * @module components/header
+ */
+
 import { ASSETS } from "../utils/constants.js";
 import { getUserPreferences } from "../state.js";
 
@@ -61,7 +68,7 @@ const createNavigation = () => {
   return `
     <ul class="nav-list">
       ${createNavItem("navHome", "🏠", "Home")}
-      ${createNavItem("navProducts", "🍽️", "Produkte")}
+      ${createNavItem("navProducts", "🍽️", "Products")}
       ${createNotificationToggle()}
       ${createPhoneNavItem()}
     </ul>

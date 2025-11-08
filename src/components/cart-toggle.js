@@ -1,3 +1,10 @@
+/**
+ * @fileoverview Renders the cart toggle button with item count badge.
+ * @description This module exports a function to generate the HTML for the cart toggle button,
+ * which displays the number of items in the cart as a badge if there are any items.
+ * @module components/cart-toggle
+ */
+
 import { getCartItemCount } from "../state.js";
 
 /**

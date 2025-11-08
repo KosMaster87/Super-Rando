@@ -1,4 +1,11 @@
 /**
+ * @fileoverview Imprint page component.
+ * @description This module exports a function to render the Imprint page,
+ * including company information, legal details, and contact information.
+ * @module components/pages/imprint-page
+ */
+
+/**
  * Renders the Imprint page.
  * @returns {string} HTML string for the Imprint page
  */
@@ -42,14 +49,14 @@ const renderLegalInfo = () => {
     <div class="imprint-section">
       <h2>Represented by</h2>
       <p>Managing Director: Konstantin Aksenov</p>
-      
+
       <h2>Commercial Register Entry</h2>
       <p>
         Entry in the Commercial Register<br>
         Register Court: District Court Musterstadt<br>
         Register Number: HRB 12345
       </p>
-      
+
       <h2>VAT ID</h2>
       <p>
         VAT Identification Number according to §27 a VAT Act:<br>

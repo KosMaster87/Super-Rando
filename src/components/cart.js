@@ -1,3 +1,11 @@
+/**
+ * @fileoverview Renders the cart component and its elements.
+ * @description This module provides functions to render the cart sidebar,
+ * including the header, content, and footer. It dynamically updates the cart
+ * based on the current state.
+ * @module components/cart
+ */
+
 import {
   getCartItems,
   getCartItemCount,

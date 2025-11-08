@@ -1,3 +1,9 @@
+/**
+ * @fileoverview Development server for Super Rando.
+ * @description This module sets up a local development server with LiveReload support.
+ * @module dev-server
+ */
+
 import express from "express";
 import { fileURLToPath } from "url";
 import { dirname, join } from "path";

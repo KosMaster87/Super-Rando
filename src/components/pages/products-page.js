@@ -1,3 +1,11 @@
+/**
+ * @fileoverview Renders the Products page with categories and dishes.
+ * @description This module exports a function to render the Products page,
+ * including the header, product categories, and dishes section. It utilizes
+ * state management to fetch categories and filtered dishes.
+ * @module components/pages/products-page
+ */
+
 import { getCategories, getSelectedCategory } from "../../state.js";
 import { getFilteredDishes } from "../../services/category-filter.js";
 
@@ -53,8 +61,8 @@ const createCategoryCard = (category) => {
   const isActive = selectedCategory === category.id;
 
   return `
-    <div class="category-card ${isActive ? "active" : ""}" 
-         data-category="${category.id}" 
+    <div class="category-card ${isActive ? "active" : ""}"
+         data-category="${category.id}"
          id="category-${category.id}">
       <div class="category-icon">${category.icon}</div>
       <div class="line-products"></div>

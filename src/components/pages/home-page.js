@@ -1,3 +1,10 @@
+/**
+ * @fileoverview Renders the Home page of the Super~Rando SPA.
+ * @description This module exports a function that generates the HTML structure
+ * for the Home page, including daily specials and the popular dish section.
+ * @module components/pages/home-page
+ */
+
 import { getMenuBundle, getPopularDish } from "../../state.js";
 
 /**
@@ -39,12 +46,12 @@ const createMenuBundle = () => {
     <div class="menu-bundle">
       <h3 class="special-title">${menu.name}</h3>
       <p class="special-description">${menu.description}</p>
-      
+
       <div class="menu-items">
         ${menu.items.map((item) => createMenuItem(item)).join("")}
         ${createDessertSelectionItem()}
       </div>
-      
+
       <div class="menu-footer">
         <div class="menu-price">${menu.price.toFixed(2)} €</div>
         <button class="menu-order-btn" id="orderMenuBundle" disabled>

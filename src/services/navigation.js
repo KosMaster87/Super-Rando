@@ -1,3 +1,10 @@
+/**
+ * @fileoverview Navigation service for handling page navigation and browser history.
+ * @description This module manages navigation within the SPA, including updating the browser history,
+ * handling back/forward navigation, and updating the document title based on the current page.
+ * @module services/navigation
+ */
+
 import { setCurrentPage, saveSessionToStorage } from "../state.js";
 import { PAGES } from "../utils/constants.js";
 

@@ -1,3 +1,13 @@
+/**
+ * @fileoverview Notification Popup Component
+ * @description Renders notification pop-ups for the application.
+ * This component displays notifications such as success messages,
+ * error alerts, and informational messages to the user.
+ * Each notification includes a message, an icon based on its type,
+ * and a close button to dismiss it.
+ * @module components/notification-popup
+ */
+
 import { getNotifications } from "../state.js";
 import { removeNotification } from "../services/notification.js";
 
@@ -29,14 +39,14 @@ const createNotificationHTML = (notification) => {
   const typeIcon = getNotificationIcon(notification.type);
 
   return `
-    <div class="notification notification-${notification.type}" 
+    <div class="notification notification-${notification.type}"
          id="notification-${notification.id}"
          data-notification-id="${notification.id}">
       <div class="notification-content">
         <span class="notification-icon">${typeIcon}</span>
         <span class="notification-message">${notification.message}</span>
       </div>
-      <button class="notification-close" 
+      <button class="notification-close"
               onclick="handleNotificationClose(${notification.id})">
         ✕
       </button>

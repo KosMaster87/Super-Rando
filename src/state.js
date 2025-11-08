@@ -1,4 +1,12 @@
 /**
+ * @fileoverview Central application state management for Super Rando.
+ * @description This module defines the central state object for the Super Rando application,
+ * including user preferences, cart items, dish data, and session management.
+ * It also provides functions to manipulate and retrieve state data.
+ * @module state
+ */
+
+/**
  * Central application state
  * @type {Object}
  */
@@ -11,7 +19,7 @@ const appState = {
 
   userPreferences: {
     theme: "default",
-    language: "de",
+    language: "en",
     showNotifications: true,
     cartAutoClose: false,
   },
@@ -78,24 +86,24 @@ const appState = {
   ],
 
   menuBundle: {
-    name: "Fusion Tagesmenü",
+    name: "Fusion Daily Menu",
     price: 18.5,
-    badge: "🍽️ Tagesmenü",
+    badge: "🍽️ Daily Menu",
     description:
-      "Unser beliebtes 3-Gang-Menü: Ramen Fusion Bowl, Gyoza-Salat und Ihr Wunsch-Dessert",
+      "Our popular 3-course menu: Ramen Fusion Bowl, Gyoza Salad and your choice of dessert",
     tags: ["menu", "fusion", "special"],
     items: [
       {
         image: "./assets/images/Ramen-01.jpg",
         name: "Ramen Fusion Bowl",
         description:
-          "Hausgemachte Ramen-Nudeln mit gebratenem Hühnchen, Shiitake-Pilzen und Miso-Brühe",
+          "Homemade ramen noodles with grilled chicken, shiitake mushrooms and miso broth",
       },
       {
         image: "./assets/images/Gyoza-Salat-01.jpg",
-        name: "Gyoza-Salat",
+        name: "Gyoza Salad",
         description:
-          "Knusprige Gyoza auf gemischtem Salat mit hausgemachtem Sesam-Ingwer-Dressing",
+          "Crispy gyoza on mixed salad with homemade sesame-ginger dressing",
       },
     ],
     dessertOptions: [
@@ -104,15 +112,15 @@ const appState = {
         value: "matcha",
         image: "./assets/images/Matcha Tiramisu-01.jpg",
         name: "Matcha Tiramisu",
-        description: "Italienisches Tiramisu mit japanischem Matcha-Twist",
+        description: "Italian tiramisu with Japanese matcha twist",
       },
       {
         id: "mochiEis",
         value: "mochi",
         image: "./assets/images/Mochi-Eis-01.png",
-        name: "Mochi Eis Variation",
+        name: "Mochi Ice Cream Variation",
         description:
-          "3 verschiedene Mochi-Eis-Sorten: Vanille, Erdbeere, Grüner Tee",
+          "3 different mochi ice cream varieties: Vanilla, Strawberry, Green Tea",
       },
     ],
   },
@@ -120,23 +128,23 @@ const appState = {
   popularDish: {
     name: "Spaghetti Carbonara Fusion",
     price: 10.0,
-    badge: "⭐ Unser Beliebtestes",
+    badge: "⭐ Our Most Popular",
     description:
-      "Unsere moderne Interpretation des italienischen Klassikers: Handgemachte Spaghetti mit cremiger Eier-Parmesan-Sauce, knusprigem Pancetta und einem Hauch von Yuzu-Zitrus. Ein perfektes Beispiel für unsere Fusion-Philosophie.",
+      "Our modern interpretation of the Italian classic: Handmade spaghetti with creamy egg-parmesan sauce, crispy pancetta and a hint of yuzu citrus. A perfect example of our fusion philosophy.",
     image: "./assets/images/Spagetti-01.jpg",
     tags: ["popular", "fusion", "pasta", "meat"],
     features: [
-      { icon: "🌟", text: "Meist bestellt" },
+      { icon: "🌟", text: "Most Ordered" },
       { icon: "👨‍🍳", text: "Chef's Special" },
-      { icon: "🔥", text: "Frisch zubereitet" },
+      { icon: "🔥", text: "Freshly Prepared" },
     ],
   },
 
   categories: [
-    { id: "all", name: "Alle", icon: "🍽️", count: 0 },
+    { id: "all", name: "All", icon: "🍽️", count: 0 },
     { id: "pizza", name: "Pizza", icon: "🍕", count: 0 },
     { id: "pasta", name: "Pasta", icon: "🍝", count: 0 },
-    { id: "salate", name: "Salate", icon: "🥗", count: 0 },
+    { id: "salate", name: "Salads", icon: "🥗", count: 0 },
     { id: "desserts", name: "Desserts", icon: "🍰", count: 0 },
   ],
 };
@@ -150,7 +158,7 @@ const notifyListeners = () => {
     try {
       listener();
     } catch (error) {
-      console.error("Fehler beim Benachrichtigen der Listener:", error);
+      console.error("Error notifying listeners:", error);
     }
   });
 };
@@ -165,7 +173,7 @@ const loadCartFromStorage = () => {
       appState.cart = JSON.parse(savedCart);
     }
   } catch (error) {
-    console.error("Fehler beim Laden des Warenkorbs:", error);
+    console.error("Error loading cart:", error);
   }
 };
 
@@ -176,7 +184,7 @@ const saveCartToStorage = () => {
   try {
     localStorage.setItem("superRandoCart", JSON.stringify(appState.cart));
   } catch (error) {
-    console.error("Fehler beim Speichern des Warenkorbs:", error);
+    console.error("Error saving cart:", error);
   }
 };
 
@@ -194,7 +202,7 @@ const loadUserPreferences = () => {
       };
     }
   } catch (error) {
-    console.error("Fehler beim Laden der User-Preferences:", error);
+    console.error("Error loading user preferences:", error);
   }
 };
 
@@ -208,7 +216,7 @@ const saveUserPreferences = () => {
       JSON.stringify(appState.userPreferences)
     );
   } catch (error) {
-    console.error("Fehler beim Speichern der User-Preferences:", error);
+    console.error("Error saving user preferences:", error);
   }
 };
 

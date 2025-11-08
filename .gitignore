@@ -5,14 +5,14 @@ node_modules/
 package-lock.json
 
 # Development
-dev-server.js
+# dev-server.js
 
 # Environment files
-.env
-.env.local
-.env.development
-.env.test
-.env.production
+config/env/.env
+config/env/.env.development
+config/env/.env.feature
+config/env/.env.staging
+config/env/.env.production
 
 # IDE/Editor
 .vscode/
@@ -61,6 +61,9 @@ certificate.pem
 # Apache
 # .htaccess
 
+# PHP files
+public/api/contact/contact.php
+
 # Cache
 /.angular/cache
 .sass-cache/
@@ -71,8 +74,8 @@ certificate.pem
 testem.log
 /typings
 
-# Copilot
-# copilot-instructions.md
-
 # Documentation
 docs/
+
+# Netlify
+.netlify/

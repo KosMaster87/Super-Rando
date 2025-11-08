@@ -1,3 +1,11 @@
+/**
+ * @fileoverview Service to handle settings-related events and interactions.
+ * @description This module sets up event listeners for the settings dropdown,
+ *              manages user interactions with settings options, and updates the
+ *              UI based on user preferences.
+ * @module services/settings-events
+ */
+
 import { getUserPreferences } from "../state.js";
 import { setTheme, toggleNotifications } from "./user-preferences.js";
 

@@ -1,3 +1,12 @@
+/**
+ * @fileoverview Service to handle contact form submissions with captcha validation.
+ * Includes functions to set up event handlers, validate captcha, submit form data,
+ * and refresh captcha questions.
+ * @description This module manages the contact form functionality, including
+ * captcha validation and form submission to the backend.
+ * @module services/contact-form
+ */
+
 import {
   showSuccessNotification,
   showErrorNotification,
@@ -106,7 +115,7 @@ const submitFormData = async (form) => {
     captcha: parseInt(document.getElementById("captchaAnswer").value),
   };
 
-  const response = await fetch("/api/contact.php", {
+  const response = await fetch("/api/contact/contact.php", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data),

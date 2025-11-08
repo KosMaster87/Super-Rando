@@ -14,34 +14,34 @@ function checkRateLimit($ip) {
     $maxRequests = 3;
     $timeWindow = 3600;
     $rateData = [];
-    
+
     if (file_exists($rateFile)) {
         $rateData = json_decode(file_get_contents($rateFile), true) ?: [];
     }
-    
+
     $currentTime = time();
     $clientData = $rateData[$ip] ?? ['requests' => [], 'blocked_until' => 0];
     $clientData['requests'] = array_filter(
-        $clientData['requests'], 
+        $clientData['requests'],
         function($timestamp) use ($currentTime, $timeWindow) {
             return ($currentTime - $timestamp) < $timeWindow;
         }
     );
-    
+
     if (count($clientData['requests']) >= $maxRequests) {
         $clientData['blocked_until'] = $currentTime + $timeWindow;
         $rateData[$ip] = $clientData;
         file_put_contents($rateFile, json_encode($rateData));
         return false;
     }
-    
+
     $clientData['requests'][] = $currentTime;
     $rateData[$ip] = $clientData;
     $rateData = array_filter($rateData, function($data) use ($currentTime) {
-        return !empty($data['requests']) && 
+        return !empty($data['requests']) &&
                ($currentTime - max($data['requests'])) < 86400;
     });
-    
+
     file_put_contents($rateFile, json_encode($rateData));
     return true;
 }
@@ -66,7 +66,7 @@ function logEvent($level, $message, $context = []) {
         json_encode($context),
         $userAgent
     );
-    
+
     file_put_contents($logFile, $logEntry, FILE_APPEND | LOCK_EX);
 }
 
@@ -102,7 +102,7 @@ function createEmailTemplate($name, $email, $subject, $message) {
     <body>
         <div class='container'>
             <div class='header'>
-                <h1>🍜 Super~Rando Contact Request</h1>
+                <h1>🍜 Your Restaurant Name Contact Request</h1>
                 <p>New message from contact form</p>
             </div>
             <div class='content'>
@@ -125,7 +125,7 @@ function createEmailTemplate($name, $email, $subject, $message) {
             </div>
             <div class='footer'>
                 <p>📅 Sent on: $date</p>
-                <p>🌐 From: super-rando.dev2k.org</p>
+                <p>🌐 From: your-domain.com</p>
             </div>
         </div>
     </body>
@@ -158,7 +158,7 @@ function createConfirmationTemplate($name, $subject) {
     <body>
         <div class='container'>
             <div class='header'>
-                <h1>🍜 Super~Rando</h1>
+                <h1>🍜 Your Restaurant Name</h1>
                 <p>Thank you for your message!</p>
             </div>
             <div class='content'>
@@ -167,13 +167,13 @@ function createConfirmationTemplate($name, $subject) {
                 <p>We usually reply within 24 hours during business hours.</p>
                 <p><strong>Our hours:</strong><br>
                 Monday - Sunday: 09:00 - 15:00</p>
-                <a href='https://super-rando.dev2k.org' class='button'>Visit Website</a>
+                <a href='https://your-domain.com' class='button'>Visit Website</a>
                 <p>Best regards,<br>
-                Your Super~Rando Team</p>
+                Your Restaurant Team</p>
             </div>
             <div class='footer'>
-                <p>📞 +595 994 221200 | 📧 konstantin.aksenov@dev2k.org</p>
-                <p>🌐 super-rando.dev2k.org</p>
+                <p>📞 +123 456 789 | 📧 your-email@example.com</p>
+                <p>🌐 your-domain.com</p>
             </div>
         </div>
     </body>
@@ -182,7 +182,7 @@ function createConfirmationTemplate($name, $subject) {
 
 switch ($_SERVER['REQUEST_METHOD']) {
     case "OPTIONS":
-        header("Access-Control-Allow-Origin: https://super-rando.dev2k.org");
+        header("Access-Control-Allow-Origin: https://your-domain.com");
         header("Access-Control-Allow-Headers: Content-Type");
         header("Access-Control-Allow-Methods: POST");
         header("Access-Control-Max-Age: 3600");
@@ -190,11 +190,11 @@ switch ($_SERVER['REQUEST_METHOD']) {
         exit;
 
     case "POST":
-        header("Access-Control-Allow-Origin: https://super-rando.dev2k.org");
+        header("Access-Control-Allow-Origin: https://your-domain.com");
         header("Content-Type: application/json; charset=utf-8");
 
         $clientIP = $_SERVER['REMOTE_ADDR'] ?? 'unknown';
-        
+
         if (!checkRateLimit($clientIP)) {
             http_response_code(429);
             echo json_encode([
@@ -273,15 +273,15 @@ switch ($_SERVER['REQUEST_METHOD']) {
             'subject' => $subject
         ]);
 
-        $recipient = 'konstantin.aksenov@dev2k.org';
-        $emailSubject = "Super~Rando Contact: $subject";
+        $recipient = 'your-email@example.com';
+        $emailSubject = "Contact Form: $subject";
         $emailMessage = createEmailTemplate($name, $email, $subject, $message);
         $headers = [
             'MIME-Version: 1.0',
             'Content-type: text/html; charset=utf-8',
-            'From: noreply@super-rando.dev2k.org',
+            'From: noreply@your-domain.com',
             'Reply-To: ' . $email,
-            'X-Mailer: Super-Rando Contact Form'
+            'X-Mailer: PHP Contact Form'
         ];
 
         $mailSent = mail($recipient, $emailSubject, $emailMessage, implode("\r\n", $headers));
@@ -295,14 +295,14 @@ switch ($_SERVER['REQUEST_METHOD']) {
 
         logEvent('INFO', 'Email sent successfully', ['recipient' => $recipient]);
 
-        $confirmationSubject = "Confirmation of your message - Super~Rando";
+        $confirmationSubject = "Confirmation of your message";
         $confirmationMessage = createConfirmationTemplate($name, $subject);
         $confirmationHeaders = [
             'MIME-Version: 1.0',
             'Content-type: text/html; charset=utf-8',
-            'From: noreply@super-rando.dev2k.org',
-            'Reply-To: konstantin.aksenov@dev2k.org',
-            'X-Mailer: Super-Rando Contact Form'
+            'From: noreply@your-domain.com',
+            'Reply-To: your-email@example.com',
+            'X-Mailer: PHP Contact Form'
         ];
 
         $confirmationSent = mail($email, $confirmationSubject, $confirmationMessage, implode("\r\n", $confirmationHeaders));
@@ -312,7 +312,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
         } else {
             logEvent('WARNING', 'Failed to send confirmation email', ['recipient' => $email]);
         }
-        
+
         echo json_encode([
             'success' => true,
             'message' => 'Message sent successfully'

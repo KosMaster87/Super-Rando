@@ -1,3 +1,10 @@
+/**
+ * @fileoverview Footer component rendering module.
+ * @description This module is responsible for rendering the footer component of the application,
+ * including the logo, navigation links, and social media icons.
+ * @module components/footer
+ */
+
 import { ASSETS } from "../utils/constants.js";
 
 /**

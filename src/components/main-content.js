@@ -1,3 +1,10 @@
+/**
+ * @fileoverview Main content renderer for the SPA.
+ * @description This module handles rendering the main content area based on the current page.
+ * It includes layouts with and without the cart section.
+ * @module components/main-content
+ */
+
 import { getCurrentPage } from "../state.js";
 import { renderHomePage } from "./pages/home-page.js";
 import { renderProductsPage } from "./pages/products-page.js";

@@ -1,3 +1,11 @@
+/**
+ * @fileoverview Service for handling footer navigation interactions.
+ * @description This module sets up event listeners for footer navigation elements,
+ * allowing users to navigate to different pages and scroll to the top of the page
+ * when footer links are clicked.
+ * @module services/footer-navigation
+ */
+
 import { handleNavigationClick } from "./navigation.js";
 import { PAGES } from "../utils/constants.js";
 
