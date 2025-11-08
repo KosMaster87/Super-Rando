@@ -61,8 +61,10 @@ certificate.pem
 # Apache
 # .htaccess
 
-# PHP files
+# PHP files with sensitive data
 public/api/contact/contact.php
+public/api/contact/rate_limit.json
+public/api/contact/contact_logs.txt
 
 # Cache
 /.angular/cache
