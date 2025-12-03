@@ -115,7 +115,7 @@ const submitFormData = async (form) => {
     captcha: parseInt(document.getElementById("captchaAnswer").value),
   };
 
-  const response = await fetch("/api/contact/contact.php", {
+  const response = await fetch("/public/api/contact/contact.php", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data),
