@@ -23,7 +23,17 @@ config/env/.env.production
 .history/*
 
 # CI/CD
-.github/
+# Keep .github folder (workflows, docs)
+# Explicitly allow .github/docs/
+!.github/
+!.github/workflows/
+!.github/docs/
+
+# Generated documentation & reports
+# Ignore generated TypeDoc/JSDoc output in project root
+/docs/
+# But keep .github/docs/ (tracked above)
+/coverage
 
 # Logs
 *.log
@@ -44,9 +54,6 @@ Thumbs.db
 # Build output
 /dist
 /bazel-out
-
-# Coverage reports
-# /coverage
 
 # Firebase
 .firebase
@@ -76,8 +83,9 @@ public/api/contact/contact_logs.txt
 testem.log
 /typings
 
-# Documentation
-docs/
+# Markdown files (documentation)
+# Exclude all markdown files by default
+# *.md
 
-# Netlify
-.netlify/
+# But include these important ones
+# !README.md

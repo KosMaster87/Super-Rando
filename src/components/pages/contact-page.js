@@ -6,8 +6,8 @@
  */
 
 import {
-  setupContactFormHandler,
   generateCaptcha,
+  setupContactFormHandler,
 } from "../../services/contact-form.js";
 
 /**
@@ -130,14 +130,8 @@ const renderContactInfo = () => {
         <div class="contact-item">
           <h3>Address</h3>
           <p>Konstantin Aksenov<br>
-          Concordia-Straße<br>
-          9370 Loma Plata<br>
-          Paraguay</p>
-        </div>
-
-        <div class="contact-item">
-          <h3>Phone</h3>
-          <p><a href="tel:+595994221200">+595 994 221200</a></p>
+          26810 Westoverledingen<br>
+          Germany</p>
         </div>
 
         <div class="contact-item">

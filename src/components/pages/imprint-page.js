@@ -75,14 +75,13 @@ const renderContactInfo = () => {
     <div class="imprint-section">
       <h2>Contact</h2>
       <p>
-        <a href="tel:+595994221200">+595 994 221200</a><br>
         <a href="mailto:konstantin.aksenov@dev2k.org">konstantin.aksenov@dev2k.org</a>
       </p>
       <h2>Responsible for content according to § 55 Abs. 2 RStV</h2>
       <p>
         Konstantin Aksenov<br>
-        Concordia-Straße<br>
-        9370 Loma Plata
+        26810 Westoverledingen<br>
+        Germany
       </p>
     </div>
   `;
