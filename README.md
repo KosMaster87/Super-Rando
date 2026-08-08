@@ -205,7 +205,7 @@ Content-Type: application/json
 
 ## 📄 License
 
-MIT License - see [LICENSE](LICENSE) for details.
+No project license file is currently included.
 
 ---
 
@@ -355,7 +355,7 @@ npm run dev
 
 ## 📄 License
 
-MIT License - see [LICENSE](LICENSE) for details.
+No project license file is currently included.
 
 ---
 
