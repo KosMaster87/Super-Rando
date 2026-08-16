@@ -14,53 +14,26 @@ export const renderImprintPage = () => {
     <section class="page-content">
       <h1 class="page-title">Imprint</h1>
       <div class="imprint-content">
-        ${renderCompanyInfo()}
-        ${renderLegalInfo()}
+        ${renderResponsibleInfo()}
         ${renderContactInfo()}
+        ${renderTechnicalInfo()}
       </div>
     </section>
   `;
 };
 
 /**
- * Renders the company information section.
- * @returns {string} HTML string for company information
+ * Renders the section identifying who is responsible for this website's content.
+ * @returns {string} HTML string for the responsible-party information
  */
-const renderCompanyInfo = () => {
+const renderResponsibleInfo = () => {
   return `
     <div class="imprint-section">
-      <h2>Information according to § 5 TMG</h2>
+      <h2>Responsible for content</h2>
       <p>
-        Super~Rando Fusion Cuisine GmbH<br>
-        Musterstraße 123<br>
-        12345 Musterstadt<br>
-        Germany
-      </p>
-    </div>
-  `;
-};
-
-/**
- * Renders the legal information section.
- * @returns {string} HTML string for legal information
- */
-const renderLegalInfo = () => {
-  return `
-    <div class="imprint-section">
-      <h2>Represented by</h2>
-      <p>Managing Director: Konstantin Aksenov</p>
-
-      <h2>Commercial Register Entry</h2>
-      <p>
-        Entry in the Commercial Register<br>
-        Register Court: District Court Musterstadt<br>
-        Register Number: HRB 12345
-      </p>
-
-      <h2>VAT ID</h2>
-      <p>
-        VAT Identification Number according to §27 a VAT Act:<br>
-        DE123456789
+        Developer2K Software<br>
+        Sole proprietor: Konstantin Aksenov<br>
+        Remote
       </p>
     </div>
   `;
@@ -75,13 +48,24 @@ const renderContactInfo = () => {
     <div class="imprint-section">
       <h2>Contact</h2>
       <p>
-        <a href="mailto:konstantin.aksenov@dev2k.org">konstantin.aksenov@dev2k.org</a>
+        Email: <a href="mailto:konstantin@dev2ksoftware.com">konstantin@dev2ksoftware.com</a><br>
+        Website: <a href="https://super-rando.dev2ksoftware.com/">https://super-rando.dev2ksoftware.com/</a>
       </p>
-      <h2>Responsible for content according to § 55 Abs. 2 RStV</h2>
+    </div>
+  `;
+};
+
+/**
+ * Renders the technical information section.
+ * @returns {string} HTML string for technical information
+ */
+const renderTechnicalInfo = () => {
+  return `
+    <div class="imprint-section">
+      <h2>Technical Information</h2>
       <p>
-        Konstantin Aksenov<br>
-        26810 Westoverledingen<br>
-        Germany
+        This website is built with Vanilla JavaScript and a Node.js/Express development
+        server. For technical inquiries, please contact us via the email address above.
       </p>
     </div>
   `;

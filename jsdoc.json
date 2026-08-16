@@ -18,21 +18,21 @@
       "logo": "/assets/icons/star.png",
       "menu": [
         {
-          "title": "🏠 Home",
+          "title": "Home",
           "link": "index.html"
         },
         {
-          "title": "📚 Global Functions",
+          "title": "Global Functions",
           "link": "global.html"
         },
         {
-          "title": "🔗 GitHub Repository",
+          "title": "GitHub Repository",
           "link": "https://github.com/KosMaster87/Super-Rando",
           "target": "_blank"
         },
         {
-          "title": "🚀 Live Demo",
-          "link": "#",
+          "title": "Live Demo",
+          "link": "https://super-rando.dev2ksoftware.com/",
           "target": "_blank"
         }
       ],

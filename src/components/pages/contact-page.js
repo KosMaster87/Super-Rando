@@ -125,15 +125,8 @@ const renderContactInfo = () => {
 
       <div class="contact-details">
         <div class="contact-item">
-          <h3>Address</h3>
-          <p>Konstantin Aksenov<br>
-          26810 Westoverledingen<br>
-          Germany</p>
-        </div>
-
-        <div class="contact-item">
           <h3>Email</h3>
-          <p><a href="mailto:konstantin.aksenov@dev2k.org">konstantin.aksenov@dev2k.org</a></p>
+          <p><a href="mailto:konstantin@dev2ksoftware.com">konstantin@dev2ksoftware.com</a></p>
         </div>
 
         <div class="contact-item">

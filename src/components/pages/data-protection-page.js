@@ -101,7 +101,7 @@ const renderUserRights = () => {
 
       <p>
         If you have any questions, feel free to contact us at:
-        <a href="mailto:konstantin.aksenov@dev2k.org">konstantin.aksenov@dev2k.org</a>
+        <a href="mailto:konstantin@dev2ksoftware.com">konstantin@dev2ksoftware.com</a>
       </p>
     </div>
   `;

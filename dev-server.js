@@ -77,21 +77,21 @@ const startServer = async () => {
     const port = await findAvailablePort(DEFAULT_PORT);
 
     app.listen(port, () => {
-      console.log(`🚀 SPA is running at http://localhost:${port}`);
+      console.log(`SPA is running at http://localhost:${port}`);
       if (port !== DEFAULT_PORT) {
-        console.log(`⚠️  Port ${DEFAULT_PORT} was busy, using port ${port}`);
+        console.log(`Port ${DEFAULT_PORT} was busy, using port ${port}`);
       }
-      console.log(`📝 Open Chrome and navigate to these URLs:`);
+      console.log(`Open Chrome and navigate to these URLs:`);
       console.log(`   - http://localhost:${port}/`);
-      console.log(`✨ F5/Reload works on all pages!`);
+      console.log(`F5/Reload works on all pages!`);
 
       if (process.env.NODE_ENV !== "production") {
-        console.log(`🔄 LiveReload running on port 35729`);
-        console.log(`💡 Browser will auto-reload on file changes!`);
+        console.log(`LiveReload running on port 35729`);
+        console.log(`Browser will auto-reload on file changes!`);
       }
     });
   } catch (error) {
-    console.error("❌ Error starting server:", error.message);
+    console.error("Error starting server:", error.message);
     process.exit(1);
   }
 };
