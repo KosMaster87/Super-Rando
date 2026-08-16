@@ -5,6 +5,23 @@ header('X-Frame-Options: DENY');
 header('X-XSS-Protection: 1; mode=block');
 
 /**
+ * Resolves the real visitor IP behind the Cloudflare Tunnel + nginx/PHP-FPM
+ * proxy chain. REMOTE_ADDR at this layer is the Docker network gateway, not
+ * the client - every visitor would otherwise share one rate-limit bucket.
+ * @return string - Best-effort client IP
+ */
+function getClientIp() {
+    if (!empty($_SERVER['HTTP_CF_CONNECTING_IP'])) {
+        return $_SERVER['HTTP_CF_CONNECTING_IP'];
+    }
+    if (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+        $forwarded = explode(',', $_SERVER['HTTP_X_FORWARDED_FOR']);
+        return trim($forwarded[0]);
+    }
+    return $_SERVER['REMOTE_ADDR'] ?? 'unknown';
+}
+
+/**
  * Checks rate limiting based on IP address.
  * @param string $ip - Client IP address
  * @return bool - True if allowed, false if rate limit reached
@@ -55,7 +72,7 @@ function checkRateLimit($ip) {
 function logEvent($level, $message, $context = []) {
     $logFile = __DIR__ . '/contact_logs.txt';
     $timestamp = date('Y-m-d H:i:s');
-    $ip = $_SERVER['REMOTE_ADDR'] ?? 'unknown';
+    $ip = getClientIp();
     $userAgent = $_SERVER['HTTP_USER_AGENT'] ?? 'unknown';
     $logEntry = sprintf(
         "[%s] %s: %s | IP: %s | Context: %s | UserAgent: %s\n",
@@ -193,7 +210,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
         header("Access-Control-Allow-Origin: https://your-domain.com");
         header("Content-Type: application/json; charset=utf-8");
 
-        $clientIP = $_SERVER['REMOTE_ADDR'] ?? 'unknown';
+        $clientIP = getClientIp();
 
         if (!checkRateLimit($clientIP)) {
             http_response_code(429);
