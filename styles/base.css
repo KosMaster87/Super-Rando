@@ -39,16 +39,8 @@
   --color-info: var(--color-medium-brown);
 
   /* Gradients */
-  --primary-gradient: linear-gradient(
-    135deg,
-    var(--color-primary),
-    var(--color-neutral-light)
-  );
-  --secondary-gradient: linear-gradient(
-    135deg,
-    var(--color-accent),
-    var(--color-background)
-  );
+  --primary-gradient: linear-gradient(135deg, var(--color-primary), var(--color-neutral-light));
+  --secondary-gradient: linear-gradient(135deg, var(--color-accent), var(--color-background));
   --background-gradient: linear-gradient(
     135deg,
     var(--color-background) 0%,

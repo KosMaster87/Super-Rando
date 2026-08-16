@@ -21,9 +21,7 @@ export const initializeCategoryEvents = () => {
  * Assigns click handlers to each card with a category ID.
  */
 const setupCategoryClickEvents = () => {
-  const categoryCards = document.querySelectorAll(
-    ".category-card[data-category]"
-  );
+  const categoryCards = document.querySelectorAll(".category-card[data-category]");
 
   categoryCards.forEach((card) => {
     const categoryId = card.dataset.category;

@@ -84,11 +84,7 @@ const createDishesSection = () => {
     <section class="dishes-section">
       <div class="dishes-header">
         <h2 class="dishes-title">
-          ${
-            selectedCategory === "all"
-              ? "All specialties"
-              : getCategoryDisplayName()
-          }
+          ${selectedCategory === "all" ? "All specialties" : getCategoryDisplayName()}
         </h2>
         <p class="dishes-subtitle">${filteredDishes.length} dishes found</p>
       </div>

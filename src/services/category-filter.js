@@ -39,9 +39,7 @@ export const updateCategoryCounts = () => {
     if (category.id === "all") {
       category.count = dishes.length;
     } else {
-      category.count = dishes.filter(
-        (dish) => dish.tags && dish.tags.includes(category.id)
-      ).length;
+      category.count = dishes.filter((dish) => dish.tags && dish.tags.includes(category.id)).length;
     }
   });
 };

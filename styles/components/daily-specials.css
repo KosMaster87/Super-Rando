@@ -188,11 +188,7 @@
 }
 
 .menu-order-btn {
-  background: linear-gradient(
-    135deg,
-    var(--color-primary),
-    var(--color-primary-hover)
-  );
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-hover));
   color: var(--text-light);
   border: none;
   padding: clamp(0.75rem, 2vw + 0.5rem, 1rem) clamp(1rem, 3vw + 0.5rem, 2rem);
@@ -207,11 +203,7 @@
 }
 
 .menu-order-btn:hover:not(:disabled) {
-  background: linear-gradient(
-    135deg,
-    var(--color-primary-hover),
-    var(--color-neutral-medium)
-  );
+  background: linear-gradient(135deg, var(--color-primary-hover), var(--color-neutral-medium));
   box-shadow: 0 0.5rem 1.56rem var(--shadow-heavy);
 }
 

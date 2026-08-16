@@ -24,9 +24,7 @@ export const renderMainContent = () => {
   const currentPage = getCurrentPage();
   const hasCart = CART_PAGES.includes(currentPage);
 
-  mainElement.innerHTML = hasCart
-    ? createLayoutWithCart()
-    : createLayoutWithoutCart();
+  mainElement.innerHTML = hasCart ? createLayoutWithCart() : createLayoutWithoutCart();
 };
 
 /**

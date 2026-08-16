@@ -16,9 +16,7 @@ export const renderCartToggle = () => {
   const hasItems = itemCount > 0;
 
   return `
-    <button class="cart-toggle-btn ${
-      hasItems ? "has-items" : ""
-    }" id="cartToggleBtn">
+    <button class="cart-toggle-btn ${hasItems ? "has-items" : ""}" id="cartToggleBtn">
       <span class="cart-icon">🛒</span>
       ${hasItems ? `<span class="cart-badge">${itemCount}</span>` : ""}
     </button>

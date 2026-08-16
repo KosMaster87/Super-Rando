@@ -19,12 +19,7 @@ import {
  * @param {number} duration - Display duration in milliseconds
  * @param {boolean} force - Forces display even if notifications are disabled
  */
-export const showNotification = (
-  message,
-  type = "success",
-  duration = 3000,
-  force = false
-) => {
+export const showNotification = (message, type = "success", duration = 3000, force = false) => {
   const userPreferences = getUserPreferences();
   if (!force && !userPreferences.showNotifications) {
     return;

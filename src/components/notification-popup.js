@@ -23,9 +23,7 @@ export const renderNotifications = () => {
 
   return `
     <div class="notification-container" id="notificationContainer">
-      ${notifications
-        .map((notification) => createNotificationHTML(notification))
-        .join("")}
+      ${notifications.map((notification) => createNotificationHTML(notification)).join("")}
     </div>
   `;
 };

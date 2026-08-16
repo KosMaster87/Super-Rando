@@ -5,10 +5,7 @@
  * @module components/pages/contact-page
  */
 
-import {
-  generateCaptcha,
-  setupContactFormHandler,
-} from "../../services/contact-form.js";
+import { generateCaptcha, setupContactFormHandler } from "../../services/contact-form.js";
 
 /**
  * Renders the contact page.

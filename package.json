@@ -4,26 +4,39 @@
   "description": "Super Rando Restaurant SPA Documentation",
   "main": "dev-server.js",
   "type": "module",
+  "private": true,
+  "packageManager": "pnpm@10.33.0",
   "scripts": {
-    "dev": "concurrently -n SERVER,RELOAD \"nodemon dev-server.js\" \"npm run livereload\"",
+    "dev": "concurrently -n SERVER,RELOAD \"nodemon dev-server.js\" \"pnpm run livereload\"",
     "livereload": "livereload . --wait 500 --debug --extraExts js,css,html",
     "start": "node dev-server.js",
     "watch": "nodemon dev-server.js --watch src --watch styles",
     "docs": "jsdoc -c jsdoc.json",
     "docs:serve": "npx http-server docs -p 8080 -o",
-    "generate-docs": "jsdoc --configure jsdoc.json --verbose"
+    "generate-docs": "jsdoc --configure jsdoc.json --verbose",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "prepare": "husky"
   },
   "dependencies": {
     "express": "^4.18.2"
   },
   "devDependencies": {
+    "@commitlint/cli": "^21.2.2",
+    "@commitlint/config-conventional": "^21.2.2",
     "@types/connect-livereload": "^0.6.3",
     "@types/livereload": "^0.9.5",
     "clean-jsdoc-theme": "^4.3.0",
     "concurrently": "^9.1.2",
     "connect-livereload": "^0.6.1",
+    "husky": "^9.1.7",
     "jsdoc": "^4.0.4",
+    "lint-staged": "^17.3.0",
     "livereload": "^0.9.3",
-    "nodemon": "^3.1.10"
+    "nodemon": "^3.1.10",
+    "prettier": "^3.9.6"
+  },
+  "lint-staged": {
+    "*.{js,cjs,mjs,json,md,css,html}": "prettier --write"
   }
 }

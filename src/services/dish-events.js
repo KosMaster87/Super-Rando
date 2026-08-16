@@ -46,9 +46,7 @@ const setupMenuBundleEvents = () => {
  * Handles ordering the menu bundle and adds it to the cart.
  */
 const handleMenuBundleOrder = () => {
-  const selectedDessert = document.querySelector(
-    'input[name="menuDessert"]:checked'
-  );
+  const selectedDessert = document.querySelector('input[name="menuDessert"]:checked');
 
   const menuBundle = getMenuBundle();
   const dessertOption = menuBundle.dessertOptions.find(

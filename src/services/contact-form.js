@@ -7,10 +7,7 @@
  * @module services/contact-form
  */
 
-import {
-  showSuccessNotification,
-  showErrorNotification,
-} from "./notification.js";
+import { showSuccessNotification, showErrorNotification } from "./notification.js";
 
 /**
  * Sets up event handlers for the contact form and captcha refresh button.
@@ -60,9 +57,7 @@ const handleContactFormSubmit = async (event) => {
 const validateCaptcha = () => {
   const captchaInput = document.getElementById("captchaAnswer");
   const userAnswer = parseInt(captchaInput.value);
-  const correctAnswer = parseInt(
-    captchaInput.getAttribute("data-correct-answer")
-  );
+  const correctAnswer = parseInt(captchaInput.getAttribute("data-correct-answer"));
 
   if (isNaN(userAnswer) || userAnswer !== correctAnswer) {
     showErrorNotification("The answer to the security question is incorrect.");

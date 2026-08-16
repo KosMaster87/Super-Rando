@@ -20,9 +20,7 @@ import {
  */
 export const renderCart = () => {
   return `
-    <aside class="cart-sidebar ${
-      isCartVisible() ? "cart-open" : ""
-    }" id="cartSidebar">
+    <aside class="cart-sidebar ${isCartVisible() ? "cart-open" : ""}" id="cartSidebar">
       <div class="cart-container">
         ${createCartHeader()}
         ${createCartContent()}
@@ -99,9 +97,7 @@ const createCartItem = (item) => {
         }">+</button>
       </div>
       <div class="cart-item-total">${total} €</div>
-      <button class="remove-item-btn" data-action="remove" data-item="${
-        item.name
-      }">🗑️</button>
+      <button class="remove-item-btn" data-action="remove" data-item="${item.name}">🗑️</button>
     </div>
   `;
 };
@@ -120,9 +116,7 @@ const createCartFooter = () => {
       <div class="cart-total">
         <strong>Total: ${total.toFixed(2)} €</strong>
       </div>
-      <button class="cart-order-btn" id="orderBtn" ${
-        !hasItems ? "disabled" : ""
-      }>
+      <button class="cart-order-btn" id="orderBtn" ${!hasItems ? "disabled" : ""}>
         Order now
       </button>
     </div>

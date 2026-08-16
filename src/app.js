@@ -19,10 +19,7 @@ import {
   initializeFooterNavigation,
   setupFooterNavigationListeners,
 } from "./services/footer-navigation.js";
-import {
-  initializeNavigation,
-  setupNavigationListeners,
-} from "./services/navigation.js";
+import { initializeNavigation, setupNavigationListeners } from "./services/navigation.js";
 import { ScrollManager } from "./utils/scroll-manager.js";
 
 /**

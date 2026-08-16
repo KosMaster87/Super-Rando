@@ -7,11 +7,7 @@
   width: 3.5rem;
   height: 3.5rem;
   border-radius: 50%;
-  background: linear-gradient(
-    135deg,
-    var(--color-primary),
-    var(--color-primary-hover)
-  );
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-hover));
   color: var(--color-surface);
   border: 1px solid var(--color-cream);
   cursor: pointer;
@@ -115,7 +111,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background 0.2s, color 0.2s, border-color 0.2s;
+  transition:
+    background 0.2s,
+    color 0.2s,
+    border-color 0.2s;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
   outline: none;
 }
@@ -275,11 +274,7 @@
 .cart-order-btn {
   width: 100%;
   padding: 1rem;
-  background: linear-gradient(
-    135deg,
-    var(--color-primary),
-    var(--color-primary-hover)
-  );
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-hover));
   color: var(--color-surface);
   border: none;
   border-radius: 0.5rem;
@@ -291,11 +286,7 @@
 }
 
 .cart-order-btn:hover:not(:disabled) {
-  background: linear-gradient(
-    135deg,
-    var(--color-primary-hover),
-    var(--color-neutral-medium)
-  );
+  background: linear-gradient(135deg, var(--color-primary-hover), var(--color-neutral-medium));
   transform: translateY(-0.13rem);
 }
 
@@ -330,11 +321,7 @@
 
   /* Cart Header - Mobile with desktop styling */
   .cart-header {
-    background: linear-gradient(
-      135deg,
-      var(--color-primary),
-      var(--color-primary-hover)
-    );
+    background: linear-gradient(135deg, var(--color-primary), var(--color-primary-hover));
     margin: -1rem -1rem 1rem -1rem;
     padding: 1rem;
     border-radius: 0;
@@ -401,7 +388,9 @@
     opacity: 0;
     transform: scale(0.8);
     pointer-events: none;
-    transition: opacity 0.3s ease, transform 0.3s ease;
+    transition:
+      opacity 0.3s ease,
+      transform 0.3s ease;
   }
 
   /* Cart Items - More compact layout */
@@ -456,7 +445,9 @@
     border-radius: 1rem;
     box-shadow: 0 0.5rem 2rem var(--shadow-light);
     background: var(--secondary-gradient);
-    transition: opacity 0.3s ease, transform 0.3s ease;
+    transition:
+      opacity 0.3s ease,
+      transform 0.3s ease;
   }
 
   .cart-sidebar:not(.cart-open) {
@@ -477,11 +468,7 @@
 
   /* Cart Header */
   .cart-header {
-    background: linear-gradient(
-      135deg,
-      var(--color-primary),
-      var(--color-primary-hover)
-    );
+    background: linear-gradient(135deg, var(--color-primary), var(--color-primary-hover));
     margin: -1rem -1rem 1rem -1rem;
     padding: 1rem;
     border-radius: 1rem 1rem 0 0;

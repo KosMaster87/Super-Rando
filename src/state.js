@@ -30,48 +30,42 @@ const appState = {
     {
       name: "Pizza Margherita",
       price: 8.5,
-      description:
-        "Classic pizza with tomato sauce, mozzarella cheese, and fresh basil.",
+      description: "Classic pizza with tomato sauce, mozzarella cheese, and fresh basil.",
       image: "./assets/images/Pizza-01.jpg",
       tags: ["pizza", "vegetarian", "italian"],
     },
     {
       name: "Pizza Salami",
       price: 9.0,
-      description:
-        "Delicious pizza topped with spicy salami, mozzarella cheese, and tomato sauce.",
+      description: "Delicious pizza topped with spicy salami, mozzarella cheese, and tomato sauce.",
       image: "./assets/images/Pizza-02.jpg",
       tags: ["pizza", "meat", "italian"],
     },
     {
       name: "Pizza Funghi",
       price: 9.5,
-      description:
-        "Savory pizza with mushrooms, mozzarella cheese, and a hint of garlic.",
+      description: "Savory pizza with mushrooms, mozzarella cheese, and a hint of garlic.",
       image: "./assets/images/Pizza-03.jpg",
       tags: ["pizza", "vegetarian", "italian"],
     },
     {
       name: "Spaghetti Carbonara",
       price: 10.0,
-      description:
-        "Traditional Roman pasta dish with eggs, cheese, pancetta, and pepper.",
+      description: "Traditional Roman pasta dish with eggs, cheese, pancetta, and pepper.",
       image: "./assets/images/Spagetti-01.jpg",
       tags: ["pasta", "meat", "italian"],
     },
     {
       name: "Spaghetti Bolognese",
       price: 10.5,
-      description:
-        "Hearty spaghetti with a rich meat sauce made from ground beef and tomatoes.",
+      description: "Hearty spaghetti with a rich meat sauce made from ground beef and tomatoes.",
       image: "./assets/images/Spagetti-02.jpg",
       tags: ["pasta", "meat", "italian"],
     },
     {
       name: "Caesar Salad",
       price: 7.0,
-      description:
-        "Crisp romaine lettuce with Caesar dressing, croutons, and parmesan cheese.",
+      description: "Crisp romaine lettuce with Caesar dressing, croutons, and parmesan cheese.",
       image: "./assets/images/Salat-01.jpg",
       tags: ["salate", "vegetarian", "fresh"],
     },
@@ -102,8 +96,7 @@ const appState = {
       {
         image: "./assets/images/Gyoza-Salat-01.jpg",
         name: "Gyoza Salad",
-        description:
-          "Crispy gyoza on mixed salad with homemade sesame-ginger dressing",
+        description: "Crispy gyoza on mixed salad with homemade sesame-ginger dressing",
       },
     ],
     dessertOptions: [
@@ -119,8 +112,7 @@ const appState = {
         value: "mochi",
         image: "./assets/images/Mochi-Eis-01.png",
         name: "Mochi Ice Cream Variation",
-        description:
-          "3 different mochi ice cream varieties: Vanilla, Strawberry, Green Tea",
+        description: "3 different mochi ice cream varieties: Vanilla, Strawberry, Green Tea",
       },
     ],
   },
@@ -211,10 +203,7 @@ const loadUserPreferences = () => {
  */
 const saveUserPreferences = () => {
   try {
-    localStorage.setItem(
-      "superRandoPreferences",
-      JSON.stringify(appState.userPreferences)
-    );
+    localStorage.setItem("superRandoPreferences", JSON.stringify(appState.userPreferences));
   } catch (error) {
     console.error("Error saving user preferences:", error);
   }
@@ -226,13 +215,7 @@ const saveUserPreferences = () => {
  * @returns {boolean} Is valid
  */
 const isValidPage = (page) => {
-  const validPages = [
-    "home",
-    "products",
-    "contact",
-    "imprint",
-    "dataProtection",
-  ];
+  const validPages = ["home", "products", "contact", "imprint", "dataProtection"];
   return validPages.includes(page);
 };
 
@@ -309,8 +292,7 @@ export const getCartTotal = () =>
  * Returns the total number of items in the cart.
  * @returns {number} Item count
  */
-export const getCartItemCount = () =>
-  appState.cart.reduce((sum, item) => sum + item.quantity, 0);
+export const getCartItemCount = () => appState.cart.reduce((sum, item) => sum + item.quantity, 0);
 
 /**
  * Returns the cart visibility status.
