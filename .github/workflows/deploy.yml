@@ -1,0 +1,85 @@
+name: Build & Deploy to Unraid
+
+on:
+  push:
+    branches: [main, staging]
+  pull_request:
+    branches: [main, staging]
+  workflow_dispatch:
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: ".nvmrc"
+          cache: "pnpm"
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm run format:check
+
+  deploy-staging:
+    needs: quality
+    if: (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && github.ref == 'refs/heads/staging'
+    runs-on: ubuntu-latest
+    environment: staging
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install cloudflared
+        run: |
+          curl -sSL -o cloudflared \
+            https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64
+          chmod +x cloudflared
+          sudo mv cloudflared /usr/local/bin/cloudflared
+          mkdir -p ~/.ssh
+      - name: Deploy to Staging
+        run: |
+          echo "${{ secrets.UNRAID_DEPLOY_SSH_KEY_STAGING }}" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          cat >> ~/.ssh/config <<EOF
+          Host deploy-super-rando.dev2ksoftware.com
+            StrictHostKeyChecking no
+            UserKnownHostsFile /dev/null
+            IdentityFile ~/.ssh/id_ed25519
+            IdentitiesOnly yes
+            ProxyCommand cloudflared access ssh --hostname %h --id ${{ secrets.CF_ACCESS_CLIENT_ID }} --secret ${{ secrets.CF_ACCESS_CLIENT_SECRET }}
+          EOF
+          chmod 600 ~/.ssh/config
+
+          rsync -avz --delete \
+            --exclude='node_modules' --exclude='.git' --exclude='.husky' --exclude='docs' \
+            . root@deploy-super-rando.dev2ksoftware.com:/mnt/nvme/appdata/static-sites/www/super-rando-staging/
+
+  deploy-production:
+    needs: quality
+    if: (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install cloudflared
+        run: |
+          curl -sSL -o cloudflared \
+            https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64
+          chmod +x cloudflared
+          sudo mv cloudflared /usr/local/bin/cloudflared
+          mkdir -p ~/.ssh
+      - name: Deploy to Production
+        run: |
+          echo "${{ secrets.UNRAID_DEPLOY_SSH_KEY_PRODUCTION }}" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          cat >> ~/.ssh/config <<EOF
+          Host deploy-super-rando.dev2ksoftware.com
+            StrictHostKeyChecking no
+            UserKnownHostsFile /dev/null
+            IdentityFile ~/.ssh/id_ed25519
+            IdentitiesOnly yes
+            ProxyCommand cloudflared access ssh --hostname %h --id ${{ secrets.CF_ACCESS_CLIENT_ID }} --secret ${{ secrets.CF_ACCESS_CLIENT_SECRET }}
+          EOF
+          chmod 600 ~/.ssh/config
+
+          rsync -avz --delete \
+            --exclude='node_modules' --exclude='.git' --exclude='.husky' --exclude='docs' \
+            . root@deploy-super-rando.dev2ksoftware.com:/mnt/nvme/appdata/static-sites/www/super-rando/
