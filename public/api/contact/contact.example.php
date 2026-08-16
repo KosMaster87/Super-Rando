@@ -102,30 +102,30 @@ function createEmailTemplate($name, $email, $subject, $message) {
     <body>
         <div class='container'>
             <div class='header'>
-                <h1>🍜 Your Restaurant Name Contact Request</h1>
+                <h1>Your Restaurant Name Contact Request</h1>
                 <p>New message from contact form</p>
             </div>
             <div class='content'>
                 <div class='field'>
-                    <span class='field-label'>👤 Name:</span>
+                    <span class='field-label'>Name:</span>
                     <div class='field-value'>$name</div>
                 </div>
                 <div class='field'>
-                    <span class='field-label'>📧 Email:</span>
+                    <span class='field-label'>Email:</span>
                     <div class='field-value'>$email</div>
                 </div>
                 <div class='field'>
-                    <span class='field-label'>📋 Subject:</span>
+                    <span class='field-label'>Subject:</span>
                     <div class='field-value'>$subject</div>
                 </div>
                 <div class='field'>
-                    <span class='field-label'>💬 Message:</span>
+                    <span class='field-label'>Message:</span>
                     <div class='message-content'>" . nl2br($message) . "</div>
                 </div>
             </div>
             <div class='footer'>
-                <p>📅 Sent on: $date</p>
-                <p>🌐 From: your-domain.com</p>
+                <p>Sent on: $date</p>
+                <p>From: your-domain.com</p>
             </div>
         </div>
     </body>
@@ -158,7 +158,7 @@ function createConfirmationTemplate($name, $subject) {
     <body>
         <div class='container'>
             <div class='header'>
-                <h1>🍜 Your Restaurant Name</h1>
+                <h1>Your Restaurant Name</h1>
                 <p>Thank you for your message!</p>
             </div>
             <div class='content'>
@@ -172,8 +172,8 @@ function createConfirmationTemplate($name, $subject) {
                 Your Restaurant Team</p>
             </div>
             <div class='footer'>
-                <p>📞 +123 456 789 | 📧 your-email@example.com</p>
-                <p>🌐 your-domain.com</p>
+                <p>+123 456 789 | your-email@example.com</p>
+                <p>your-domain.com</p>
             </div>
         </div>
     </body>
