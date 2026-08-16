@@ -55,6 +55,11 @@ jobs:
             --exclude='node_modules' --exclude='.git' --exclude='.husky' --exclude='docs' \
             --exclude='public/api' \
             . root@deploy-super-rando.dev2ksoftware.com:/mnt/nvme/appdata/static-sites/www/super-rando-staging/
+      - name: Purge Cloudflare cache
+        run: |
+          curl -sf -X POST "https://api.cloudflare.com/client/v4/zones/${{ secrets.CF_ZONE_ID }}/purge_cache" \
+            -H "Authorization: Bearer ${{ secrets.CF_API_TOKEN }}" -H "Content-Type: application/json" \
+            --data '{"purge_everything":true}'
 
   deploy-production:
     needs: quality
@@ -91,3 +96,8 @@ jobs:
             --exclude='node_modules' --exclude='.git' --exclude='.husky' --exclude='docs' \
             --exclude='public/api' \
             . root@deploy-super-rando.dev2ksoftware.com:/mnt/nvme/appdata/static-sites/www/super-rando/
+      - name: Purge Cloudflare cache
+        run: |
+          curl -sf -X POST "https://api.cloudflare.com/client/v4/zones/${{ secrets.CF_ZONE_ID }}/purge_cache" \
+            -H "Authorization: Bearer ${{ secrets.CF_API_TOKEN }}" -H "Content-Type: application/json" \
+            --data '{"purge_everything":true}'
