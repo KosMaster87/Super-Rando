@@ -48,8 +48,12 @@ jobs:
           EOF
           chmod 600 ~/.ssh/config
 
+          # public/api is excluded from --delete: the real contact.php with
+          # production credentials lives only on the server (gitignored,
+          # never in the repo) and must never be overwritten or removed here.
           rsync -avz --delete \
             --exclude='node_modules' --exclude='.git' --exclude='.husky' --exclude='docs' \
+            --exclude='public/api' \
             . root@deploy-super-rando.dev2ksoftware.com:/mnt/nvme/appdata/static-sites/www/super-rando-staging/
 
   deploy-production:
@@ -80,6 +84,10 @@ jobs:
           EOF
           chmod 600 ~/.ssh/config
 
+          # public/api is excluded from --delete: the real contact.php with
+          # production credentials lives only on the server (gitignored,
+          # never in the repo) and must never be overwritten or removed here.
           rsync -avz --delete \
             --exclude='node_modules' --exclude='.git' --exclude='.husky' --exclude='docs' \
+            --exclude='public/api' \
             . root@deploy-super-rando.dev2ksoftware.com:/mnt/nvme/appdata/static-sites/www/super-rando/
